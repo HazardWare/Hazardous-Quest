@@ -13,3 +13,10 @@ config_version=5
 config/name="THE PRACTICE RPG"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[file_customization]
+
+folder_colors={
+"res://assets/": "green",
+"res://scripts/": "red"
+}
