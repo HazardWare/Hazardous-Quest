@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cbaut5bbgnqxc"]
+[gd_scene load_steps=12 format=3 uid="uid://cbaut5bbgnqxc"]
 
 [ext_resource type="Texture2D" uid="uid://mg42qt04rif8" path="res://assets/tilemaps/tile_dungeon.png" id="1_8afob"]
 [ext_resource type="Script" uid="uid://0fays8i2wtql" path="res://scenes/player/player.gd" id="1_dovo2"]
@@ -18,8 +18,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_lvxji"]
-radius = 8.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dovo2"]
+radius = 1.0
+height = 8.0
 
 [sub_resource type="Animation" id="Animation_gmlin"]
 length = 0.001
@@ -109,6 +110,21 @@ _data = {
 &"walk_right": SubResource("Animation_dovo2")
 }
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_gmlin"]
+atlas = ExtResource("1_8afob")
+region = Rect2(128, 128, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lvxji"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gmlin")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
 collision_mask = 30
@@ -116,12 +132,13 @@ script = ExtResource("1_dovo2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(1.01934, 1.09803)
 sprite_frames = SubResource("SpriteFrames_gmlin")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1)
-shape = SubResource("CircleShape2D_lvxji")
+position = Vector2(0, 7)
+rotation = 1.57079
+shape = SubResource("CapsuleShape2D_dovo2")
+debug_color = Color(0, 0.6, 0.701961, 0.0627451)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(4, 4)
@@ -130,3 +147,14 @@ zoom = Vector2(4, 4)
 libraries = {
 &"": SubResource("AnimationLibrary_p47bc")
 }
+
+[node name="Arm" type="Node2D" parent="."]
+
+[node name="Weapon" type="AnimatedSprite2D" parent="Arm"]
+z_index = -1
+texture_filter = 1
+position = Vector2(4, 0)
+rotation = 1.57079
+sprite_frames = SubResource("SpriteFrames_lvxji")
+
+[node name="Attack" type="AnimationPlayer" parent="Arm"]
