@@ -112,7 +112,6 @@ _data = {
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 30
 script = ExtResource("1_dovo2")
-move_speed = 8000.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1

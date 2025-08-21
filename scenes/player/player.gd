@@ -1,17 +1,10 @@
-extends CharacterBody2D
-
-@export var move_speed : float = 1500.0
-
-
+extends Character
 
 func _physics_process(delta: float) -> void:
-	# WALKING
-	var direction = Input.get_vector("walk_left", "walk_right", "walk_up", "walk_down")
-	velocity = direction * move_speed * delta
+	var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	velocity = direction * speed * delta
 	move_and_slide()
 	
-	# ANIMATING (PLACEHOLDER)
-	if velocity.x > 0:
-		$AnimationPlayer.play("walk_right")
-	elif velocity.x < 0:
-		$AnimationPlayer.play("walk_left")
+	# Debug:
+	if Input.is_action_just_pressed("ui_accept"):
+		health += 1

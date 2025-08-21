@@ -15,9 +15,10 @@ signal onDamaged ## Emitted on a negative decrease on health.
 		blueHealth = setBlueHealth(value)
 	get:
 		return blueHealth
-@export var speed : float = 10 ## Physical, in-world speed.
+@export var speed : float = 5000.0 ## Physical, in-world speed.
 @export var strength : int = 1 ## Damage the character does.
 @export var invulnerable : bool = false ## Unable to be damaged.
+@export var toxic : bool = false ## Character inflicts poison.
 
 ## How much time [i] (in seconds, don't be fooled) [/i] should the character be invulnerable after just getting hit.
 @export var iFrames : float = 0
@@ -45,7 +46,6 @@ var poisoned : bool : ## Getter/Setter for evauluating if the character is poiso
 		if value:
 			poisonDuration += 5
 
-@export var toxic : bool = false ## Character inflicts poison.
 
 
 #### Methods
@@ -68,8 +68,8 @@ func setHealth(value : int) -> int :
 		onDamaged.emit(health-value)
 
 		# Make sure blue hearts are hit first.
-		if ( value > blueHealth ):
-			redHealth -= value - blueHealth
+		if ( value >= blueHealth ):
+			redHealth = value - blueHealth
 			blueHealth = 0
 		else:
 			blueHealth -= value 
@@ -83,11 +83,10 @@ func setHealth(value : int) -> int :
 		else:
 			redHealth = value
 	
-	return min(value, 0)
-
+	return clamp(value, 0, value)
 
 func setRedHealth(value : int) -> int:
 	return clamp(value, 0, maximumHealth)
 
 func setBlueHealth(value : int) -> int:
-	return min(value, 0)
+	return clamp(value, 0, value)
