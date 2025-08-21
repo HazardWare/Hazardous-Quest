@@ -14,6 +14,11 @@ config/name="THE PRACTICE RPG"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
-[rendering]
+[file_customization]
 
-textures/canvas_textures/default_texture_filter=0
+folder_colors={
+"res://assets/": "green",
+"res://resources/": "teal",
+"res://scenes/": "blue",
+"res://scripts/": "red"
+}
