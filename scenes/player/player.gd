@@ -1,7 +1,7 @@
 extends Character
 
 func _physics_process(delta: float) -> void:
-	var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	var direction = Input.get_vector("walk_left", "walk_right", "walk_up", "walk_down")
 	velocity = direction * speed * delta
 	move_and_slide()
 	
