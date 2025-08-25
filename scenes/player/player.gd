@@ -1,8 +1,18 @@
 extends Character
 
-@export var validSwordAngleStep = 15.0
+@export var validSwordAngleStep = 90.0
 
 func _physics_process(delta: float) -> void:
+	
+	if (velocity.x < 0):
+		$AnimatedSprite2D.flip_h = true
+	elif velocity.x > 0:
+		$AnimatedSprite2D.flip_h = false 
+		
+	if velocity.length() > 0 and not $Arm/Attack.is_playing():
+		$AnimationPlayer.play('walk')
+	else:
+		$AnimationPlayer.pause()
 	
 	# Can't do this stuff whilst attacking
 	if not $Arm/Attack.is_playing():
@@ -12,12 +22,14 @@ func _physics_process(delta: float) -> void:
 	
 		# Rotate the sword toward the mouse
 		var angleToTheMouse = get_global_mouse_position().angle_to_point(position)
+		print(  snapped( rad_to_deg(angleToTheMouse) + 180 , validSwordAngleStep) )
 		$Arm.rotation = deg_to_rad( snapped( rad_to_deg(angleToTheMouse) + 180 , validSwordAngleStep) )
 	else:
 		velocity = Vector2.ZERO
 		
 	# Debug:
 	if Input.is_action_just_pressed("ui_accept"):
+		$AnimationPlayer.play("RESET")
 		$Arm/Attack.play("jab")
 
 
