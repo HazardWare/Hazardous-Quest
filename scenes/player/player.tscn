@@ -205,6 +205,7 @@ rotation = -1.5708
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(-1.5, -3.03986e-07)
 shape = SubResource("RectangleShape2D_gmlin")
+debug_color = Color(0.994525, 0, 0.220672, 0.42)
 
 [connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
 [connection signal="area_exited" from="HitBox" to="." method="_on_hit_box_area_exited"]
