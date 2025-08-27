@@ -39,7 +39,8 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 	
-	
+	if Input.is_action_pressed("interact") and hitbox_touching: #Right now it's the E key, this is so that the player can access the Interactables.
+		pass
 	
 
 
