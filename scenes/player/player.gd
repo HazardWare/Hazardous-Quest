@@ -6,13 +6,14 @@ var hitbox_touching : bool
 
 func _physics_process(delta: float) -> void:
 	
-	if (velocity.x < 0):
-		$AnimatedSprite2D.flip_h = true
-	elif velocity.x > 0:
-		$AnimatedSprite2D.flip_h = false 
-		
+	
+	#Looking nice stuff
 	if velocity.length() > 0 and not $Arm/Attack.is_playing():
 		$AnimationPlayer.play('walk')
+		if (velocity.x < 0):
+			$AnimatedSprite2D.flip_h = true
+		elif velocity.x > 0:
+			$AnimatedSprite2D.flip_h = false 
 	else:
 		$AnimationPlayer.pause()
 	
@@ -24,16 +25,17 @@ func _physics_process(delta: float) -> void:
 	
 		# Rotate the sword toward the mouse
 		var angleToTheMouse = get_global_mouse_position().angle_to_point(position)
-		print(  snapped( rad_to_deg(angleToTheMouse) + 180 , validSwordAngleStep) )
 		$Arm.rotation = deg_to_rad( snapped( rad_to_deg(angleToTheMouse) + 180 , validSwordAngleStep) )
 	else:
 		velocity = Vector2.ZERO
 		
-	# Debug:
+	# Jab:
 	if Input.is_action_just_pressed("ui_accept"):
 		$AnimationPlayer.play("RESET")
 		$Arm/Attack.play("jab")
-
+		
+		var lookingLeft = snapped( rad_to_deg(get_global_mouse_position().angle_to_point(position)) + 180 , 180) == 180
+		$AnimatedSprite2D.flip_h = lookingLeft
 
 	move_and_slide()
 	

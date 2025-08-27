@@ -8,13 +8,13 @@
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_fxtkv"]
 gradient = SubResource("Gradient_373mm")
-fill_to = Vector2(0.166667, 0)
+fill_to = Vector2(0.107527, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h0wcu"]
 shader = ExtResource("3_373mm")
-shader_parameter/color = Color(0.451347, 0.153233, 0, 0.443137)
-shader_parameter/angle = 210.337
-shader_parameter/max_dist = 55.096
+shader_parameter/color = Color(0, 0, 0, 0.443137)
+shader_parameter/angle = 182.022
+shader_parameter/max_dist = 2.594
 shader_parameter/gradientTexture = SubResource("GradientTexture2D_fxtkv")
 
 [node name="Overworld" type="Node2D"]
@@ -37,7 +37,8 @@ tile_set = ExtResource("1_pwl2g")
 [node name="Player" parent="." instance=ExtResource("2_het3u")]
 position = Vector2(-9, -13)
 
-[node name="Polygon2D" type="Polygon2D" parent="Player"]
+[node name="ShadowShader" type="Polygon2D" parent="Player"]
+visible = false
 z_index = 3
 material = SubResource("ShaderMaterial_h0wcu")
 position = Vector2(9, 13)
