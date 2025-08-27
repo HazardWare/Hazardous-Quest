@@ -5,7 +5,7 @@ extends Character
 var hitbox_touching : bool
 
 func _physics_process(delta: float) -> void:
-	
+	print("Hitbox Touching")
 	
 	#Looking nice stuff
 	if velocity.length() > 0 and not $Arm/Attack.is_playing():
@@ -39,14 +39,13 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 	
-	if Input.is_action_pressed("interact") and hitbox_touching: #Right now it's the E key, this is so that the player can access the Interactables.
-		pass
-	
-
 
 # For interactable detection
 func _on_hit_box_area_entered(area: Area2D) -> void:
 	hitbox_touching = true
+	if Input.is_action_pressed("interact"):
+		print("I'm interacting it so good")
+		area.trigger()
 
 func _on_hit_box_area_exited(area: Area2D) -> void:
 	hitbox_touching = false

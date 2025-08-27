@@ -1,5 +1,5 @@
 class_name Interactable
-extends Sprite2D
+extends Area2D
 
 signal onPowerStateChanged
 signal onTouchingPlayer
@@ -10,4 +10,4 @@ signal onTouchingPlayer
 
 
 func trigger():
-	pass
+	print("What's up gang")

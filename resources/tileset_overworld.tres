@@ -931,7 +931,7 @@ texture = ExtResource("3_iktnb")
 [resource]
 occlusion_layer_0/light_mask = 1
 occlusion_layer_0/sdf_collision = true
-physics_layer_0/collision_layer = 3
+physics_layer_0/collision_layer = 8
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Dirt"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)

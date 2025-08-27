@@ -52,6 +52,13 @@ interact={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Player"
+2d_physics/layer_2="Enemy"
+2d_physics/layer_3="Interactables"
+2d_physics/layer_4="Environment"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
