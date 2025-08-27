@@ -5,7 +5,7 @@ extends Character
 var hitbox_touching : bool
 
 func _physics_process(delta: float) -> void:
-	print("Hitbox Touching")
+	
 	
 	#Looking nice stuff
 	if velocity.length() > 0 and not $Arm/Attack.is_playing():

@@ -229,6 +229,7 @@ frame_progress = 0.653446
 
 [node name="HitBox" type="Area2D" parent="."]
 rotation = -1.5708
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(-1.5, -3.03986e-07)
