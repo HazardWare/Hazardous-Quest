@@ -2,6 +2,7 @@ extends Character
 
 @export var validSwordAngleStep = 90.0
 
+var hitbox_touching : bool
 
 func _physics_process(delta: float) -> void:
 	
@@ -40,8 +41,9 @@ func _physics_process(delta: float) -> void:
 	
 
 
+# For interactable detection
 func _on_hit_box_area_entered(area: Area2D) -> void:
-	pass # Replace with function body.
+	hitbox_touching = true
 
 func _on_hit_box_area_exited(area: Area2D) -> void:
-	pass # Replace with function body.
+	hitbox_touching = false
