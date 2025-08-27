@@ -15,7 +15,7 @@ func _physics_process(delta: float) -> void:
 		elif velocity.x > 0:
 			$AnimatedSprite2D.flip_h = false 
 	else:
-		$AnimationPlayer.pause()
+		$AnimationPlayer.play("RESET")
 	
 	# Can't do this stuff whilst attacking
 	if not $Arm/Attack.is_playing():
