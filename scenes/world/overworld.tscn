@@ -21,18 +21,13 @@ shader_parameter/gradientTexture = SubResource("GradientTexture2D_fxtkv")
 [node name="Overworld" type="Node2D"]
 y_sort_enabled = true
 
-[node name="Screenshot2025-08-28153026" type="Sprite2D" parent="."]
-z_index = -10
-position = Vector2(1497, 192)
-scale = Vector2(6.09685, 6.09685)
-texture = ExtResource("1_fxtkv")
-
-[node name="Screenshot2025-08-28153027" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0)
+[node name="Map reference" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.168627)
 z_index = 10
 position = Vector2(1497, 192)
 scale = Vector2(6.09685, 6.09685)
 texture = ExtResource("1_fxtkv")
+metadata/_edit_lock_ = true
 
 [node name="Ground" type="TileMapLayer" parent="."]
 z_index = -2
