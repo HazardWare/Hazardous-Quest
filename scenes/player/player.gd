@@ -3,6 +3,7 @@ extends Character
 @export var validSwordAngleStep = 90.0
 
 var hitbox_touching : bool
+var area_touching : Area2D
 
 func _physics_process(delta: float) -> void:
 	
@@ -36,16 +37,17 @@ func _physics_process(delta: float) -> void:
 		
 		var lookingLeft = snapped( rad_to_deg(get_global_mouse_position().angle_to_point(position)) + 180 , 180) == 180
 		$AnimatedSprite2D.flip_h = lookingLeft
-
+		
 	move_and_slide()
 	
+	
+	if hitbox_touching and Input.is_action_just_pressed("interact"):
+		area_touching.trigger()
 
 # For interactable detection
 func _on_hit_box_area_entered(area: Area2D) -> void:
 	hitbox_touching = true
-	if Input.is_action_pressed("interact"):
-		print("I'm interacting it so good")
-		area.trigger()
+	area_touching = area
 
 func _on_hit_box_area_exited(area: Area2D) -> void:
 	hitbox_touching = false

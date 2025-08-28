@@ -10,4 +10,4 @@ signal onTouchingPlayer
 
 
 func trigger():
-	print("What's up gang")
+	print("I'm interacting it so good!!!")

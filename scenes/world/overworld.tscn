@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=4 uid="uid://1i7d15bac2tf"]
+[gd_scene load_steps=7 format=4 uid="uid://1i7d15bac2tf"]
 
 [ext_resource type="TileSet" uid="uid://cmv7wt2iltbsn" path="res://resources/tileset_overworld.tres" id="1_pwl2g"]
 [ext_resource type="PackedScene" uid="uid://cbaut5bbgnqxc" path="res://scenes/player/player.tscn" id="2_het3u"]
 [ext_resource type="Shader" uid="uid://b5fwusaw0sx63" path="res://scenes/world/overworld.gdshader" id="3_373mm"]
-[ext_resource type="PackedScene" uid="uid://cr5jw42aoixhp" path="res://TEST_INTER.tscn" id="4_fxtkv"]
 
 [sub_resource type="Gradient" id="Gradient_373mm"]
 
@@ -45,6 +44,3 @@ material = SubResource("ShaderMaterial_h0wcu")
 position = Vector2(9, 13)
 polygon = PackedVector2Array(-1488.6, 912.975, 1991, 942, 1957, -438, -1162, -552)
 uv = PackedVector2Array(-9, 3, 140.853, 10.346, 152.501, -60.2779, -16.8409, -53.5042)
-
-[node name="Area2D" parent="." instance=ExtResource("4_fxtkv")]
-position = Vector2(75, -13)
