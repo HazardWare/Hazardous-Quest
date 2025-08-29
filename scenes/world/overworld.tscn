@@ -39,6 +39,7 @@ tile_map_data = PackedByteArray("AAAOAA4AAgABAAUAAAAOAA0AAgACAAIAAAAOAAwAAgACAAI
 tile_set = ExtResource("1_pwl2g")
 
 [node name="SecondLayer" type="TileMapLayer" parent="."]
+z_index = 1
 y_sort_enabled = true
 texture_filter = 1
 position = Vector2(25, 3)
@@ -46,6 +47,7 @@ tile_map_data = PackedByteArray("AAARAAkAAAAEAAAAAAAQAAoAAAAEAAAAAAAQAAsAAAAEAAA
 tile_set = ExtResource("1_pwl2g")
 
 [node name="ThirdLayer" type="TileMapLayer" parent="."]
+z_index = 2
 y_sort_enabled = true
 texture_filter = 1
 position = Vector2(25, 3)
