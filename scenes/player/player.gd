@@ -1,8 +1,17 @@
 extends Character
 
-@export var validSwordAngleStep = 90.0
+@export var validSwordAngleStep := 90.0 ## Angle the sword will snap to.
 
-var hitbox_touching : bool
+@export_subgroup ("Inventory")
+@export_enum("Without:0", "One:1", "Two:2", "Magic:3") var swordLevel : int
+@export var hasBangarang := false
+@export var hasBow := false
+@export var hasShield := false
+@export var hasCandle := false
+@export var grenades := 0
+
+
+var hitbox_touching : bool = false
 var area_touching : Area2D
 
 func _physics_process(delta: float) -> void:
@@ -41,7 +50,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 	
-	if hitbox_touching and Input.is_action_just_pressed("interact"):
+	if hitbox_touching and area_touching is Lever and Input.is_action_just_pressed("interact"):
 		area_touching.trigger()
 
 # For interactable detection

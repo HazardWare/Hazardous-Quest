@@ -24,6 +24,10 @@ folder_colors={
 "res://scripts/": "red"
 }
 
+[global_group]
+
+Friendly="Anything on the player's side."
+
 [input]
 
 walk_up={

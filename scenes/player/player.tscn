@@ -37,6 +37,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 8)]
+}
 
 [sub_resource type="Animation" id="Animation_dovo2"]
 resource_name = "walk"
@@ -54,6 +66,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [0.0, 0.0, -0.174533, 0.0, 0.174533, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 8), Vector2(0, 5), Vector2(0, 8)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_p47bc"]
@@ -170,11 +194,10 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gmlin"]
 size = Vector2(13, 12)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Friendly"]]
 y_sort_enabled = true
 collision_mask = 30
 script = ExtResource("1_dovo2")
-validSwordAngleStep = 0.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -189,7 +212,7 @@ shape = SubResource("CapsuleShape2D_dovo2")
 debug_color = Color(0, 0.6, 0.701961, 0.0627451)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(4, 4)
+zoom = Vector2(3, 3)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -211,7 +234,7 @@ texture_filter = 1
 rotation = 1.5708
 sprite_frames = SubResource("SpriteFrames_lvxji")
 
-[node name="DamageBox" type="Area2D" parent="Arm/Weapon"]
+[node name="DamageBox" type="Area2D" parent="Arm/Weapon" groups=["Friendly"]]
 rotation = -1.5708
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Arm/Weapon/DamageBox"]
@@ -227,7 +250,7 @@ animation = &"shield"
 frame = 1
 frame_progress = 0.653446
 
-[node name="HitBox" type="Area2D" parent="."]
+[node name="HitBox" type="Area2D" parent="." groups=["Friendly"]]
 rotation = -1.5708
 collision_mask = 4
 
