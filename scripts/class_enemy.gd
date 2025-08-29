@@ -10,8 +10,8 @@ signal onDetectPlayer
 
 var detectsPlayer := false
 var spawnerNode
-enum playerDetectionSystem {MANUAL, LINE_OF_SIGHT, DAMAGE}
-
+enum DetectionSystems {MANUAL, LINE_OF_SIGHT, DAMAGE}
+@export var PlayerDetectionSystem : DetectionSystems = DetectionSystems.MANUAL
 
 
 func _physics_process(delta: float) -> void:

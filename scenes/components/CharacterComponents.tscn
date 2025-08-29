@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://cggqy67chuds5"]
+
+[ext_resource type="PackedScene" uid="uid://dpljxei74vypw" path="res://scenes/components/Blood.tscn" id="1_aech8"]
+[ext_resource type="PackedScene" path="res://scenes/components/DamageAnimation.tscn" id="1_f7ker"]
+[ext_resource type="Script" uid="uid://cjr7v24055x32" path="res://scenes/components/blood.gd" id="2_cx5rm"]
+
+[node name="CharacterComponents" type="Node"]
+
+[node name="DamageAnimation" parent="." instance=ExtResource("1_f7ker")]
+root_node = NodePath("..")
+
+[node name="BloodParticles" parent="." instance=ExtResource("1_aech8")]
+script = ExtResource("2_cx5rm")
