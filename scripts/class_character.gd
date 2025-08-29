@@ -46,11 +46,12 @@ var poisoned : bool : ## Getter/Setter for evauluating if the character is poiso
 		if value:
 			poisonDuration += 5
 
-
+var characterComponent = preload("res://scenes/components/CharacterComponents.tscn")
 
 #### Methods
 #### Remember you can use SUPER to inherit functions.
-
+func _ready() -> void:
+	add_child(characterComponent.instantiate())
 
 ## Handles overall healing and damaging
 func setHealth(value : int) -> int :

@@ -27,6 +27,7 @@ folder_colors={
 [global_group]
 
 Friendly="Anything on the player's side."
+Tilemap=""
 
 [input]
 
