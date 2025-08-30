@@ -66,7 +66,7 @@ func _input(event: InputEvent) -> void:
 		get_tree().reload_current_scene()
 	
 	# Jab:
-	if event.is_action_pressed("sword"):
+	if event.is_action_pressed("sword") and not shielding:
 		$AnimationPlayer.play("RESET")
 		$Arm/Attack.play("jab")
 		
@@ -74,7 +74,7 @@ func _input(event: InputEvent) -> void:
 		$AnimatedSprite2D.flip_h = lookingLeft
 	
 	# Bow:
-	if event.is_action_pressed("bow"):
+	if event.is_action_pressed("bow") and not shielding:
 		# Rudimentary shooting method
 		var currentArrow : Projectile = arrowScene.instantiate()
 		currentArrow.initial_velocity = velocity
