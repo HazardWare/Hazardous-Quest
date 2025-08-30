@@ -58,7 +58,7 @@ tile_set = ExtResource("1_pwl2g")
 [node name="Tonemap" type="Sprite2D" parent="."]
 visible = false
 modulate = Color(1, 1, 1, 0.254902)
-z_index = 5
+z_index = 1
 position = Vector2(1497, 192)
 scale = Vector2(6.09685, 6.09685)
 texture = ExtResource("2_h0wcu")
