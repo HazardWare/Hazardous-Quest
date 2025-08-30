@@ -52,8 +52,8 @@ func _physics_process(delta: float) -> void:
 	
 	
 	buildBridges()
+	handleContinuousInput(delta)
 	handleAnimations()
-	handleMovement(delta)
 	move_and_slide()
 	
 	
@@ -98,20 +98,29 @@ func handleAnimations():
 		$AnimationPlayer.play("RESET")
 	
 	$AnimatedSprite2D/Shield.position.x = -4.0 if $AnimatedSprite2D.flip_h else 4.0
+	$AnimatedSprite2D/Shield.visible = shielding
 
-## Handle movement. Used in _physics_process, not _input.
-func handleMovement(delta: float):
+## Handles input per frame for inputs that are usually held.
+func handleContinuousInput(delta: float):
 	# Can't do this stuff whilst attacking
 	if not $Arm/Attack.is_playing():
+		
+		# Shielding
+		shielding = true if Input.is_action_pressed("shield") else false
+		
 		# Handle movement
-		var direction = Input.get_vector("walk_left", "walk_right", "walk_up", "walk_down")
-		velocity = direction * speed * delta
-	
+		var direction := Input.get_vector("walk_left", "walk_right", "walk_up", "walk_down")
+		var calculatedSpeed := speed
+		calculatedSpeed *= 0.5 if shielding else 1 # Slow if shielding
+		velocity = direction * calculatedSpeed * delta
+		
+		
 		# Rotate the sword toward the mouse
 		var angleToTheMouse = get_global_mouse_position().angle_to_point(position)
 		$Arm.rotation = deg_to_rad( snapped( rad_to_deg(angleToTheMouse) + 180 , snappingAngle) )
 	else:
 		velocity = Vector2.ZERO
+		shielding = false
 
 ## Detect patchable tiles and ladder them.
 func buildBridges():
