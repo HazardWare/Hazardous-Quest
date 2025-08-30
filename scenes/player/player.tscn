@@ -19,6 +19,28 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_lvxji"]
+atlas = ExtResource("1_8afob")
+region = Rect2(96, 128, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p47bc"]
+atlas = ExtResource("1_8afob")
+region = Rect2(80, 128, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p47bc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lvxji")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p47bc")
+}],
+"loop": true,
+"name": &"shield",
+"speed": 5.0
+}]
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dovo2"]
 radius = 1.0
 height = 8.0
@@ -170,28 +192,6 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dovo2"]
 size = Vector2(14, 4)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lvxji"]
-atlas = ExtResource("1_8afob")
-region = Rect2(96, 128, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_p47bc"]
-atlas = ExtResource("1_8afob")
-region = Rect2(80, 128, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_p47bc"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lvxji")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_p47bc")
-}],
-"loop": true,
-"name": &"shield",
-"speed": 5.0
-}]
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_75vfm"]
 atlas = ExtResource("3_gmlin")
 region = Rect2(80, 80, 16, 16)
@@ -212,14 +212,25 @@ size = Vector2(13, 12)
 
 [node name="Player" type="CharacterBody2D" groups=["Friendly"]]
 y_sort_enabled = true
-collision_mask = 30
+collision_mask = 28
 script = ExtResource("1_dovo2")
+snappingAngle = 15.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(0, 8)
 sprite_frames = SubResource("SpriteFrames_gmlin")
 offset = Vector2(0, -8)
+
+[node name="Shield" type="AnimatedSprite2D" parent="AnimatedSprite2D"]
+visible = false
+z_index = 1
+texture_filter = 1
+position = Vector2(4, -4)
+sprite_frames = SubResource("SpriteFrames_p47bc")
+animation = &"shield"
+frame = 1
+frame_progress = 0.653446
 
 [node name="WorldCollision" type="CollisionShape2D" parent="."]
 position = Vector2(0, 7)
@@ -257,16 +268,8 @@ rotation = -1.5708
 shape = SubResource("RectangleShape2D_dovo2")
 debug_color = Color(1, 0, 0, 0.392157)
 
-[node name="Shield" type="AnimatedSprite2D" parent="Arm"]
-visible = false
-texture_filter = 1
-position = Vector2(0, 1)
-sprite_frames = SubResource("SpriteFrames_p47bc")
-animation = &"shield"
-frame = 1
-frame_progress = 0.653446
-
 [node name="Bow" type="AnimatedSprite2D" parent="Arm"]
+modulate = Color(1, 1, 1, 0.498039)
 z_index = 3
 position = Vector2(12, 0)
 sprite_frames = SubResource("SpriteFrames_0owmy")

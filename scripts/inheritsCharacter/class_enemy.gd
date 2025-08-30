@@ -1,3 +1,4 @@
+@icon("res://assets/icons/icon_skull.png")
 class_name Enemy
 extends Character
 

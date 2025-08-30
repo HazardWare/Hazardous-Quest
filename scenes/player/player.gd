@@ -2,7 +2,7 @@ extends Character
 
 ## The TileMapLayer that the player will be able to climb gaps over.
 @export var floorTilemap : TileMapLayer
-@export var validSwordAngleStep := 90.0 ## Angle the sword will snap to.
+@export var snappingAngle := 90.0 ## Angle weapons will snap to.
 @export_subgroup ("Inventory")
 @export_enum("Without:0", "One:1", "Two:2", "Magic:3") var swordLevel : int
 @export var hasBangarang := false
@@ -11,11 +11,23 @@ extends Character
 @export var hasCandle := false
 @export var hasLadder := false
 @export var grenades := 0
+@export_subgroup("Instantiated scenes")
+@export var arrowScene : PackedScene = preload("res://scenes/projectiles/arrow.tscn")
+# This area is considered for cleaner code, type-safety, and rename-safety
+# Cons are that they aren't colored green.
+#@export_subgroup("Linked Nodes")
+#@export var Arm : Node2D
+#@export var AttackAnimationPlayer : AnimationPlayer
+#@export var HitBox : Area2D
+#@export var primaryAnimationPlayer : AnimationPlayer
+#@export var sprite : AnimatedSprite2D
+@export_subgroup("")
 
 ## 0 is verticle, 1 is horizontal. These are from ID 1
 const LADDER_TILE := [Vector2i(9,6),Vector2i(10,5)]
 var lastLadder : Vector2 ## The last ladder position
 var lastPatchedTileOnAtlas : Vector3i ## The tile (on the atlas) of which lastLadder covered. Z is the ID
+
 
 var hitbox_touching : bool = false
 var area_touching : Area2D
@@ -49,6 +61,9 @@ func _physics_process(delta: float) -> void:
 		area_touching.trigger()
 
 func _input(event: InputEvent) -> void:
+	# Reset scene:
+	if event.is_action_pressed("ui_undo"):
+		get_tree().reload_current_scene()
 	
 	# Jab:
 	if event.is_action_pressed("sword"):
@@ -59,12 +74,14 @@ func _input(event: InputEvent) -> void:
 		$AnimatedSprite2D.flip_h = lookingLeft
 	
 	# Bow:
-	#if event.is_action_pressed("bow"):
+	if event.is_action_pressed("bow"):
+		# Rudimentary shooting method
+		var currentArrow : Projectile = arrowScene.instantiate()
+		currentArrow.initial_velocity = velocity
+		owner.add_child(currentArrow)
+		currentArrow.transform = $Arm.global_transform
 		
-		
-	# Reset:
-	if event.is_action_pressed("ui_undo"):
-		get_tree().reload_current_scene()
+	
 
 #endregion
 
@@ -79,6 +96,8 @@ func handleAnimations():
 			$AnimatedSprite2D.flip_h = false 
 	else:
 		$AnimationPlayer.play("RESET")
+	
+	$AnimatedSprite2D/Shield.position.x = -4.0 if $AnimatedSprite2D.flip_h else 4.0
 
 ## Handle movement. Used in _physics_process, not _input.
 func handleMovement(delta: float):
@@ -90,7 +109,7 @@ func handleMovement(delta: float):
 	
 		# Rotate the sword toward the mouse
 		var angleToTheMouse = get_global_mouse_position().angle_to_point(position)
-		$Arm.rotation = deg_to_rad( snapped( rad_to_deg(angleToTheMouse) + 180 , validSwordAngleStep) )
+		$Arm.rotation = deg_to_rad( snapped( rad_to_deg(angleToTheMouse) + 180 , snappingAngle) )
 	else:
 		velocity = Vector2.ZERO
 
