@@ -28,6 +28,8 @@ const LADDER_TILE := [Vector2i(9,6),Vector2i(10,5)]
 var lastLadder : Vector2 ## The last ladder position
 var lastPatchedTileOnAtlas : Vector3i ## The tile (on the atlas) of which lastLadder covered. Z is the ID
 
+var bowHeldTime : float = 0.0
+@export var requiredBowTime := 0.5
 
 var hitbox_touching : bool = false
 var area_touching : Area2D
@@ -49,6 +51,12 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	
+	# Count timers:
+	if Input.is_action_pressed("bow") and not $Arm/Attack.is_playing():
+		bowHeldTime += delta
+	else:
+		bowHeldTime = 0.0
 	
 	
 	buildBridges()
@@ -73,13 +81,6 @@ func _input(event: InputEvent) -> void:
 		var lookingLeft = snapped( rad_to_deg(get_global_mouse_position().angle_to_point(position)) + 180 , 180) == 180
 		$AnimatedSprite2D.flip_h = lookingLeft
 	
-	# Bow:
-	if event.is_action_pressed("bow") and not shielding:
-		# Rudimentary shooting method
-		var currentArrow : Projectile = arrowScene.instantiate()
-		currentArrow.initial_velocity = velocity
-		owner.add_child(currentArrow)
-		currentArrow.transform = $Arm.global_transform
 		
 	
 
@@ -96,6 +97,9 @@ func handleAnimations():
 			$AnimatedSprite2D.flip_h = false 
 	else:
 		$AnimationPlayer.play("RESET")
+		
+	if bowHeldTime > 0:
+		$Arm/Bow.modulate.a = ( bowHeldTime / requiredBowTime ) 
 	
 	$AnimatedSprite2D/Shield.position.x = -4.0 if $AnimatedSprite2D.flip_h else 4.0
 	$AnimatedSprite2D/Shield.visible = shielding
@@ -114,6 +118,12 @@ func handleContinuousInput(delta: float):
 		calculatedSpeed *= 0.5 if shielding else 1 # Slow if shielding
 		velocity = direction * calculatedSpeed * delta
 		
+		if not shielding:
+			if bowHeldTime >= requiredBowTime:
+				shoot()
+				bowHeldTime = 0.0
+		else:
+			bowHeldTime = 0.0
 		
 		# Rotate the sword toward the mouse
 		var angleToTheMouse = get_global_mouse_position().angle_to_point(position)
@@ -121,6 +131,13 @@ func handleContinuousInput(delta: float):
 	else:
 		velocity = Vector2.ZERO
 		shielding = false
+
+## Rudimentary shooting method
+func shoot():
+	var currentArrow : Projectile = arrowScene.instantiate()
+	currentArrow.initial_velocity = velocity
+	owner.add_child(currentArrow)
+	currentArrow.transform = $Arm.global_transform
 
 ## Detect patchable tiles and ladder them.
 func buildBridges():
