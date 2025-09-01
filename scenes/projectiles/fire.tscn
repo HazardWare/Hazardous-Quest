@@ -16,6 +16,9 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2ftoy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ftoy")
 }],
 "loop": true,
 "name": &"default",
@@ -23,13 +26,14 @@ animations = [{
 }]
 
 [node name="Fire" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "collisionShape", "hurtBox")]
-z_index = 3
+y_sort_enabled = true
+scale = Vector2(3, 3)
 collision_layer = 2
 collision_mask = 0
 input_pickable = true
 script = ExtResource("1_paiu8")
 damage = 0
-speed = 50
+speed = 150.0
 isFire = true
 sprite = NodePath("AnimatedSprite2D")
 collisionShape = NodePath("HurtBox/CollisionShape2D")
