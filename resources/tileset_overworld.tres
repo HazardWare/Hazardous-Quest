@@ -1,10 +1,10 @@
 [gd_resource type="TileSet" load_steps=23 format=3 uid="uid://cmv7wt2iltbsn"]
 
-[ext_resource type="Texture2D" uid="uid://dwydofcpmq6ek" path="res://assets/tilemaps/tile_town.png" id="1_qfcmn"]
-[ext_resource type="Texture2D" uid="uid://mg42qt04rif8" path="res://assets/tilemaps/tile_dungeon.png" id="2_rilcb"]
-[ext_resource type="Texture2D" uid="uid://cbg3mvy6p8r7o" path="res://assets/tilemaps/tile_war.png" id="3_iktnb"]
-[ext_resource type="Texture2D" uid="uid://dnxfxaa0kdmrr" path="res://assets/tilemaps/tile_outdoor.png" id="4_25qho"]
-[ext_resource type="Texture2D" uid="uid://su5hnluljkqr" path="res://assets/tilemaps/tile_dev.png" id="5_p8bbk"]
+[ext_resource type="Texture2D" uid="uid://dwydofcpmq6ek" path="res://assets/tilesheets/tile_town.png" id="1_p8bbk"]
+[ext_resource type="Texture2D" uid="uid://mg42qt04rif8" path="res://assets/tilesheets/tile_dungeon.png" id="2_7fh3v"]
+[ext_resource type="Texture2D" uid="uid://cbg3mvy6p8r7o" path="res://assets/tilesheets/tile_war.png" id="3_ihtos"]
+[ext_resource type="Texture2D" uid="uid://dnxfxaa0kdmrr" path="res://assets/tilesheets/tile_outdoor.png" id="4_q85gv"]
+[ext_resource type="Texture2D" uid="uid://su5hnluljkqr" path="res://assets/tilesheets/tile_dev.png" id="5_d0eqm"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_iktnb"]
 tile_data = PackedInt32Array(0, 589825, 4, 1, 393216, 10, 2, 393216, 10, 3, 393216, 10, 4, 393216, 10, 5, 393216, 10, 6, 393216, 10, 7, 393216, 10, 8, 393216, 10, 9, 393216, 10, 10, 393216, 10, 11, 720897, 4)
@@ -44,7 +44,7 @@ polygon = PackedVector2Array(-6, 5, 1, 5, 1, 6, 7, 6, 7, 5, 8, 5, 8, 0, 7, 0, 7,
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5ucdx"]
 resource_name = "Town"
-texture = ExtResource("1_qfcmn")
+texture = ExtResource("1_p8bbk")
 0:0/0 = 0
 0:0/0/terrain_set = 0
 0:0/0/terrain = 1
@@ -360,7 +360,7 @@ agent_radius = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_iktnb"]
 resource_name = "Dungeon"
-texture = ExtResource("2_rilcb")
+texture = ExtResource("2_7fh3v")
 6:3/0 = 0
 6:3/0/terrain_set = 0
 6:3/0/terrain = 0
@@ -465,7 +465,9 @@ texture = ExtResource("2_rilcb")
 3:5/0 = 0
 3:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 4:5/0 = 0
+4:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 5:5/0 = 0
+5:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 6:5/0 = 0
 7:5/0 = 0
 8:5/0 = 0
@@ -512,7 +514,7 @@ agent_radius = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_25qho"]
 resource_name = "War"
-texture = ExtResource("3_iktnb")
+texture = ExtResource("3_ihtos")
 0:0/0 = 0
 0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_d0eqm")
 1:0/0 = 0
@@ -911,7 +913,7 @@ texture = ExtResource("3_iktnb")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p8bbk"]
 resource_name = "Outdoor"
-texture = ExtResource("4_25qho")
+texture = ExtResource("4_q85gv")
 1:0/0 = 0
 1:0/0/terrain_set = 0
 1:0/0/terrain = 3
@@ -1729,7 +1731,7 @@ texture = ExtResource("4_25qho")
 14:0/0/terrains_peering_bit/top_right_corner = 8
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7fh3v"]
-texture = ExtResource("5_p8bbk")
+texture = ExtResource("5_d0eqm")
 0:0/0 = 0
 1:0/0 = 0
 0:1/0 = 0

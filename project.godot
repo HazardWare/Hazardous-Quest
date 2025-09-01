@@ -28,6 +28,7 @@ folder_colors={
 
 Friendly="Anything on the player's side."
 Tilemap=""
+BushLayer="A TileMapLayer that contains breakable objects"
 
 [input]
 

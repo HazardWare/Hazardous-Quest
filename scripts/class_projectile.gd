@@ -9,37 +9,65 @@ extends CharacterBody2D
 
 @export var damage : int = 1
 @export var speed := 350
+@export var isFire := false
 
 @export_subgroup("Linked nodes")
 @export var sprite : AnimatedSprite2D
 @export var collisionShape : CollisionShape2D 
+@export var hurtBox : Area2D
+
+@onready var bushTileMap : TileMapLayer = get_tree().get_first_node_in_group("BushLayer")
+
+var lifetime := 0.0:
+	set(val):
+		if val >= MAXLIFETIME:
+			queue_free()
+		lifetime = val
+		
+		# fade out sprite
+		#sprite.modulate.a = 1 - lifetime/MAXLIFETIME
+const MAXLIFETIME := 1.0
 
 ## Initial velocity of the projectile.
 ## For reference, think of how tears move while you move in tboi,
 ## They tilt if you move. Behavior is replicated here, just a bit extreme.
 var initial_velocity = Vector2.ZERO
 
-# Godot functions:
+#region Godot functions:
 
 func _ready() -> void:
-	#self.body_entered.connect(on_touch_body)
+	hurtBox.body_entered.connect(on_touch_body)
+#	$OffScreenDeleter.screen_exited.connect(queue_free)
 	pass
 
 func _physics_process(delta: float) -> void:
 	# Move forward based on rotation.
 	velocity = initial_velocity + (transform.x * speed)
 	# Face the direction of motion.
-	sprite.global_rotation = deg_to_rad(45.0) + velocity.angle()
-	collisionShape.global_rotation = sprite.global_rotation
+	if not isFire:
+		sprite.global_rotation = deg_to_rad(45.0) + velocity.angle()
+		collisionShape.global_rotation = sprite.global_rotation
+	elif isFire:
+		lifetime += delta
+		sprite.global_rotation = 0.0
+		breakBushes()
 	
 	# Creates some pretty funny interactions:
-	#rotation = velocity.angle()
+		#rotation = velocity.angle()
 	move_and_slide()
 
-# Signals:
+#endregion
+#region Signals:
 
 func on_touch_body(body: Node2D):
-	#queue_free()
+	print(body)
 	pass
-
-# Custom Methods:
+#endregion
+#region Custom Methods:
+func breakBushes():
+	var stoodOnTile : Vector2i = \
+	bushTileMap.local_to_map(bushTileMap.to_local(global_position))
+	if bushTileMap.get_cell_tile_data(stoodOnTile) and\
+	bushTileMap.get_cell_tile_data(stoodOnTile).get_custom_data("bush"):
+		bushTileMap.erase_cell(stoodOnTile)
+#endregion

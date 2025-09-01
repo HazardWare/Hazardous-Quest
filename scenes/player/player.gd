@@ -13,7 +13,9 @@ extends Character
 @export var grenades := 0
 @export_subgroup("Instantiated scenes")
 @export var arrowScene : PackedScene = preload("res://scenes/projectiles/arrow.tscn")
-# This area is considered for cleaner code, type-safety, and rename-safety
+@export var fireScene : PackedScene = preload("res://scenes/projectiles/fire.tscn")
+
+# This area is considered for cleaner code, type-safety, rename-safety, and reparent-safety
 # Cons are that they aren't colored green.
 #@export_subgroup("Linked Nodes")
 #@export var Arm : Node2D
@@ -81,7 +83,11 @@ func _input(event: InputEvent) -> void:
 		var lookingLeft = snapped( rad_to_deg(get_global_mouse_position().angle_to_point(position)) + 180 , 180) == 180
 		$AnimatedSprite2D.flip_h = lookingLeft
 	
-		
+	if event.is_action_pressed("candle") and not shielding:
+		var currentFire : Projectile = fireScene.instantiate()
+		currentFire.initial_velocity = Vector2.ZERO # No init velocity
+		owner.add_child(currentFire)
+		currentFire.transform = $Arm.global_transform
 	
 
 #endregion
