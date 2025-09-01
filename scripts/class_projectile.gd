@@ -74,6 +74,8 @@ func on_touch_body(body: Node2D):
 	speed = 0.0
 	if not isFire:
 		_speed = 0.0
+	else:
+		$SmokeParticles.emitting = true
 	initial_velocity = Vector2.ZERO
 	pass
 #endregion

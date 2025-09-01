@@ -15,12 +15,12 @@ _data = {
 &"damaged": SubResource("Animation_5ickb")
 }
 
-[sub_resource type="Gradient" id="Gradient_nqwhb"]
+[sub_resource type="Gradient" id="Gradient_aech8"]
 offsets = PackedFloat32Array(0, 0.450704, 0.633803, 1)
 colors = PackedColorArray(1, 1, 1, 1, 0.527344, 0.527344, 0.527344, 1, 0.136719, 0.136719, 0.136719, 0, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_qyops"]
-gradient = SubResource("Gradient_nqwhb")
+gradient = SubResource("Gradient_aech8")
 width = 16
 height = 16
 fill = 1
