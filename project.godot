@@ -13,7 +13,10 @@ config_version=5
 config/name="THE PRACTICE RPG"
 run/main_scene="uid://1i7d15bac2tf"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(0.104133, 0.136534, 0.223468, 1)
+boot_splash/use_filter=false
+boot_splash/image="uid://su5hnluljkqr"
+config/icon="uid://d7myph0coxos"
 
 [file_customization]
 
@@ -95,8 +98,15 @@ candle={
 2d_physics/layer_3="Interactables"
 2d_physics/layer_4="Environment"
 
+[physics]
+
+2d/default_gravity_vector=Vector2(0, 0)
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/default_filters/anisotropic_filtering_level=0
+textures/decals/filter=0
+textures/light_projectors/filter=0

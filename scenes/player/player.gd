@@ -121,7 +121,7 @@ func handleContinuousInput(delta: float):
 		# Handle movement
 		var direction := Input.get_vector("walk_left", "walk_right", "walk_up", "walk_down")
 		var calculatedSpeed := speed
-		calculatedSpeed *= 0.5 if shielding else 1 # Slow if shielding
+		calculatedSpeed *= 0.5 if shielding else 1.0 # Slow if shielding
 		velocity = direction * calculatedSpeed * delta
 		
 		if not shielding:
