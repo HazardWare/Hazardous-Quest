@@ -33,6 +33,8 @@ signal onDamaged ## Emitted on a negative decrease on health.
 @onready var health : int = maximumHealth :
 	set(value):
 		health = setHealth(value)
+		
+		
 	get:
 		return redHealth + blueHealth
 var iFraming : bool = false ## Temporarily invulnerable due to being hit.
@@ -67,6 +69,10 @@ func setHealth(value : int) -> int :
 			return health 
 
 		onDamaged.emit(health-value)
+		var currentParticle = $CharacterComponents/BloodParticles.duplicate()
+		currentParticle.emitting = true
+		add_child(currentParticle)
+	
 
 		# Make sure blue hearts are hit first.
 		if ( value >= blueHealth ):
@@ -84,10 +90,10 @@ func setHealth(value : int) -> int :
 		else:
 			redHealth = value
 	
-	return clamp(value, 0, value)
+	return max(value, 0)
 
 func setRedHealth(value : int) -> int:
 	return clamp(value, 0, maximumHealth)
 
 func setBlueHealth(value : int) -> int:
-	return clamp(value, 0, value)
+	return max(value, 0)
