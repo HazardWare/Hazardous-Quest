@@ -28,6 +28,7 @@ collision_layer = 2
 collision_mask = 0
 input_pickable = true
 script = ExtResource("1_ugh5m")
+speed = 1000.0
 sprite = NodePath("AnimatedSprite2D")
 collisionShape = NodePath("HurtBox/CollisionShape2D")
 hurtBox = NodePath("HurtBox")

@@ -46,6 +46,9 @@ func _ready() -> void:
 	$HitBox.area_entered.connect(_on_hit_box_area_entered)
 	$HitBox.area_exited.connect(_on_hit_box_area_exited)
 
+	#Engine.time_scale = 0.5
+	
+
 	# Fix all nulls
 	if floorTilemap == null:
 		floorTilemap = get_tree().get_first_node_in_group("Tilemap")
@@ -74,6 +77,10 @@ func _input(event: InputEvent) -> void:
 	# Reset scene:
 	if event.is_action_pressed("ui_undo"):
 		get_tree().reload_current_scene()
+		
+	if event.is_action_pressed("ui_down"):
+		health -= 1
+		print(health)
 	
 	# Jab:
 	if event.is_action_pressed("sword") and not shielding:
