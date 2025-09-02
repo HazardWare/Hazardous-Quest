@@ -45,8 +45,7 @@ func _ready() -> void:
 	# Connect all signals
 	$HitBox.area_entered.connect(_on_hit_box_area_entered)
 	$HitBox.area_exited.connect(_on_hit_box_area_exited)
-
-	#Engine.time_scale = 0.5
+	self.onDamaged.connect(_on_on_damaged)
 	
 
 	# Fix all nulls
@@ -203,8 +202,8 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 func _on_hit_box_area_exited(_area: Area2D) -> void:
 	hitbox_touching = false
 
-func _on_on_damaged() -> void:
-	$Camera2D/UI.update_health() # i wonder what this does - n
+func _on_on_damaged(amount) -> void:
+	$Camera2D/UI.update_health(10,1) # i wonder what this does - n
 
 func _on_on_heal() -> void:
 	$Camera2D/UI.update_health()

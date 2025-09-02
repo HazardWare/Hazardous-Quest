@@ -5,8 +5,8 @@ extends CharacterBody2D
 ## Provides ample foundation for any character in this game.
 
 signal onDeath ## Emitted when health and blue hearts == 0.  
-signal onHeal ## Emitted on a positive increase on health.
-signal onDamaged ## Emitted on a negative decrease on health.
+signal onHeal(amount:int) ## Emitted on a positive increase on health.
+signal onDamaged(amount:int) ## Emitted on a negative decrease on health.
 
 @export var maximumHealth : int = 10 ## Maximum health that this character starts at.
 ## Shielding hearts that go above red hearts.
