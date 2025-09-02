@@ -5,8 +5,8 @@ extends CharacterBody2D
 ## Provides ample foundation for any character in this game.
 
 signal onDeath ## Emitted when health and blue hearts == 0.  
-signal onHeal ## Emitted on a positive increase on health.
-signal onDamaged ## Emitted on a negative decrease on health.
+signal onHeal(amount:int) ## Emitted on a positive increase on health.
+signal onDamaged(amount:int) ## Emitted on a negative decrease on health.
 
 @export var maximumHealth : int = 10 ## Maximum health that this character starts at.
 ## Shielding hearts that go above red hearts.
@@ -33,6 +33,8 @@ signal onDamaged ## Emitted on a negative decrease on health.
 @onready var health : int = maximumHealth :
 	set(value):
 		health = setHealth(value)
+		
+		
 	get:
 		return redHealth + blueHealth
 var iFraming : bool = false ## Temporarily invulnerable due to being hit.
@@ -67,6 +69,10 @@ func setHealth(value : int) -> int :
 			return health 
 
 		onDamaged.emit(health-value)
+		var currentParticle = $CharacterComponents/BloodParticles.duplicate()
+		currentParticle.emitting = true
+		add_child(currentParticle)
+	
 
 		# Make sure blue hearts are hit first.
 		if ( value >= blueHealth ):
@@ -77,17 +83,17 @@ func setHealth(value : int) -> int :
 	
 	# Healed. Preferably don't heal HEALTH and instead either use redHealth or blueHealth
 	if( value > health ):
-		onHeal.emit()
+		onHeal.emit(health-value)
 		if( value >= maximumHealth ):
 			redHealth = maximumHealth
 			blueHealth = value - maximumHealth
 		else:
 			redHealth = value
 	
-	return clamp(value, 0, value)
+	return max(value, 0)
 
 func setRedHealth(value : int) -> int:
 	return clamp(value, 0, maximumHealth)
 
 func setBlueHealth(value : int) -> int:
-	return clamp(value, 0, value)
+	return max(value, 0)
