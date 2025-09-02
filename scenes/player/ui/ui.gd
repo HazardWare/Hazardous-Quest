@@ -1,10 +1,24 @@
 extends Control
 
-func update_health(reds : int, blues : int):
+func update_health(player : Character):
+	for child in $HealthBar.get_children():
+		child.queue_free()
+		
 	# I could probably make this better, but idk how.
-	var reds_left : float = reds / 2
-	for i in reds:
-		if reds_left >= 0.5: # If there's a full heart
-			var this_heart : Heart = Heart.new()
-			this_heart.initiate_heart(false,false)
-			$HealthBar.add_child(this_heart)
+	for i in player.maximumHealth:
+		var this_heart : Heart = Heart.new()
+		
+		if i <= player.health:
+			this_heart.initiate_heart(Heart.POSSIBLE_HEARTS.FULL,false)
+		else:
+			this_heart.initiate_heart(Heart.POSSIBLE_HEARTS.EMPTY,false)
+		
+		$HealthBar.add_child(this_heart)
+		
+	for i in player.blueHealth:
+		var this_heart : Heart = Heart.new()
+		
+		if i <= player.blueHealth:
+			this_heart.initiate_heart(Heart.POSSIBLE_HEARTS.FULL,true)
+		
+		$HealthBar.add_child(this_heart)

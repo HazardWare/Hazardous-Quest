@@ -16,3 +16,6 @@ script = ExtResource("1_lpj6m")
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="HealthBar"]
+layout_mode = 2

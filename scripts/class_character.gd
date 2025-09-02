@@ -83,7 +83,7 @@ func setHealth(value : int) -> int :
 	
 	# Healed. Preferably don't heal HEALTH and instead either use redHealth or blueHealth
 	if( value > health ):
-		onHeal.emit()
+		onHeal.emit(health-value)
 		if( value >= maximumHealth ):
 			redHealth = maximumHealth
 			blueHealth = value - maximumHealth

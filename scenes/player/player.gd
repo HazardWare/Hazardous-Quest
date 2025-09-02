@@ -46,6 +46,7 @@ func _ready() -> void:
 	$HitBox.area_entered.connect(_on_hit_box_area_entered)
 	$HitBox.area_exited.connect(_on_hit_box_area_exited)
 	self.onDamaged.connect(_on_on_damaged)
+	self.onHeal.connect(_on_on_heal)
 	
 
 	# Fix all nulls
@@ -80,7 +81,11 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_down"):
 		health -= 1
 		print(health)
-	
+
+	if event.is_action_pressed("ui_up"):
+		health += 1
+		print(health)
+
 	# Jab:
 	if event.is_action_pressed("sword") and not shielding:
 		$AnimationPlayer.play("RESET")
@@ -203,9 +208,9 @@ func _on_hit_box_area_exited(_area: Area2D) -> void:
 	hitbox_touching = false
 
 func _on_on_damaged(amount) -> void:
-	$Camera2D/UI.update_health(10,1) # i wonder what this does - n
+	$Camera2D/UI.update_health(self) # i wonder what this does - n
 
-func _on_on_heal() -> void:
-	$Camera2D/UI.update_health()
+func _on_on_heal(amount) -> void:
+	$Camera2D/UI.update_health(self)
 
 #endregion
