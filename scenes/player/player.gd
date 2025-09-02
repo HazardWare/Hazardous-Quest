@@ -196,4 +196,10 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 func _on_hit_box_area_exited(_area: Area2D) -> void:
 	hitbox_touching = false
 
+func _on_on_damaged() -> void:
+	$Camera2D/UI.update_health() # i wonder what this does - n
+
+func _on_on_heal() -> void:
+	$Camera2D/UI.update_health()
+
 #endregion

@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://7m71hjxpym6n"]
+
+[ext_resource type="Script" uid="uid://ki77yappuguq" path="res://scenes/player/ui/ui.gd" id="1_lpj6m"]
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.00156, 1.00189)
+script = ExtResource("1_lpj6m")
+
+[node name="HealthBar" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
