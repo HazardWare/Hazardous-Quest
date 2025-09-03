@@ -53,7 +53,7 @@ func _ready() -> void:
 	if floorTilemap == null:
 		floorTilemap = get_tree().get_first_node_in_group("Tilemap")
 
-
+	$EnvironmentComponent/AnimationPlayer.play("RESET")
 
 func _physics_process(delta: float) -> void:
 	
@@ -209,6 +209,8 @@ func _on_hit_box_area_exited(_area: Area2D) -> void:
 
 func _on_on_damaged(amount) -> void:
 	$Camera2D/UI.update_health(self) # i wonder what this does - n
+	if health == 0:
+		$EnvironmentComponent/AnimationPlayer.play("die")
 
 func _on_on_heal(amount) -> void:
 	$Camera2D/UI.update_health(self)
