@@ -216,7 +216,6 @@ y_sort_enabled = true
 collision_mask = 28
 script = ExtResource("1_dovo2")
 snappingAngle = 15.0
-maximumHealth = 3
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1

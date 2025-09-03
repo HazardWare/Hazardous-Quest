@@ -26,15 +26,20 @@ signal onDamaged(amount:int) ## Emitted on a negative decrease on health.
 ## Current red hearts.
 @onready var redHealth : int = maximumHealth :
 	set(value):
+		
 		redHealth = setRedHealth(value)
 	get:
 		return redHealth
 ## Curent overall combined health. For healing, preferably use [member Character.redHealth] / [member Character.blueHealth] 
 @onready var health : int = maximumHealth :
 	set(value):
+		var _prev = health
 		health = setHealth(value)
 		
-		
+		if(_prev > health):
+			onDamaged.emit(health-value)
+		else:
+			onHeal.emit(health-value)
 	get:
 		return redHealth + blueHealth
 var iFraming : bool = false ## Temporarily invulnerable due to being hit.
@@ -57,9 +62,9 @@ func _ready() -> void:
 
 ## Handles overall healing and damaging
 func setHealth(value : int) -> int :
+	value = max(value,0)
 	
 	if ( value == health ):
-		# ???
 		return value
 
 	# Damaged
@@ -68,7 +73,6 @@ func setHealth(value : int) -> int :
 		if (shielding or iFraming or invulnerable):
 			return health 
 
-		onDamaged.emit(health-value)
 		var currentParticle = $CharacterComponents/BloodParticles.duplicate()
 		currentParticle.emitting = true
 		add_child(currentParticle)
@@ -83,7 +87,7 @@ func setHealth(value : int) -> int :
 	
 	# Healed. Preferably don't heal HEALTH and instead either use redHealth or blueHealth
 	if( value > health ):
-		onHeal.emit(health-value)
+		
 		if( value >= maximumHealth ):
 			redHealth = maximumHealth
 			blueHealth = value - maximumHealth

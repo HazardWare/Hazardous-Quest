@@ -80,17 +80,17 @@ func _input(event: InputEvent) -> void:
 		
 	if event.is_action_pressed("ui_down"):
 		health -= 1
-		print(health)
+		print("Hurt. " + str(health) + " overall. " + str(redHealth) + "r | " + str(blueHealth) + "b")
 
 	if event.is_action_pressed("ui_up"):
 		health += 1
-		print(health)
+		print("Healed. " + str(health) + " overall. " + str(redHealth) + "r | " + str(blueHealth) + "b")
 
 	# Jab:
 	if event.is_action_pressed("sword") and not shielding:
 		$AnimationPlayer.play("RESET")
 		$Arm/Attack.play("jab")
-		
+		$Camera2D/UI.update_health(self)
 		var lookingLeft = snapped( rad_to_deg(get_global_mouse_position().angle_to_point(position)) + 180 , 180) == 180
 		$AnimatedSprite2D.flip_h = lookingLeft
 	

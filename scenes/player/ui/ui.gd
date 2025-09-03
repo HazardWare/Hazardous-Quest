@@ -8,7 +8,7 @@ func update_health(player : Character):
 	for i in player.maximumHealth:
 		var this_heart : Heart = Heart.new()
 		
-		if i <= player.health:
+		if i < player.redHealth:
 			this_heart.initiate_heart(Heart.POSSIBLE_HEARTS.FULL,false)
 		else:
 			this_heart.initiate_heart(Heart.POSSIBLE_HEARTS.EMPTY,false)
@@ -18,7 +18,7 @@ func update_health(player : Character):
 	for i in player.blueHealth:
 		var this_heart : Heart = Heart.new()
 		
-		if i <= player.blueHealth:
+		if i < player.blueHealth:
 			this_heart.initiate_heart(Heart.POSSIBLE_HEARTS.FULL,true)
 		
 		$HealthBar.add_child(this_heart)
