@@ -1,3 +1,5 @@
+<img src="https://github.com/HazardWare/Hazardous-Quest/blob/main/logo.png?raw=true" alt="logo.png"/>
+
 # Hazardous Quest
 Hazardous Quest is a top-down RPG game inspired by retro titles such as [The Legend of Zelda](https://en.wikipedia.org/wiki/The_Legend_of_Zelda_(video_game))
 
