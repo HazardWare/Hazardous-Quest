@@ -1,4 +1,3 @@
-@icon("res://assets/icons/icon_call.png")
 class_name Interactable
 extends Area2D
 ## Things that can be interacted with in the world.
