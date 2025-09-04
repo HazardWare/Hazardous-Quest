@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=4 uid="uid://1i7d15bac2tf"]
+[gd_scene load_steps=10 format=4 uid="uid://1i7d15bac2tf"]
 
 [ext_resource type="Texture2D" uid="uid://cpstvau0nlnqw" path="res://assets/Screenshot 2025-08-28 153026.png" id="1_fxtkv"]
 [ext_resource type="TileSet" uid="uid://cmv7wt2iltbsn" path="res://resources/tileset_overworld.tres" id="1_pwl2g"]
 [ext_resource type="Texture2D" uid="uid://c7t7vy2ggtksd" path="res://assets/tonemap.png" id="2_h0wcu"]
 [ext_resource type="PackedScene" uid="uid://cbaut5bbgnqxc" path="res://scenes/player/player.tscn" id="2_het3u"]
 [ext_resource type="Shader" uid="uid://b5fwusaw0sx63" path="res://scenes/world/overworld.gdshader" id="3_373mm"]
+[ext_resource type="Script" uid="uid://jq6kq46uf8pu" path="res://scenes/world/adair_test_stuff.gd" id="6_espw7"]
 
 [sub_resource type="Gradient" id="Gradient_373mm"]
 
@@ -74,3 +75,6 @@ material = SubResource("ShaderMaterial_h0wcu")
 position = Vector2(9, 13)
 polygon = PackedVector2Array(-372, 161, 301, 188, 314, -189, -331, -148)
 uv = PackedVector2Array(-9, 3, 140.853, 10.346, 152.501, -60.2779, -16.8409, -53.5042)
+
+[node name="AdairTestStuff" type="Sprite2D" parent="."]
+script = ExtResource("6_espw7")
