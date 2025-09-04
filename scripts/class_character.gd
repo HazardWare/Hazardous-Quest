@@ -5,8 +5,8 @@ extends CharacterBody2D
 ## Provides ample foundation for any character in this game.
 
 signal onDeath ## Emitted when health and blue hearts == 0.  
-signal onHeal ## Emitted on a positive increase on health.
-signal onDamaged ## Emitted on a negative decrease on health.
+signal onHeal(amount:int) ## Emitted on a positive increase on health.
+signal onDamaged(amount:int) ## Emitted on a negative decrease on health.
 
 @export var maximumHealth : int = 10 ## Maximum health that this character starts at.
 ## Shielding hearts that go above red hearts.
@@ -26,13 +26,30 @@ signal onDamaged ## Emitted on a negative decrease on health.
 ## Current red hearts.
 @onready var redHealth : int = maximumHealth :
 	set(value):
+		
 		redHealth = setRedHealth(value)
 	get:
 		return redHealth
 ## Curent overall combined health. For healing, preferably use [member Character.redHealth] / [member Character.blueHealth] 
 @onready var health : int = maximumHealth :
 	set(value):
+		var _prev = health
 		health = setHealth(value)
+		
+		if(_prev > health):
+			
+			var currentParticle = $CharacterComponents/BloodParticles.duplicate()
+			currentParticle.emitting = true
+			add_child(currentParticle)
+			
+			onDamaged.emit(health-value)
+		else:
+			
+			var currentParticle = $CharacterComponents/HealthParticles.duplicate()
+			currentParticle.emitting = true
+			add_child(currentParticle)
+			
+			onHeal.emit(health-value)
 	get:
 		return redHealth + blueHealth
 var iFraming : bool = false ## Temporarily invulnerable due to being hit.
@@ -46,17 +63,18 @@ var poisoned : bool : ## Getter/Setter for evauluating if the character is poiso
 		if value:
 			poisonDuration += 5
 
-
+var characterComponent = preload("res://scenes/components/CharacterComponents.tscn")
 
 #### Methods
 #### Remember you can use SUPER to inherit functions.
-
+func _ready() -> void:
+	add_child(characterComponent.instantiate())
 
 ## Handles overall healing and damaging
 func setHealth(value : int) -> int :
+	value = max(value,0)
 	
 	if ( value == health ):
-		# ???
 		return value
 
 	# Damaged
@@ -65,7 +83,8 @@ func setHealth(value : int) -> int :
 		if (shielding or iFraming or invulnerable):
 			return health 
 
-		onDamaged.emit(health-value)
+		
+	
 
 		# Make sure blue hearts are hit first.
 		if ( value >= blueHealth ):
@@ -76,17 +95,19 @@ func setHealth(value : int) -> int :
 	
 	# Healed. Preferably don't heal HEALTH and instead either use redHealth or blueHealth
 	if( value > health ):
-		onHeal.emit()
+		
+		
+		
 		if( value >= maximumHealth ):
 			redHealth = maximumHealth
 			blueHealth = value - maximumHealth
 		else:
 			redHealth = value
 	
-	return clamp(value, 0, value)
+	return max(value, 0)
 
 func setRedHealth(value : int) -> int:
 	return clamp(value, 0, maximumHealth)
 
 func setBlueHealth(value : int) -> int:
-	return clamp(value, 0, value)
+	return max(value, 0)

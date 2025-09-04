@@ -1,3 +1,4 @@
+@icon("res://assets/icons/icon_lever.png")
 class_name Lever
 extends Interactable
 ## Directly interactable objects which trigger other events.
