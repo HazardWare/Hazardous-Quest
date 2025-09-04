@@ -1,0 +1,58 @@
+[gd_scene load_steps=7 format=3 uid="uid://b8qtyphhgsstd"]
+
+[ext_resource type="Script" uid="uid://n4ljwa117710" path="res://scripts/class_projectile.gd" id="1_ugh5m"]
+[ext_resource type="Texture2D" uid="uid://dvvtfemm130je" path="res://assets/tilesheets/tile_items.png" id="2_iyfe7"]
+[ext_resource type="Script" uid="uid://bqgj7njek38cs" path="res://scenes/projectiles/off_screen_deleter.gd" id="3_m2i7i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iyfe7"]
+size = Vector2(14, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m2i7i"]
+atlas = ExtResource("2_iyfe7")
+region = Rect2(96, 80, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nl28u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m2i7i")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Arrow" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "collisionShape", "hurtBox")]
+y_sort_enabled = true
+collision_layer = 2
+collision_mask = 0
+input_pickable = true
+script = ExtResource("1_ugh5m")
+speed = 1000.0
+sprite = NodePath("AnimatedSprite2D")
+collisionShape = NodePath("HurtBox/CollisionShape2D")
+hurtBox = NodePath("HurtBox")
+metadata/_custom_type_script = "uid://n4ljwa117710"
+
+[node name="WorldCollision" type="CollisionShape2D" parent="."]
+process_mode = 4
+visible = false
+position = Vector2(1, -0.5)
+shape = SubResource("RectangleShape2D_iyfe7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+rotation = 0.785398
+sprite_frames = SubResource("SpriteFrames_nl28u")
+
+[node name="OffScreenDeleter" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(1.5, 0)
+scale = Vector2(0.95, 0.45)
+script = ExtResource("3_m2i7i")
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(1, -0.5)
+shape = SubResource("RectangleShape2D_iyfe7")

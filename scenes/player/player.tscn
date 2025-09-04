@@ -1,7 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://cbaut5bbgnqxc"]
+[gd_scene load_steps=33 format=3 uid="uid://cbaut5bbgnqxc"]
 
-[ext_resource type="Texture2D" uid="uid://mg42qt04rif8" path="res://assets/tilemaps/tile_dungeon.png" id="1_8afob"]
+[ext_resource type="Texture2D" uid="uid://mg42qt04rif8" path="res://assets/tilesheets/tile_dungeon.png" id="1_8afob"]
 [ext_resource type="Script" uid="uid://0fays8i2wtql" path="res://scenes/player/player.gd" id="1_dovo2"]
+[ext_resource type="PackedScene" uid="uid://7m71hjxpym6n" path="res://scenes/player/ui/ui.tscn" id="2_lvxji"]
+[ext_resource type="Texture2D" uid="uid://dvvtfemm130je" path="res://assets/tilesheets/tile_items.png" id="3_gmlin"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dovo2"]
 atlas = ExtResource("1_8afob")
@@ -15,6 +17,28 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lvxji"]
+atlas = ExtResource("1_8afob")
+region = Rect2(96, 128, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p47bc"]
+atlas = ExtResource("1_8afob")
+region = Rect2(80, 128, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p47bc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lvxji")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p47bc")
+}],
+"loop": true,
+"name": &"shield",
 "speed": 5.0
 }]
 
@@ -169,41 +193,190 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dovo2"]
 size = Vector2(14, 4)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lvxji"]
-atlas = ExtResource("1_8afob")
-region = Rect2(96, 128, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_75vfm"]
+atlas = ExtResource("3_gmlin")
+region = Rect2(80, 80, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_p47bc"]
-atlas = ExtResource("1_8afob")
-region = Rect2(80, 128, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_p47bc"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_0owmy"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_lvxji")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_p47bc")
+"texture": SubResource("AtlasTexture_75vfm")
 }],
 "loop": true,
-"name": &"shield",
+"name": &"default",
 "speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gmlin"]
 size = Vector2(13, 12)
 
+[sub_resource type="Gradient" id="Gradient_lvxji"]
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_eccxn"]
+gradient = SubResource("Gradient_lvxji")
+
+[sub_resource type="Environment" id="Environment_p47bc"]
+background_mode = 3
+glow_hdr_luminance_cap = 16.0
+adjustment_enabled = true
+adjustment_color_correction = SubResource("GradientTexture1D_eccxn")
+
+[sub_resource type="Animation" id="Animation_ic2ev"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnvironmentComponent/WorldEnvironment:environment:adjustment_saturation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EnvironmentComponent/WorldEnvironment:environment:adjustment_color_correction:gradient:offsets")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [PackedFloat32Array(0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("EnvironmentComponent/WorldEnvironment:environment:adjustment_color_correction:gradient:colors")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_yfnw3"]
+resource_name = "die"
+length = 0.5
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnvironmentComponent/WorldEnvironment:environment:adjustment_saturation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 0.01, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5)
+}
+
+[sub_resource type="Animation" id="Animation_bppwh"]
+resource_name = "dark"
+length = 2.5
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnvironmentComponent/WorldEnvironment:environment:adjustment_color_correction:gradient:offsets")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(1, 1.46408),
+"update": 0,
+"values": [PackedFloat32Array(0, 0.5), PackedFloat32Array(0, 0.3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EnvironmentComponent/WorldEnvironment:environment:adjustment_color_correction:gradient:colors")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [PackedColorArray(1, 0, 0, 1, 0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_nf88s"]
+resource_name = "autumn"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnvironmentComponent/WorldEnvironment:environment:adjustment_color_correction:gradient:colors")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1), PackedColorArray(0.265625, 0.0784359, 0.00518799, 1, 1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_koevj"]
+resource_name = "flowerfield"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnvironmentComponent/WorldEnvironment:environment:adjustment_color_correction:gradient:offsets")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [PackedFloat32Array(-1, 0, 1), PackedFloat32Array(0.1, 0.3, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("EnvironmentComponent/WorldEnvironment:environment:adjustment_color_correction:gradient:colors")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [PackedColorArray(1, 0, 0.75, 1, 0, 0, 0, 1, 1, 1, 1, 1), PackedColorArray(1, 0, 0.75, 1, 0, 0, 0, 1, 1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bppwh"]
+_data = {
+&"RESET": SubResource("Animation_ic2ev"),
+&"autumn": SubResource("Animation_nf88s"),
+&"dark": SubResource("Animation_bppwh"),
+&"die": SubResource("Animation_yfnw3"),
+&"flowerfield": SubResource("Animation_koevj")
+}
+
 [node name="Player" type="CharacterBody2D" groups=["Friendly"]]
 y_sort_enabled = true
-collision_mask = 30
+collision_mask = 28
 script = ExtResource("1_dovo2")
+snappingAngle = 15.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(0, 8)
 sprite_frames = SubResource("SpriteFrames_gmlin")
 offset = Vector2(0, -8)
+
+[node name="Shield" type="AnimatedSprite2D" parent="AnimatedSprite2D"]
+visible = false
+z_index = 1
+texture_filter = 1
+position = Vector2(4, -4)
+sprite_frames = SubResource("SpriteFrames_p47bc")
+animation = &"shield"
+frame = 1
+frame_progress = 0.653446
 
 [node name="WorldCollision" type="CollisionShape2D" parent="."]
 position = Vector2(0, 7)
@@ -213,6 +386,17 @@ debug_color = Color(0, 0.6, 0.701961, 0.0627451)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
+
+[node name="UI" parent="Camera2D" instance=ExtResource("2_lvxji")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -188.0
+offset_top = -105.0
+offset_right = -188.0
+offset_bottom = -105.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -241,14 +425,11 @@ rotation = -1.5708
 shape = SubResource("RectangleShape2D_dovo2")
 debug_color = Color(1, 0, 0, 0.392157)
 
-[node name="Shield" type="AnimatedSprite2D" parent="Arm"]
-visible = false
-texture_filter = 1
-position = Vector2(0, 1)
-sprite_frames = SubResource("SpriteFrames_p47bc")
-animation = &"shield"
-frame = 1
-frame_progress = 0.653446
+[node name="Bow" type="AnimatedSprite2D" parent="Arm"]
+modulate = Color(1, 1, 1, 0.498039)
+z_index = 3
+position = Vector2(12, 0)
+sprite_frames = SubResource("SpriteFrames_0owmy")
 
 [node name="HitBox" type="Area2D" parent="." groups=["Friendly"]]
 rotation = -1.5708
@@ -259,11 +440,13 @@ position = Vector2(-1.5, -3.03986e-07)
 shape = SubResource("RectangleShape2D_gmlin")
 debug_color = Color(0.994525, 0, 0.220672, 0.42)
 
-[node name="HUD" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="EnvironmentComponent" type="Node" parent="."]
 
-[connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
-[connection signal="area_exited" from="HitBox" to="." method="_on_hit_box_area_exited"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="EnvironmentComponent"]
+environment = SubResource("Environment_p47bc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="EnvironmentComponent"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_bppwh")
+}

@@ -1,0 +1,118 @@
+[gd_scene load_steps=13 format=3 uid="uid://cjsbg5upiyow4"]
+
+[ext_resource type="Script" uid="uid://n4ljwa117710" path="res://scripts/class_projectile.gd" id="1_paiu8"]
+[ext_resource type="Texture2D" uid="uid://dwbj7v8gwu4ig" path="res://assets/tilesheets/IWishWeUsedThisInstead.png" id="2_paiu8"]
+[ext_resource type="Script" uid="uid://bqgj7njek38cs" path="res://scenes/projectiles/off_screen_deleter.gd" id="3_gufwn"]
+[ext_resource type="Script" uid="uid://cjr7v24055x32" path="res://scenes/components/blood.gd" id="4_2ftoy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iyfe7"]
+size = Vector2(8, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ftoy"]
+atlas = ExtResource("2_paiu8")
+region = Rect2(240, 160, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nl28u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ftoy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ftoy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_nqwhb"]
+offsets = PackedFloat32Array(0, 0.450704, 0.633803, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 0.969137, 0.969137, 0.969137, 0, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2ftoy"]
+gradient = SubResource("Gradient_nqwhb")
+width = 16
+height = 16
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+metadata/_snap_enabled = true
+
+[sub_resource type="Curve" id="Curve_0q2ol"]
+_limits = [0.0, 100.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.99999, 38.4615), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_ue1ln"]
+_limits = [0.0, 3.396, 0.0, 1.0]
+_data = [Vector2(0, 2.7168), 0.0, 0.428966, 0, 0, Vector2(1, 0.6792), 2.42928, 0.0, 0, 0]
+point_count = 2
+metadata/_snap_enabled = true
+metadata/_snap_count = 5
+
+[sub_resource type="Gradient" id="Gradient_u2a47"]
+colors = PackedColorArray(1, 1, 1, 0.47451, 1, 1, 1, 0)
+
+[node name="Fire" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "collisionShape", "hurtBox")]
+y_sort_enabled = true
+scale = Vector2(3, 3)
+collision_layer = 2
+collision_mask = 0
+input_pickable = true
+script = ExtResource("1_paiu8")
+damage = 0
+speed = 150.0
+isFire = true
+sprite = NodePath("AnimatedSprite2D")
+collisionShape = NodePath("HurtBox/CollisionShape2D")
+hurtBox = NodePath("HurtBox")
+metadata/_custom_type_script = "uid://n4ljwa117710"
+
+[node name="WorldCollision" type="CollisionShape2D" parent="."]
+process_mode = 4
+visible = false
+position = Vector2(1, -0.5)
+shape = SubResource("RectangleShape2D_iyfe7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_nl28u")
+
+[node name="OffScreenDeleter" type="VisibleOnScreenNotifier2D" parent="."]
+z_index = -1
+position = Vector2(3.8743e-07, 0.5)
+scale = Vector2(0.5, 0.75)
+script = ExtResource("3_gufwn")
+
+[node name="HurtBox" type="Area2D" parent="."]
+z_index = -1
+collision_layer = 2
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_iyfe7")
+
+[node name="SmokeParticles" type="CPUParticles2D" parent="."]
+z_index = 2
+y_sort_enabled = true
+texture_filter = 1
+emitting = false
+texture = SubResource("GradientTexture2D_2ftoy")
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+lifetime_randomness = 0.56
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 120.0
+initial_velocity_max = 120.0
+damping_max = 25.0
+damping_curve = SubResource("Curve_0q2ol")
+scale_amount_min = 0.5
+scale_amount_curve = SubResource("Curve_ue1ln")
+color = Color(0.27, 0.20448, 0.1944, 0.419608)
+color_ramp = SubResource("Gradient_u2a47")
+script = ExtResource("4_2ftoy")
+
+[connection signal="finished" from="SmokeParticles" to="SmokeParticles" method="_on_finished"]
