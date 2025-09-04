@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://bbmsi7opk6onn"]
+
+[ext_resource type="Script" uid="uid://c8cqyjlah7m1e" path="res://scripts/inheritsCharacter/class_enemy.gd" id="1_buyph"]
+[ext_resource type="Texture2D" uid="uid://j25fmegii0o0" path="res://assets/tilemaps/tile_characters.png" id="2_p1msc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_otq2w"]
+atlas = ExtResource("2_p1msc")
+region = Rect2(48, 48, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_62va0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_otq2w")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iccoa"]
+radius = 4.0
+
+[node name="Testemy" type="CharacterBody2D" node_paths=PackedStringArray("navInterval", "navAgent")]
+script = ExtResource("1_buyph")
+navInterval = NodePath("Timer")
+navAgent = NodePath("NavigationAgent2D")
+metadata/_custom_type_script = "uid://c8cqyjlah7m1e"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_62va0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_iccoa")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
