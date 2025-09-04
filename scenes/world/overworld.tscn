@@ -1,11 +1,10 @@
-[gd_scene load_steps=23 format=4 uid="uid://1i7d15bac2tf"]
+[gd_scene load_steps=22 format=4 uid="uid://1i7d15bac2tf"]
 
 [ext_resource type="Texture2D" uid="uid://cpstvau0nlnqw" path="res://assets/Screenshot 2025-08-28 153026.png" id="1_fxtkv"]
 [ext_resource type="TileSet" uid="uid://cmv7wt2iltbsn" path="res://resources/tileset_overworld.tres" id="1_pwl2g"]
 [ext_resource type="PackedScene" uid="uid://cbaut5bbgnqxc" path="res://scenes/player/player.tscn" id="2_het3u"]
 [ext_resource type="Shader" uid="uid://b5fwusaw0sx63" path="res://scenes/world/overworld.gdshader" id="3_373mm"]
 [ext_resource type="Script" uid="uid://jq6kq46uf8pu" path="res://scenes/world/adair_test_stuff.gd" id="6_espw7"]
-[ext_resource type="Script" uid="uid://cpiqyxsc1psso" path="res://scenes/world/devs.gd" id="7_eccxn"]
 [ext_resource type="Texture2D" uid="uid://su5hnluljkqr" path="res://assets/tilesheets/tile_dev.png" id="7_o3ojk"]
 
 [sub_resource type="Gradient" id="Gradient_373mm"]
@@ -403,7 +402,6 @@ script = ExtResource("6_espw7")
 metadata/_custom_type_script = "uid://c8cqyjlah7m1e"
 
 [node name="Devs" type="Node2D" parent="."]
-script = ExtResource("7_eccxn")
 
 [node name="Sophie" type="Sprite2D" parent="Devs"]
 z_index = 2
@@ -416,6 +414,7 @@ root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_ap4hg")
 }
+autoplay = "Sophie"
 
 [node name="Noah" type="Sprite2D" parent="Devs"]
 z_index = 2
@@ -428,6 +427,7 @@ root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_ap4hg")
 }
+autoplay = "Noah"
 
 [node name="Adair" type="Sprite2D" parent="Devs"]
 z_index = 2
@@ -441,6 +441,7 @@ root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_ap4hg")
 }
+autoplay = "Adair"
 
 [node name="Max" type="Sprite2D" parent="Devs"]
 z_index = 1
@@ -454,6 +455,7 @@ root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_ap4hg")
 }
+autoplay = "Max"
 
 [node name="Harper" type="Sprite2D" parent="Devs"]
 z_index = 2
@@ -466,3 +468,4 @@ root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_ap4hg")
 }
+autoplay = "Harper"
