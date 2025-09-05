@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://bbmsi7opk6onn"]
+[gd_scene load_steps=6 format=3 uid="uid://bbmsi7opk6onn"]
 
+[ext_resource type="Script" uid="uid://c8cqyjlah7m1e" path="res://scripts/inheritsCharacter/class_enemy.gd" id="1_p1msc"]
 [ext_resource type="Texture2D" uid="uid://j25fmegii0o0" path="res://assets/tilesheets/tile_characters.png" id="2_p1msc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_otq2w"]
@@ -20,7 +21,11 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_iccoa"]
 radius = 4.0
 
-[node name="Testemy" type="CharacterBody2D"]
+[node name="Testemy" type="CharacterBody2D" node_paths=PackedStringArray("navInterval", "navAgent")]
+script = ExtResource("1_p1msc")
+navInterval = NodePath("Timer")
+navAgent = NodePath("NavigationAgent2D")
+metadata/_custom_type_script = "uid://c8cqyjlah7m1e"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_62va0")
