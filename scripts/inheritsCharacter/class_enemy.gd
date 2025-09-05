@@ -34,16 +34,15 @@ func _physics_process(delta: float) -> void:
 	#lastSeenPlayerPosition = 
 	move_to(navAgent.get_next_path_position(), delta)
 	move_and_slide()
+	handlePush()
+	
 #endregion
 #region Custom Methods:
 func makePath():
 	navAgent.target_position = get_tree().get_first_node_in_group("Player").position
 	
 	
-func move_to(pos, delta):
-	var input_direction = global_position.direction_to(pos)
-	velocity += input_direction * speed 
-	velocity = velocity.limit_length(speed)
+
 #endregion
 #region Signal:
 

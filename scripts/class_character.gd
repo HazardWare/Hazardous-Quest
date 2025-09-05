@@ -23,6 +23,9 @@ signal onDamaged(amount:int) ## Emitted on a negative decrease on health.
 ## How much time [i] (in seconds, don't be fooled) [/i] should the character be invulnerable after just getting hit.
 @export var iFrames : float = 0
 
+## PushForce
+@export var push_force := 5.0
+
 ## Current red hearts.
 @onready var redHealth : int = maximumHealth :
 	set(value):
@@ -111,3 +114,16 @@ func setRedHealth(value : int) -> int:
 
 func setBlueHealth(value : int) -> int:
 	return max(value, 0)
+
+
+## Handle pushing. Should be called after move_and_slide()
+func handlePush():
+	for id in get_slide_collision_count():
+		var c = get_slide_collision(id)
+		if c.get_collider() is RigidBody2D:
+			c.get_collider().apply_central_impulse(-c.get_normal() * push_force)
+
+func move_to(pos, delta):
+	var input_direction = global_position.direction_to(pos)
+	velocity += input_direction * speed 
+	velocity = velocity.limit_length(speed)

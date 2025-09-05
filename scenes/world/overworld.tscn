@@ -387,6 +387,7 @@ tile_set = ExtResource("1_pwl2g")
 [node name="Player" parent="." node_paths=PackedStringArray("floorTilemap") groups=["Player"] instance=ExtResource("2_het3u")]
 z_index = 1
 position = Vector2(3, -37)
+collision_mask = 30
 floorTilemap = NodePath("../Ground")
 
 [node name="ShadowShader" type="Polygon2D" parent="Player"]

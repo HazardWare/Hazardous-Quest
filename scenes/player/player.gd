@@ -68,7 +68,7 @@ func _physics_process(delta: float) -> void:
 	handleContinuousInput(delta)
 	handleAnimations()
 	move_and_slide()
-	
+	handlePush()
 	
 	if hitbox_touching and area_touching is Lever and Input.is_action_just_pressed("interact"):
 		area_touching.trigger()
