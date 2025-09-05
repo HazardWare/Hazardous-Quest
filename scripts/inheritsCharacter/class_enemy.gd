@@ -20,6 +20,7 @@ var spawnerNode : Node2D
 @export var navInterval : Timer
 @onready var rayCast : RayCast2D = RayCast2D.new()
 @export var navAgent : NavigationAgent2D
+@export var hurtBox : Area2D
 @export_subgroup("")
 
 #region Godot Functions:
@@ -30,6 +31,8 @@ func _ready() -> void:
 	
 	navInterval.start()
 	navInterval.timeout.connect(makePath)
+	
+	hurtBox.area_entered.connect(damagePlayer)
 	
 func _physics_process(delta: float) -> void:
 	
@@ -42,9 +45,13 @@ func _physics_process(delta: float) -> void:
 func makePath():
 	navAgent.target_position = get_tree().get_first_node_in_group("Player").position
 	
-	
 
 #endregion
 #region Signal:
 
-#endregion
+
+
+func damagePlayer(area : Area2D):
+	var parent : Node = area.get_parent()
+	if parent is Character:
+		parent.health -= strength

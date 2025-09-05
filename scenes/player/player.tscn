@@ -356,7 +356,7 @@ _data = {
 &"flowerfield": SubResource("Animation_koevj")
 }
 
-[node name="Player" type="CharacterBody2D" groups=["Friendly"]]
+[node name="Player" type="CharacterBody2D" groups=["Friendly", "Player"]]
 y_sort_enabled = true
 collision_mask = 28
 script = ExtResource("1_dovo2")
