@@ -68,7 +68,7 @@ func _physics_process(delta: float) -> void:
 	handleContinuousInput(delta)
 	handleAnimations()
 	move_and_slide()
-	
+	handlePush()
 	
 	if hitbox_touching and area_touching is Lever and Input.is_action_just_pressed("interact"):
 		area_touching.trigger()
@@ -90,7 +90,7 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("sword") and not shielding:
 		$AnimationPlayer.play("RESET")
 		$Arm/Attack.play("jab")
-		$Camera2D/UI.update_health(self)
+		$UIElements/UI.update_health(self)
 		var lookingLeft = snapped( rad_to_deg(get_global_mouse_position().angle_to_point(position)) + 180 , 180) == 180
 		$AnimatedSprite2D.flip_h = lookingLeft
 	
@@ -208,11 +208,12 @@ func _on_hit_box_area_exited(_area: Area2D) -> void:
 	hitbox_touching = false
 
 func _on_on_damaged(amount) -> void:
-	$Camera2D/UI.update_health(self) # i wonder what this does - n
+	$UIElements/UI.update_health(self)
+# i wonder what this does - n
 	if health == 0:
 		$EnvironmentComponent/AnimationPlayer.play("die")
 
 func _on_on_heal(amount) -> void:
-	$Camera2D/UI.update_health(self)
+	$UIElements/UI.update_health(self)
 
 #endregion
