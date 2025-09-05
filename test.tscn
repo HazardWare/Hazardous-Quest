@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://rxyu2upotcap"]
+[gd_scene load_steps=0 format=3 uid="uid://rxyu2upotcap"]
 
 [node name="TEST" type="Control"]
 layout_mode = 3
