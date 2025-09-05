@@ -4,7 +4,7 @@
 [ext_resource type="TileSet" uid="uid://cmv7wt2iltbsn" path="res://resources/tileset_overworld.tres" id="1_pwl2g"]
 [ext_resource type="PackedScene" uid="uid://cbaut5bbgnqxc" path="res://scenes/player/player.tscn" id="2_het3u"]
 [ext_resource type="Shader" uid="uid://b5fwusaw0sx63" path="res://scenes/world/overworld.gdshader" id="3_373mm"]
-[ext_resource type="Script" uid="uid://jq6kq46uf8pu" path="res://scenes/world/adair_test_stuff.gd" id="6_espw7"]
+[ext_resource type="PackedScene" uid="uid://bbmsi7opk6onn" path="res://scenes/adversaries/Testemy.tscn" id="6_espw7"]
 [ext_resource type="Texture2D" uid="uid://su5hnluljkqr" path="res://assets/tilesheets/tile_dev.png" id="7_o3ojk"]
 
 [sub_resource type="Gradient" id="Gradient_373mm"]
@@ -384,7 +384,7 @@ position = Vector2(25, 3)
 tile_map_data = PackedByteArray("AACTAFAABAAAAAAAAACTAFEABAAAAAEAAACTAFIABAAAAAEAAACTAFMABAAAAAEAAACTAFQABAAAAAEAAACTAFUABAAAAAEAAACTAFYABAAAAAEAAACTAFcABAAAAAEAAACTAFgABAAAAAEAAACTAFkABAAAAAEAAACTAFoABAAAAAEAAACTAFsABAAAAAEAAACTAFwABAAAAAEAAACTAF0ABAAAAAEAAACTAF4ABAAAAAEAAACTAF8ABAAAAAEAAACTAGAABAAAAAEAAACTAGEABAAAAAEAAACTAGIABAAAAAEAAACTAGMABAAAAAEAAACTAGQABAAAAAEAAACTAGUABAAAAAEAAACTAGYABAAAAAEAAACTAGcABAAAAAEAAACTAGgABAAAAAEAAACTAGkABAAAAAEAAACUAFAABAABAAAAAACUAFEABAABAAEAAACUAFIABAABAAEAAACUAFMABAABAAEAAACUAFQABAABAAEAAACUAFUABAABAAEAAACUAFYABAABAAEAAACUAFcABAABAAEAAACUAFgABAABAAEAAACUAFkABAABAAEAAACUAFoABAABAAEAAACUAFsABAABAAEAAACUAFwABAABAAEAAACUAF0ABAABAAEAAACUAF4ABAABAAEAAACUAF8ABAABAAEAAACUAGAABAABAAEAAACUAGEABAABAAEAAACUAGIABAABAAEAAACUAGMABAABAAEAAACUAGQABAABAAEAAACUAGUABAABAAEAAACUAGYABAABAAEAAACUAGcABAABAAEAAACUAGgABAABAAEAAACUAGkABAABAAEAAACUAGsABAABAAIAAACTAGsABAAAAAIAAACTAGoABAAAAAEAAACUAGoABAABAAEAAAA=")
 tile_set = ExtResource("1_pwl2g")
 
-[node name="Player" parent="." node_paths=PackedStringArray("floorTilemap") instance=ExtResource("2_het3u")]
+[node name="Player" parent="." node_paths=PackedStringArray("floorTilemap") groups=["Player"] instance=ExtResource("2_het3u")]
 z_index = 1
 position = Vector2(3, -37)
 floorTilemap = NodePath("../Ground")
@@ -396,10 +396,6 @@ material = SubResource("ShaderMaterial_h0wcu")
 position = Vector2(9, 13)
 polygon = PackedVector2Array(-372, 161, 301, 188, 314, -189, -331, -148)
 uv = PackedVector2Array(-9, 3, 140.853, 10.346, 152.501, -60.2779, -16.8409, -53.5042)
-
-[node name="AdairTestStuff" type="CharacterBody2D" parent="."]
-script = ExtResource("6_espw7")
-metadata/_custom_type_script = "uid://c8cqyjlah7m1e"
 
 [node name="Devs" type="Node2D" parent="."]
 
@@ -469,3 +465,6 @@ libraries = {
 &"": SubResource("AnimationLibrary_ap4hg")
 }
 autoplay = "Harper"
+
+[node name="Testemy" parent="." instance=ExtResource("6_espw7")]
+speed = 50.0
