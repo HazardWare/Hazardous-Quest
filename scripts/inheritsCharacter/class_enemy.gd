@@ -24,6 +24,7 @@ var spawnerNode : Node2D
 
 #region Godot Functions:
 func _ready() -> void:
+	super()
 	navInterval.autostart = true
 	navInterval.wait_time = 0.1
 	
@@ -31,7 +32,7 @@ func _ready() -> void:
 	navInterval.timeout.connect(makePath)
 	
 func _physics_process(delta: float) -> void:
-	#lastSeenPlayerPosition = 
+	
 	move_to(navAgent.get_next_path_position(), delta)
 	move_and_slide()
 	handlePush()
