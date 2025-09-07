@@ -136,14 +136,17 @@ func _input(event: InputEvent) -> void:
 		$UIElements/UI.update_health(self)
 	#endregion
 	
-	if event.is_action_pressed("one") and not $Arm/Attack.is_playing():
-		attackMode = "jab"
-		$Arm/Attack.play("RESET")
-	if event.is_action_pressed("two") and not $Arm/Attack.is_playing():
-		attackMode = "swipe"
-		$Arm/Attack.play("RESET")
-	if event.is_action_pressed("three") and not $Arm/Attack.is_playing():
-		attackMode = "big_swipe"
+	#if event.is_action_pressed("one") and not $Arm/Attack.is_playing():
+		#attackMode = "jab"
+		#$Arm/Attack.play("RESET")
+	#if event.is_action_pressed("two") and not $Arm/Attack.is_playing():
+		#attackMode = "swipe"
+		#$Arm/Attack.play("RESET")
+	#if event.is_action_pressed("three") and not $Arm/Attack.is_playing():
+		#attackMode = "big_swipe"
+		#$Arm/Attack.play("RESET")
+	if event.is_action_pressed("swap") and not $Arm/Attack.is_playing():
+		attackMode = "big_swipe" if attackMode != "big_swipe" else "jab"
 		$Arm/Attack.play("RESET")
 
 	# Jab:
