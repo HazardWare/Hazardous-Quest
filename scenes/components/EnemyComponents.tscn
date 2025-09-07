@@ -29,3 +29,6 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_0k52e")
 step = 0.001
 value = 50.0
 show_percentage = false
+
+[node name="StallTimer" type="Timer" parent="."]
+one_shot = true

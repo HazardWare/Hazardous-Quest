@@ -48,3 +48,11 @@ position = Vector2(170, 34)
 
 [node name="Testemy5" parent="." instance=ExtResource("3_8mpw0")]
 position = Vector2(150, -145)
+
+[node name="Grass" type="ColorRect" parent="."]
+z_index = -100
+offset_left = -10145.0
+offset_top = -7309.0
+offset_right = 9756.0
+offset_bottom = 7912.0
+color = Color(0.517647, 0.776471, 0.411765, 1)

@@ -31,6 +31,7 @@ var enemyComponent = preload("res://scenes/components/EnemyComponents.tscn")
 func _ready() -> void:
 	super()
 	add_child(enemyComponent.instantiate())
+	$EnemyComponents/StallTimer.start()
 	
 	navInterval.autostart = true
 	navInterval.wait_time = 0.1
@@ -44,12 +45,14 @@ func _ready() -> void:
 	
 func _physics_process(delta: float) -> void:
 	super(delta)
-	basic_moving(delta)
 	
 	$EnemyComponents/HealthBar.value = health
 	$EnemyComponents/HealthBar.max_value = maximumHealth
 	
+	if $EnemyComponents/StallTimer.time_left != 0.0:
+		return
 	
+	basic_moving(delta)
 	# Continous damage
 	for x in hurtBox.get_overlapping_areas():
 		var parent : Node = x.get_parent()
