@@ -116,10 +116,8 @@ func handleAnimations():
 	var direction := Input.get_vector("walk_left", "walk_right", "walk_up", "walk_down")
 	if direction and velocity.length() > 0 and not $Arm/Attack.is_playing():
 		$AnimationPlayer.play('walk')
-		if (velocity.x < 0):
-			$AnimatedSprite2D.flip_h = true
-		elif velocity.x > 0:
-			$AnimatedSprite2D.flip_h = false 
+		$AnimatedSprite2D.flip_h = true if velocity.x < 0 else false
+		$AnimationPlayer.speed_scale = (velocity/speed).distance_to(Vector2.ZERO) 
 	else:
 		$AnimationPlayer.play("RESET")
 		

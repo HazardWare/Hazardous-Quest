@@ -18,6 +18,11 @@ boot_splash/use_filter=false
 boot_splash/image="uid://px5408s38gpr"
 config/icon="uid://d7myph0coxos"
 
+[display]
+
+window/stretch/mode="canvas_items"
+window/stretch/scale_mode="integer"
+
 [file_customization]
 
 folder_colors={

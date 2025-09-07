@@ -25,9 +25,13 @@ var spawnerNode : Node2D
 @onready var floorTilemap :TileMapLayer = get_tree().get_nodes_in_group("Tilemap")[0]
 @onready var obstacles :TileMapLayer = get_tree().get_nodes_in_group("Tilemap")[1]
 
+var enemyComponent = preload("res://scenes/components/EnemyComponents.tscn")
+
 #region Godot Functions:
 func _ready() -> void:
 	super()
+	add_child(enemyComponent.instantiate())
+	
 	navInterval.autostart = true
 	navInterval.wait_time = 0.1
 	
@@ -41,6 +45,12 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	super(delta)
 	basic_moving(delta)
+	
+	$EnemyComponents/HealthBar.value = health
+	$EnemyComponents/HealthBar.max_value = maximumHealth
+	
+	
+	# Continous damage
 	for x in hurtBox.get_overlapping_areas():
 		var parent : Node = x.get_parent()
 		if parent is Character:

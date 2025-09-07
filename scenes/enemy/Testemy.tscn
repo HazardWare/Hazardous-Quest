@@ -52,6 +52,7 @@ autostart = true
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_postprocessing = 1
+simplify_path = true
 avoidance_layers = 2
 avoidance_mask = 2
 debug_enabled = true

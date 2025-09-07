@@ -1,3 +1,31 @@
-[gd_scene format=3 uid="uid://cr0n1oh77knc0"]
+[gd_scene load_steps=3 format=3 uid="uid://cr0n1oh77knc0"]
 
-[node name="EnemyComponents" type="Node"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7t4eu"]
+draw_center = false
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0k52e"]
+bg_color = Color(1, 0, 0, 1)
+
+[node name="EnemyComponents" type="Node2D"]
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+z_index = 10
+offset_left = -8.0
+offset_top = 11.0
+offset_right = 72.0
+offset_bottom = 21.0
+scale = Vector2(0.2, 0.2)
+theme_override_styles/background = SubResource("StyleBoxFlat_7t4eu")
+theme_override_styles/fill = SubResource("StyleBoxFlat_0k52e")
+step = 0.001
+value = 50.0
+show_percentage = false

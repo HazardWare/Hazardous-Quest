@@ -545,7 +545,7 @@ shape = SubResource("CapsuleShape2D_dovo2")
 debug_color = Color(0, 0.6, 0.701961, 0.0627451)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(3, 3)
+zoom = Vector2(2, 2)
 process_callback = 0
 position_smoothing_enabled = true
 editor_draw_drag_margin = true

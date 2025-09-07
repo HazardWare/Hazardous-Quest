@@ -169,6 +169,7 @@ func applyKnockback(direction, force, duration):
 	knockbackTimer = duration
 	
 func move_to(pos, delta):
-	var input_direction = global_position.direction_to(pos)
-	velocity += input_direction * speed 
-	velocity = velocity.limit_length(speed)
+	
+	var direction = global_position.direction_to(pos)
+	var lerp_weight = delta * (acceleration if direction else friction)
+	velocity = lerp(velocity, direction * speed, lerp_weight)
