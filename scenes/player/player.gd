@@ -74,10 +74,20 @@ func _physics_process(delta: float) -> void:
 	if hitbox_touching and area_touching is Lever and Input.is_action_just_pressed("interact"):
 		area_touching.trigger()
 
+var nextScene = ""
+
 func _input(event: InputEvent) -> void:
 	# Reset scene:
 	if event.is_action_pressed("ui_undo"):
-		get_tree().reload_current_scene()
+		nextScene = ""
+		$UIElements/SceneTransitionAnimation.play("fade_out")
+	if event.is_action_pressed("ui_text_select_all"):
+		nextScene = "res://scenes/world/testground.tscn"
+		$UIElements/SceneTransitionAnimation.play("fade_out")
+	if event.is_action_pressed("ui_text_delete"):
+		nextScene = "res://scenes/world/overworld.tscn"
+		$UIElements/SceneTransitionAnimation.play("fade_out")
+		
 		
 	if event.is_action_pressed("ui_down"):
 		health -= 1
@@ -129,6 +139,10 @@ func handleAnimations():
 
 ## Handles input per frame for inputs that are usually held.
 func handleContinuousInput(delta: float):
+	
+	if Input.is_action_pressed("ui_text_select_all"):
+		return
+	
 	# Can't do this stuff whilst attacking
 	if not $Arm/Attack.is_playing():
 		
@@ -218,11 +232,18 @@ func _on_hit_box_area_exited(_area: Area2D) -> void:
 func _on_on_damaged(amount) -> void:
 	$UIElements/UI.update_health(self)
 	$UIElements/AnimationPlayer.stop()
-	$UIElements/AnimationPlayer.play("Hurt")
+	$UIElements/AnimationPlayer.play("hurt")
 	if health == 0:
 		$EnvironmentComponent/AnimationPlayer.play("die")
 
 func _on_on_heal(amount) -> void:
 	$UIElements/UI.update_health(self)
+
+func _on_scene_transition_animation_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "fade_out":
+		if nextScene != "":
+			get_tree().change_scene_to_file(nextScene)
+		else:
+			get_tree().reload_current_scene()
 
 #endregion

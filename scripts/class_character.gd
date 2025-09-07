@@ -20,7 +20,7 @@ signal onDamaged(amount:int) ## Emitted on a negative decrease on health.
 @export var invulnerable : bool = false ## Unable to be damaged.
 @export var toxic : bool = false ## Character inflicts poison.
 @export var shouldBleed : bool = true
-
+@export var sprite : AnimatedSprite2D 
 var knockback := Vector2.ZERO
 var knockbackTimer := 0.0
 
@@ -82,6 +82,7 @@ var iFraming : bool : ## Temporarily invulnerable due to being hit.
 	set(s):
 		if !iFraming:
 			$CharacterComponents/iFrameTimer.start(iFrames)
+			$CharacterComponents/iFrameBlinker.start()
 	get():
 		return bool($CharacterComponents/iFrameTimer.time_left) 
 var stunned : bool = false ## Stunned via something that stuns.
@@ -103,6 +104,11 @@ func _ready() -> void:
 	
 func _physics_process(delta: float) -> void:
 	handleKnockback(delta)
+	
+	if !iFraming and $CharacterComponents/iFrameBlinker.time_left != 0.0:
+		$CharacterComponents/iFrameBlinker.stop()
+		sprite.visible = true
+	
 func handleKnockback(delta):
 	if knockbackTimer > 0.0:
 		velocity = knockback

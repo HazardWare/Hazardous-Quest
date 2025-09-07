@@ -1,23 +1,9 @@
-[gd_scene load_steps=22 format=4 uid="uid://1i7d15bac2tf"]
+[gd_scene load_steps=17 format=4 uid="uid://1i7d15bac2tf"]
 
 [ext_resource type="Texture2D" uid="uid://cpstvau0nlnqw" path="res://assets/Screenshot 2025-08-28 153026.png" id="1_fxtkv"]
 [ext_resource type="TileSet" uid="uid://cmv7wt2iltbsn" path="res://resources/tileset_overworld.tres" id="1_pwl2g"]
 [ext_resource type="PackedScene" uid="uid://cbaut5bbgnqxc" path="res://scenes/player/player.tscn" id="2_het3u"]
-[ext_resource type="Shader" uid="uid://b5fwusaw0sx63" path="res://scenes/world/overworld.gdshader" id="3_373mm"]
-[ext_resource type="PackedScene" uid="uid://bbmsi7opk6onn" path="res://scenes/enemy/Testemy.tscn" id="6_espw7"]
 [ext_resource type="Texture2D" uid="uid://su5hnluljkqr" path="res://assets/tilesheets/tile_dev.png" id="7_o3ojk"]
-
-[sub_resource type="Gradient" id="Gradient_373mm"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_fxtkv"]
-gradient = SubResource("Gradient_373mm")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_h0wcu"]
-shader = ExtResource("3_373mm")
-shader_parameter/color = Color(0, 0, 0, 0.443137)
-shader_parameter/angle = 115.0
-shader_parameter/max_dist = 100.0
-shader_parameter/gradientTexture = SubResource("GradientTexture2D_fxtkv")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eccxn"]
 atlas = ExtResource("7_o3ojk")
@@ -389,14 +375,6 @@ z_index = 1
 position = Vector2(33, -35)
 floorTilemap = NodePath("../Ground")
 
-[node name="ShadowShader" type="Polygon2D" parent="Player"]
-visible = false
-z_index = 3
-material = SubResource("ShaderMaterial_h0wcu")
-position = Vector2(9, 13)
-polygon = PackedVector2Array(-372, 161, 301, 188, 314, -189, -331, -148)
-uv = PackedVector2Array(-9, 3, 140.853, 10.346, 152.501, -60.2779, -16.8409, -53.5042)
-
 [node name="Devs" type="Node2D" parent="."]
 
 [node name="Sophie" type="Sprite2D" parent="Devs"]
@@ -465,7 +443,3 @@ libraries = {
 &"": SubResource("AnimationLibrary_ap4hg")
 }
 autoplay = "Harper"
-
-[node name="Testemy" parent="." instance=ExtResource("6_espw7")]
-position = Vector2(102, -24)
-speed = 50.0

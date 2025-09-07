@@ -22,8 +22,8 @@ var spawnerNode : Node2D
 @export var navAgent : NavigationAgent2D
 @export var hurtBox : Area2D
 @export_subgroup("")
-@onready var floorTilemap :TileMapLayer = get_tree().get_nodes_in_group("Tilemap")[0]
-@onready var obstacles :TileMapLayer = get_tree().get_nodes_in_group("Tilemap")[1]
+#@onready var floorTilemap :TileMapLayer = get_tree().get_nodes_in_group("Tilemap")[0]
+#@onready var obstacles :TileMapLayer = get_tree().get_nodes_in_group("Tilemap")[1]
 
 var enemyComponent = preload("res://scenes/components/EnemyComponents.tscn")
 
@@ -53,7 +53,7 @@ func _physics_process(delta: float) -> void:
 	# Continous damage
 	for x in hurtBox.get_overlapping_areas():
 		var parent : Node = x.get_parent()
-		if parent is Character:
+		if parent is Character and parent.is_in_group("Friendly"):
 			parent.health -= strength
 		if parent is Weapon or parent is Projectile:
 			self.health -= parent.strength
@@ -85,9 +85,8 @@ func basic_moving(delta):
 func areaEntered(area : Area2D):
 	
 	var parent : Node = area.get_parent()
-	if parent is Character:
-		parent.health -= strength
+	if parent is Character and parent.is_in_group("Friendly"):
 		parent.applyKnockback((area.global_position - global_position).normalized(), 250.0, 0.12)
 	if parent is Weapon or parent is Projectile:
-		self.health -= parent.strength
 		applyKnockback((global_position - area.global_position).normalized(), 250.0, 0.12)
+	pass

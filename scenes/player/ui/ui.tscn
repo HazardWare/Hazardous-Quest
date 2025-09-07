@@ -1,8 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://7m71hjxpym6n"]
+[gd_scene load_steps=2 format=3 uid="uid://7m71hjxpym6n"]
 
 [ext_resource type="Script" uid="uid://ki77yappuguq" path="res://scenes/player/ui/ui.gd" id="1_lpj6m"]
-[ext_resource type="Script" uid="uid://btls2b8sul58f" path="res://scripts/class_heart.gd" id="2_crj82"]
-[ext_resource type="Texture2D" uid="uid://d7myph0coxos" path="res://assets/sprites/heart.png" id="2_oiwrs"]
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -22,10 +20,3 @@ layout_mode = 1
 offset_right = 40.0
 offset_bottom = 40.0
 scale = Vector2(2, 2)
-
-[node name="Heart" type="TextureRect" parent="HealthBar"]
-layout_mode = 2
-texture = ExtResource("2_oiwrs")
-expand_mode = 2
-script = ExtResource("2_crj82")
-metadata/_custom_type_script = "uid://btls2b8sul58f"

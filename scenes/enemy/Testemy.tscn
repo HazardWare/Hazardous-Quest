@@ -23,7 +23,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_iccoa"]
 radius = 8.06226
 
-[node name="Testemy" type="CharacterBody2D" node_paths=PackedStringArray("navInterval", "navAgent", "hurtBox")]
+[node name="Testemy" type="CharacterBody2D" node_paths=PackedStringArray("navInterval", "navAgent", "hurtBox", "sprite")]
 collision_layer = 26
 collision_mask = 27
 motion_mode = 1
@@ -31,7 +31,9 @@ script = ExtResource("1_p1msc")
 navInterval = NodePath("Timer")
 navAgent = NodePath("NavigationAgent2D")
 hurtBox = NodePath("HurtBox")
+speed = 100.0
 shouldBleed = false
+sprite = NodePath("AnimatedSprite2D")
 metadata/_custom_type_script = "uid://c8cqyjlah7m1e"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -55,4 +57,3 @@ path_postprocessing = 1
 simplify_path = true
 avoidance_layers = 2
 avoidance_mask = 2
-debug_enabled = true

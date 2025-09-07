@@ -167,4 +167,8 @@ script = ExtResource("2_cx5rm")
 wait_time = 0.05
 one_shot = true
 
+[node name="iFrameBlinker" type="Timer" parent="."]
+wait_time = 0.1
+
 [connection signal="animation_finished" from="DamageAnimation" to="." method="_on_damage_animation_animation_finished"]
+[connection signal="timeout" from="iFrameBlinker" to="." method="_on_i_frame_blinker_timeout"]
