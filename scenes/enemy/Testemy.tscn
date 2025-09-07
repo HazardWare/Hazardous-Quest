@@ -21,7 +21,7 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_t37u7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_iccoa"]
-radius = 8.06226
+radius = 7.0
 
 [node name="Testemy" type="CharacterBody2D" node_paths=PackedStringArray("navInterval", "navAgent", "hurtBox", "sprite")]
 collision_layer = 26
@@ -57,5 +57,6 @@ autostart = true
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_postprocessing = 1
 simplify_path = true
+avoidance_enabled = true
 avoidance_layers = 2
 avoidance_mask = 2

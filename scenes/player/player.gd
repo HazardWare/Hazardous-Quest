@@ -25,6 +25,13 @@ extends Character
 #@export var sprite : AnimatedSprite2D
 @export_subgroup("")
 
+var attackMode := "big_swipe"
+const attackModeStrength = {
+	"big_swipe" : 2,
+	"swipe" : 3,
+	"jab" : 4
+}
+
 ## 0 is verticle, 1 is horizontal. These are from ID 1
 const LADDER_TILE := [Vector2i(9,6),Vector2i(10,5)]
 var lastLadder : Vector2 ## The last ladder position
@@ -85,10 +92,12 @@ func _physics_process(delta: float) -> void:
 var nextScene = ""
 
 func _input(event: InputEvent) -> void:
-	# Reset scene:
+	
+	#region debug
 	if event.is_action_pressed("ui_undo"):
 		nextScene = ""
 		$UIElements/SceneTransitionAnimation.play("fade_out")
+		
 	if event.is_action_pressed("ui_text_select_all"):
 		nextScene = "res://scenes/world/testground.tscn"
 		$UIElements/SceneTransitionAnimation.play("fade_out")
@@ -100,6 +109,11 @@ func _input(event: InputEvent) -> void:
 		SaveLoad._save()
 	if event.is_action_pressed("load"):
 		SaveLoad._load()
+		
+	if event.is_action_pressed("spawn"):
+		var curEn = load("res://scenes/enemy/Testemy.tscn").instantiate()
+		curEn.global_position = get_global_mouse_position()
+		get_parent().add_child(curEn)
 		
 	if event.is_action_pressed("ui_down"):
 		health -= 1
@@ -116,12 +130,24 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_right"):
 		maximumHealth += 1
 		$UIElements/UI.update_health(self)
-
+	#endregion
+	
+	if event.is_action_pressed("one") and not $Arm/Attack.is_playing():
+		attackMode = "jab"
+		$Arm/Attack.play("RESET")
+	if event.is_action_pressed("two") and not $Arm/Attack.is_playing():
+		attackMode = "swipe"
+		$Arm/Attack.play("RESET")
+	if event.is_action_pressed("three") and not $Arm/Attack.is_playing():
+		attackMode = "big_swipe"
+		$Arm/Attack.play("RESET")
 
 	# Jab:
-	if event.is_action_pressed("sword") and not shielding:
+	if event.is_action_pressed("sword") and not shielding and not $Arm/Attack.is_playing():
 		$AnimationPlayer.play("RESET")
-		$Arm/Attack.play("big_swipe")
+		$Arm/Attack.play("RESET")
+		$Arm/Attack.play(attackMode)
+		$Arm/Marker2D/Weapon.strength = attackModeStrength[attackMode]
 		$Arm/Bow.modulate.a = 0.0
 		$UIElements/UI.update_health(self)
 		var lookingLeft = snapped( rad_to_deg(get_global_mouse_position().angle_to_point(position)) + 180 , 180) == 180
