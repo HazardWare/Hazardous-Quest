@@ -42,6 +42,8 @@ const MAXLIFETIME := 1.0
 ## They tilt if you move. Behavior is replicated here, just a bit extreme.
 var initial_velocity := Vector2.ZERO
 
+var stabbed := false
+
 #region Godot functions:
 
 func _ready() -> void:
@@ -50,8 +52,11 @@ func _ready() -> void:
 	pass
 
 func _physics_process(delta: float) -> void:
-	# Move forward based on rotation.
-	velocity = initial_velocity + (transform.x * _speed)
+	if !stabbed:
+		# Move forward based on rotation.
+		velocity = initial_velocity + (transform.x * _speed)
+	else:
+		return
 	# Face the direction of motion.
 	if not isFire:
 		if velocity:
@@ -72,14 +77,20 @@ func _physics_process(delta: float) -> void:
 #region Signals:
 
 func on_touch_body(body: Node2D):
-	print(body)
+	if stabbed:
+		return
+		
 	speed = 0.0
 	if not isFire:
 		_speed = 0.0
-		
+		strength = 0
+		#reparent(body)
+		stabbed = true
+		queue_free()
 	else:
 		$SmokeParticles.emitting = true
 	initial_velocity = Vector2.ZERO
+	velocity = Vector2.ZERO
 	pass
 #endregion
 #region Custom Methods:

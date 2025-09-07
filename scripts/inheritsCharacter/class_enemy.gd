@@ -58,8 +58,7 @@ func _physics_process(delta: float) -> void:
 		var parent : Node = x.get_parent()
 		if parent is Character and parent.is_in_group("Friendly"):
 			parent.health -= strength
-		if parent is Weapon or parent is Projectile:
-			self.health -= parent.strength
+		
 	
 #endregion
 #region Custom Methods:
@@ -92,4 +91,7 @@ func areaEntered(area : Area2D):
 		parent.applyKnockback((area.global_position - global_position).normalized(), 250.0, 0.12)
 	if parent is Weapon or parent is Projectile:
 		applyKnockback((global_position - area.global_position).normalized(), 250.0, 0.12)
+	if parent is Projectile:
+			self.health -= parent.strength
+			parent.queue_free()
 	pass
