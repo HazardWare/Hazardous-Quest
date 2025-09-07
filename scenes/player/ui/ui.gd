@@ -1,5 +1,6 @@
 extends Control
 
+@export var player : Character
 
 func update_health(player : Character):
 	
@@ -40,3 +41,9 @@ func update_health(player : Character):
 			this_heart.initiate_heart(Heart.POSSIBLE_HEARTS.EMPTY, true)
 
 		$HealthBar.add_child(this_heart)
+
+func _process(delta: float) -> void:
+	if player.attackMode == "big_swipe":
+		$Action/Label.text = "SWIPE"
+	else:
+		$Action/Label.text = "JAB"

@@ -1,23 +1,98 @@
-[gd_scene load_steps=5 format=3 uid="uid://7m71hjxpym6n"]
+[gd_scene load_steps=23 format=3 uid="uid://7m71hjxpym6n"]
 
 [ext_resource type="Script" uid="uid://ki77yappuguq" path="res://scenes/player/ui/ui.gd" id="1_lpj6m"]
 [ext_resource type="FontFile" uid="uid://2tmbtr1x8urg" path="res://assets/fonts/PublicPixel.ttf" id="2_crj82"]
+[ext_resource type="Texture2D" uid="uid://dvvtfemm130je" path="res://assets/tilesheets/tile_items.png" id="2_oiwrs"]
+[ext_resource type="Texture2D" uid="uid://d7myph0coxos" path="res://assets/sprites/heart.png" id="2_qno0g"]
+[ext_resource type="Script" uid="uid://btls2b8sul58f" path="res://scripts/class_heart.gd" id="3_00btf"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oiwrs"]
-bg_color = Color(0, 0, 0, 0.235294)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qno0g"]
+bg_color = Color(0.247059, 0.14902, 0.192157, 0.403922)
 border_width_left = 5
 border_width_top = 5
 border_width_right = 5
 border_width_bottom = 5
-border_color = Color(1, 1, 1, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
+border_color = Color(0.247059, 0.14902, 0.192157, 1)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oiwrs"]
+bg_color = Color(0.247059, 0.14902, 0.192157, 0.392157)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.247059, 0.14902, 0.192157, 1)
 anti_aliasing = false
 
 [sub_resource type="LabelSettings" id="LabelSettings_5gxme"]
 font = ExtResource("2_crj82")
+font_color = Color(0.247059, 0.14902, 0.192157, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00btf"]
+atlas = ExtResource("2_oiwrs")
+region = Rect2(35, 50, 10, 13)
+filter_clip = true
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dnt87"]
+load_path = "res://.godot/imported/tile_items.png-d5e4b2b4f4d9da015cdffb7639e56460.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_djsyo"]
+atlas = SubResource("CompressedTexture2D_dnt87")
+region = Rect2(19, 50, 10, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5gxme"]
+atlas = ExtResource("2_oiwrs")
+region = Rect2(51, 50, 10, 13)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_crj82"]
+bg_color = Color(0.14902, 0.168627, 0.266667, 0.392157)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.14902, 0.168627, 0.266667, 1)
+anti_aliasing = false
+
+[sub_resource type="LabelSettings" id="LabelSettings_oiwrs"]
+font = ExtResource("2_crj82")
+font_color = Color(0.14902, 0.168627, 0.266667, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cihoa"]
+atlas = ExtResource("2_oiwrs")
+region = Rect2(20, 66, 8, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0x41i"]
+atlas = ExtResource("2_oiwrs")
+region = Rect2(52, 66, 8, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ew72b"]
+atlas = ExtResource("2_oiwrs")
+region = Rect2(36, 66, 8, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h308x"]
+atlas = ExtResource("2_oiwrs")
+region = Rect2(4, 66, 8, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fvvt8"]
+atlas = ExtResource("2_oiwrs")
+region = Rect2(4, 66, 8, 13)
+
+[sub_resource type="LabelSettings" id="LabelSettings_qno0g"]
+font = ExtResource("2_crj82")
+font_size = 32
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qno0g"]
+atlas = ExtResource("2_oiwrs")
+region = Rect2(67, 2, 10, 12)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_00btf"]
+bg_color = Color(0.247059, 0.14902, 0.192157, 0.403922)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.247059, 0.14902, 0.192157, 1)
+anti_aliasing = false
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -26,34 +101,82 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1.00156, 1.00189)
+scale = Vector2(1.00027, 1.02912)
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_lpj6m")
 
+[node name="HealthBackground" type="Panel" parent="."]
+layout_mode = 1
+offset_left = 10.0
+offset_top = 8.0
+offset_right = 848.0
+offset_bottom = 98.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_qno0g")
+
 [node name="HealthBar" type="HBoxContainer" parent="."]
 layout_direction = 2
 layout_mode = 1
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 16.0
+offset_top = 14.0
+offset_right = 428.0
+offset_bottom = 54.0
+scale = Vector2(2, 2)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="Heart" type="TextureRect" parent="HealthBar"]
+layout_mode = 2
+texture = ExtResource("2_qno0g")
+expand_mode = 2
+script = ExtResource("3_00btf")
+metadata/_custom_type_script = "uid://btls2b8sul58f"
+
+[node name="Heart2" type="TextureRect" parent="HealthBar"]
+layout_mode = 2
+texture = ExtResource("2_qno0g")
+expand_mode = 2
+script = ExtResource("3_00btf")
+metadata/_custom_type_script = "uid://btls2b8sul58f"
+
+[node name="Heart3" type="TextureRect" parent="HealthBar"]
+layout_mode = 2
+texture = ExtResource("2_qno0g")
+expand_mode = 2
+script = ExtResource("3_00btf")
+metadata/_custom_type_script = "uid://btls2b8sul58f"
+
+[node name="Heart4" type="TextureRect" parent="HealthBar"]
+layout_mode = 2
+texture = ExtResource("2_qno0g")
+expand_mode = 2
+script = ExtResource("3_00btf")
+metadata/_custom_type_script = "uid://btls2b8sul58f"
+
+[node name="Heart5" type="TextureRect" parent="HealthBar"]
+layout_mode = 2
+texture = ExtResource("2_qno0g")
+expand_mode = 2
+script = ExtResource("3_00btf")
+metadata/_custom_type_script = "uid://btls2b8sul58f"
+
+[node name="PotionList" type="HBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -52.0
-offset_right = 52.0
-offset_bottom = 60.0
-grow_horizontal = 2
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 9.99725
+offset_top = -88.2977
+offset_right = 387.997
+offset_bottom = -28.2977
+grow_vertical = 0
 
-[node name="Panel" type="Panel" parent="HBoxContainer"]
+[node name="BigPotionSlot" type="Panel" parent="PotionList"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_oiwrs")
 
-[node name="Label" type="Label" parent="HBoxContainer/Panel"]
+[node name="Label" type="Label" parent="PotionList/BigPotionSlot"]
+z_index = 1
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -61,21 +184,32 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -20.0
-offset_top = -23.0
+offset_top = -22.9999
 offset_right = 20.0
+offset_bottom = 6.10352e-05
 grow_horizontal = 2
 grow_vertical = 0
 text = "1"
 label_settings = SubResource("LabelSettings_5gxme")
 horizontal_alignment = 1
 
-[node name="Panel2" type="Panel" parent="HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="PotionList/BigPotionSlot"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 6.0
+offset_right = 45.0
+offset_bottom = 37.0
+texture = SubResource("AtlasTexture_00btf")
+stretch_mode = 5
+
+[node name="BigPotionSlot2" type="Panel" parent="PotionList"]
 custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_oiwrs")
 
-[node name="Label" type="Label" parent="HBoxContainer/Panel2"]
+[node name="Label" type="Label" parent="PotionList/BigPotionSlot2"]
+z_index = 1
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -90,3 +224,273 @@ grow_vertical = 0
 text = "2"
 label_settings = SubResource("LabelSettings_5gxme")
 horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="PotionList/BigPotionSlot2"]
+offset_left = 5.0
+offset_top = 6.0
+offset_right = 45.0
+offset_bottom = 37.0
+texture = SubResource("AtlasTexture_djsyo")
+stretch_mode = 5
+
+[node name="BigPotionSlot3" type="Panel" parent="PotionList"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_oiwrs")
+
+[node name="Label" type="Label" parent="PotionList/BigPotionSlot3"]
+z_index = 1
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "3"
+label_settings = SubResource("LabelSettings_5gxme")
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="PotionList/BigPotionSlot3"]
+offset_left = 5.0
+offset_top = 6.0
+offset_right = 45.0
+offset_bottom = 37.0
+texture = SubResource("AtlasTexture_5gxme")
+stretch_mode = 5
+
+[node name="MiniPotionSlot" type="Panel" parent="PotionList"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_crj82")
+
+[node name="Label" type="Label" parent="PotionList/MiniPotionSlot"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "4"
+label_settings = SubResource("LabelSettings_oiwrs")
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="PotionList/MiniPotionSlot"]
+offset_left = 5.0
+offset_top = 6.0
+offset_right = 35.0
+offset_bottom = 37.0
+texture = SubResource("AtlasTexture_cihoa")
+stretch_mode = 5
+
+[node name="MiniPotionSlot2" type="Panel" parent="PotionList"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_crj82")
+
+[node name="Label" type="Label" parent="PotionList/MiniPotionSlot2"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "5"
+label_settings = SubResource("LabelSettings_oiwrs")
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="PotionList/MiniPotionSlot2"]
+offset_left = 5.0
+offset_top = 6.0
+offset_right = 35.0
+offset_bottom = 37.0
+texture = SubResource("AtlasTexture_0x41i")
+stretch_mode = 5
+
+[node name="MiniPotionSlot3" type="Panel" parent="PotionList"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_crj82")
+
+[node name="Label" type="Label" parent="PotionList/MiniPotionSlot3"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "6"
+label_settings = SubResource("LabelSettings_oiwrs")
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="PotionList/MiniPotionSlot3"]
+offset_left = 5.0
+offset_top = 6.0
+offset_right = 35.0
+offset_bottom = 37.0
+texture = SubResource("AtlasTexture_ew72b")
+stretch_mode = 5
+
+[node name="MiniPotionSlot4" type="Panel" parent="PotionList"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_crj82")
+
+[node name="Label" type="Label" parent="PotionList/MiniPotionSlot4"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "7"
+label_settings = SubResource("LabelSettings_oiwrs")
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="PotionList/MiniPotionSlot4"]
+offset_left = 5.0
+offset_top = 6.0
+offset_right = 35.0
+offset_bottom = 37.0
+texture = SubResource("AtlasTexture_h308x")
+stretch_mode = 5
+
+[node name="MiniPotionSlot5" type="Panel" parent="PotionList"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_crj82")
+
+[node name="Label" type="Label" parent="PotionList/MiniPotionSlot5"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "8"
+label_settings = SubResource("LabelSettings_oiwrs")
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="PotionList/MiniPotionSlot5"]
+offset_left = 5.0
+offset_top = 6.0
+offset_right = 35.0
+offset_bottom = 37.0
+texture = SubResource("AtlasTexture_fvvt8")
+stretch_mode = 5
+
+[node name="Gold Counter" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -296.235
+offset_top = 7.77364
+offset_right = -10.2351
+offset_bottom = 97.7736
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_qno0g")
+
+[node name="Label" type="Label" parent="Gold Counter"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.755483
+anchor_bottom = 0.959
+offset_right = -0.0680084
+offset_bottom = 3.68999
+grow_horizontal = 0
+size_flags_horizontal = 10
+text = "100"
+label_settings = SubResource("LabelSettings_qno0g")
+horizontal_alignment = 2
+vertical_alignment = 1
+autowrap_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="Gold Counter"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.755245
+anchor_top = 0.0666667
+anchor_right = 1.00175
+anchor_bottom = 1.0
+offset_right = -37.1667
+offset_bottom = -45.0
+grow_horizontal = 0
+scale = Vector2(2, 2)
+size_flags_horizontal = 10
+texture = SubResource("AtlasTexture_qno0g")
+expand_mode = 3
+stretch_mode = 4
+metadata/_edit_use_anchors_ = true
+
+[node name="Action" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -286.0
+offset_top = -90.0
+offset_right = -3.0
+offset_bottom = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_00btf")
+
+[node name="Label" type="Label" parent="Action"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.00790587
+anchor_top = -0.00359921
+anchor_right = 0.992334
+anchor_bottom = 0.956252
+offset_right = -0.0680084
+offset_bottom = 3.68999
+grow_horizontal = 0
+size_flags_horizontal = 10
+text = "SWIPE"
+label_settings = SubResource("LabelSettings_qno0g")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+uppercase = true
+metadata/_edit_use_anchors_ = true
