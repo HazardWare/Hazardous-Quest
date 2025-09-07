@@ -52,13 +52,8 @@ func _physics_process(delta: float) -> void:
 	if $EnemyComponents/StallTimer.time_left != 0.0:
 		return
 	
-	basic_moving(delta)
-	# Continous damage
-	for x in hurtBox.get_overlapping_areas():
-		var parent : Node = x.get_parent()
-		if parent is Character and parent.is_in_group("Friendly"):
-			parent.health -= strength
-		
+	basicMoving(delta)
+	continousDamage(delta)
 	
 #endregion
 #region Custom Methods:
@@ -74,13 +69,21 @@ func makePath():
 			#print("true")
 			#floorTilemap.get_cell_tile_data(tileCoord).set_navigation_polygon(0, null)
 ## Basic move-to-player function for enemies.
-func basic_moving(delta):
+
+func basicMoving(delta):
 	if !navAgent.is_target_reached():
 		move_to(navAgent.get_next_path_position(), delta)
 	else:
 		velocity = Vector2.ZERO
 	move_and_slide()
 	handlePush()
+	
+func continousDamage(delta):
+	for x in hurtBox.get_overlapping_areas():
+		var parent : Node = x.get_parent()
+		if parent is Character and parent.is_in_group("Friendly"):
+			parent.health -= strength
+		
 #endregion
 #region Signal:
 
@@ -88,10 +91,11 @@ func areaEntered(area : Area2D):
 	
 	var parent : Node = area.get_parent()
 	if parent is Character and parent.is_in_group("Friendly"):
-		parent.applyKnockback((area.global_position - global_position).normalized(), 250.0, 0.12)
+		parent.applyKnockback((area.global_position - global_position).normalized(), 250.0, 0.12 * parent.strength)
 	if parent is Weapon or parent is Projectile:
-		applyKnockback((global_position - area.global_position).normalized(), 250.0, 0.12)
+		applyKnockback((global_position - area.global_position).normalized(), 250.0, 0.12 * parent.strength)
 	if parent is Projectile:
 			self.health -= parent.strength
 			parent.queue_free()
-	pass
+	if parent is Weapon:
+			self.health -= parent.strength

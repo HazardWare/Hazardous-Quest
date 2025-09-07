@@ -118,6 +118,10 @@ func handleKnockback(delta):
 	
 func die():
 	$CharacterComponents/DamageAnimation.play("die")
+	var currentParticle = $CharacterComponents/BloodParticles.duplicate()
+	currentParticle.emitting = true
+	currentParticle.global_position = global_position
+	get_parent().add_child(currentParticle)
 	queue_free()
 
 ## Handles overall healing and damaging
