@@ -1,6 +1,23 @@
-[gd_scene load_steps=2 format=3 uid="uid://7m71hjxpym6n"]
+[gd_scene load_steps=5 format=3 uid="uid://7m71hjxpym6n"]
 
 [ext_resource type="Script" uid="uid://ki77yappuguq" path="res://scenes/player/ui/ui.gd" id="1_lpj6m"]
+[ext_resource type="FontFile" uid="uid://2tmbtr1x8urg" path="res://assets/fonts/PublicPixel.ttf" id="2_crj82"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oiwrs"]
+bg_color = Color(0, 0, 0, 0.235294)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+anti_aliasing = false
+
+[sub_resource type="LabelSettings" id="LabelSettings_5gxme"]
+font = ExtResource("2_crj82")
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -19,4 +36,57 @@ layout_direction = 2
 layout_mode = 1
 offset_right = 40.0
 offset_bottom = 40.0
-scale = Vector2(2, 2)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -52.0
+offset_right = 52.0
+offset_bottom = 60.0
+grow_horizontal = 2
+
+[node name="Panel" type="Panel" parent="HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_oiwrs")
+
+[node name="Label" type="Label" parent="HBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "1"
+label_settings = SubResource("LabelSettings_5gxme")
+horizontal_alignment = 1
+
+[node name="Panel2" type="Panel" parent="HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_oiwrs")
+
+[node name="Label" type="Label" parent="HBoxContainer/Panel2"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "2"
+label_settings = SubResource("LabelSettings_5gxme")
+horizontal_alignment = 1
