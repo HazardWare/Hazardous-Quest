@@ -516,6 +516,9 @@ y_sort_enabled = true
 collision_mask = 28
 script = ExtResource("1_dovo2")
 snappingAngle = 15.0
+speed = 100.0
+friction = 10.0
+acceleration = 20.0
 iFrames = 0.5
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -543,6 +546,9 @@ debug_color = Color(0, 0.6, 0.701961, 0.0627451)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
+process_callback = 0
+position_smoothing_enabled = true
+editor_draw_drag_margin = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

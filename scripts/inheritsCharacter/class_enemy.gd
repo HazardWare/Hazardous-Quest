@@ -39,6 +39,7 @@ func _ready() -> void:
 	self.onDamaged.connect(func(d):print(health))
 	
 func _physics_process(delta: float) -> void:
+	super(delta)
 	basic_moving(delta)
 	for x in hurtBox.get_overlapping_areas():
 		var parent : Node = x.get_parent()
@@ -76,5 +77,7 @@ func areaEntered(area : Area2D):
 	var parent : Node = area.get_parent()
 	if parent is Character:
 		parent.health -= strength
+		parent.applyKnockback((area.global_position - global_position).normalized(), 250.0, 0.12)
 	if parent is Weapon or parent is Projectile:
 		self.health -= parent.strength
+		applyKnockback((global_position - area.global_position).normalized(), 250.0, 0.12)

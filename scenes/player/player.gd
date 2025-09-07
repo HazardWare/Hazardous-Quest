@@ -57,7 +57,7 @@ func _ready() -> void:
 	$EnvironmentComponent/AnimationPlayer.play("RESET")
 
 func _physics_process(delta: float) -> void:
-	
+	super(delta)
 	# Count timers:
 	if Input.is_action_pressed("bow") and not $Arm/Attack.is_playing():
 		bowHeldTime += delta
@@ -113,7 +113,8 @@ func die():
 #region Custom methods:
 ## Play and set appropriate visuals.
 func handleAnimations():
-	if velocity.length() > 0 and not $Arm/Attack.is_playing():
+	var direction := Input.get_vector("walk_left", "walk_right", "walk_up", "walk_down")
+	if direction and velocity.length() > 0 and not $Arm/Attack.is_playing():
 		$AnimationPlayer.play('walk')
 		if (velocity.x < 0):
 			$AnimatedSprite2D.flip_h = true
@@ -140,7 +141,9 @@ func handleContinuousInput(delta: float):
 		var direction := Input.get_vector("walk_left", "walk_right", "walk_up", "walk_down")
 		var calculatedSpeed := speed
 		calculatedSpeed *= 0.5 if shielding else 1.0 # Slow if shielding
-		velocity = direction * calculatedSpeed * delta
+		
+		var lerp_weight = delta * (acceleration if direction else friction)
+		velocity = lerp(velocity, direction * calculatedSpeed, lerp_weight)
 		
 		if not shielding:
 			if bowHeldTime >= requiredBowTime:

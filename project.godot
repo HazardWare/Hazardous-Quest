@@ -17,7 +17,6 @@ boot_splash/bg_color=Color(0.104133, 0.136534, 0.223468, 1)
 boot_splash/use_filter=false
 boot_splash/image="uid://px5408s38gpr"
 config/icon="uid://d7myph0coxos"
-boot_splash/minimum_display_time=1000
 
 [file_customization]
 

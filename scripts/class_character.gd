@@ -21,10 +21,14 @@ signal onDamaged(amount:int) ## Emitted on a negative decrease on health.
 @export var toxic : bool = false ## Character inflicts poison.
 @export var shouldBleed : bool = true
 
+var knockback := Vector2.ZERO
+var knockbackTimer := 0.0
 
 ## PushForce
 @export var push_force := 5.0
-
+@export var friction := 8.0
+@export var acceleration := 5.0
+@export var knockbackResistance := 0.0
 ## Current red hearts.
 @onready var redHealth : int = maximumHealth :
 	set(value):
@@ -97,6 +101,15 @@ var characterComponent = preload("res://scenes/components/CharacterComponents.ts
 func _ready() -> void:
 	add_child(characterComponent.instantiate())
 	
+func _physics_process(delta: float) -> void:
+	handleKnockback(delta)
+func handleKnockback(delta):
+	if knockbackTimer > 0.0:
+		velocity = knockback
+		knockbackTimer -= delta
+		if knockbackTimer <= 0.0:
+			knockback = Vector2.ZERO
+	
 func die():
 	$CharacterComponents/DamageAnimation.play("die")
 	queue_free()
@@ -151,6 +164,10 @@ func handlePush():
 		if c.get_collider() is RigidBody2D:
 			c.get_collider().apply_central_impulse(-c.get_normal() * push_force)
 
+func applyKnockback(direction, force, duration):
+	knockback = direction * (force * ( knockbackResistance + 1.0 ) )
+	knockbackTimer = duration
+	
 func move_to(pos, delta):
 	var input_direction = global_position.direction_to(pos)
 	velocity += input_direction * speed 
