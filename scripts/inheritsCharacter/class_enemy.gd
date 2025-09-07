@@ -91,7 +91,7 @@ func areaEntered(area : Area2D):
 	
 	var parent : Node = area.get_parent()
 	if parent is Character and parent.is_in_group("Friendly"):
-		parent.applyKnockback((area.global_position - global_position).normalized(), 250.0, 0.12 * parent.strength)
+		parent.applyKnockback((area.global_position - global_position).normalized(), 250.0, 0.12)
 	if parent is Weapon or parent is Projectile:
 		applyKnockback((global_position - area.global_position).normalized(), 250.0, 0.12 * parent.strength)
 	if parent is Projectile:

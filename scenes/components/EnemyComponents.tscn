@@ -1,6 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cr0n1oh77knc0"]
+[gd_scene load_steps=6 format=3 uid="uid://cr0n1oh77knc0"]
+
+[ext_resource type="Script" uid="uid://pwtjsc18y4lk" path="res://scenes/components/health_bar.gd" id="1_0k52e"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7t4eu"]
+bg_color = Color(1, 1, 1, 1)
 draw_center = false
 border_width_left = 5
 border_width_top = 5
@@ -13,7 +16,12 @@ expand_margin_right = 10.0
 expand_margin_bottom = 10.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0k52e"]
-bg_color = Color(1, 0, 0, 1)
+bg_color = Color(1, 0, 0.294118, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ktywn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k1pk0"]
+bg_color = Color(1, 1, 1, 1)
 
 [node name="EnemyComponents" type="Node2D"]
 
@@ -26,8 +34,23 @@ offset_bottom = 21.0
 scale = Vector2(0.2, 0.2)
 theme_override_styles/background = SubResource("StyleBoxFlat_7t4eu")
 theme_override_styles/fill = SubResource("StyleBoxFlat_0k52e")
+value = 80.0
+show_percentage = false
+script = ExtResource("1_0k52e")
+
+[node name="HealthBar2" type="ProgressBar" parent="HealthBar"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 320.0
+offset_bottom = 40.0
+scale = Vector2(0.2, 0.2)
+theme_override_styles/background = SubResource("StyleBoxEmpty_ktywn")
+theme_override_styles/fill = SubResource("StyleBoxFlat_k1pk0")
 step = 0.001
-value = 50.0
+value = 90.0
 show_percentage = false
 
 [node name="StallTimer" type="Timer" parent="."]

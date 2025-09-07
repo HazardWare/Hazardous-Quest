@@ -37,6 +37,10 @@ const LADDER_TILE := [Vector2i(9,6),Vector2i(10,5)]
 var lastLadder : Vector2 ## The last ladder position
 var lastPatchedTileOnAtlas : Vector3i ## The tile (on the atlas) of which lastLadder covered. Z is the ID
 
+var readyForAction: bool :
+	get():
+		return true if ( not $Arm/Attack.is_playing() and knockback == Vector2.ZERO) else false
+
 var bowHeldTime : float = 0.0
 @export var requiredBowTime := 0.5
 
@@ -143,11 +147,11 @@ func _input(event: InputEvent) -> void:
 		$Arm/Attack.play("RESET")
 
 	# Jab:
-	if event.is_action_pressed("sword") and not shielding and not $Arm/Attack.is_playing():
+	if event.is_action_pressed("sword") and not shielding and not $Arm/Attack.is_playing() and knockback == Vector2.ZERO:
 		$AnimationPlayer.play("RESET")
 		$Arm/Attack.play("RESET")
 		$Arm/Attack.play(attackMode)
-		$Arm/Marker2D/Weapon.strength = attackModeStrength[attackMode]
+		#$Arm/Marker2D/Weapon.strength = attackModeStrength[attackMode]
 		$Arm/Bow.modulate.a = 0.0
 		$UIElements/UI.update_health(self)
 		var lookingLeft = snapped( rad_to_deg(get_global_mouse_position().angle_to_point(position)) + 180 , 180) == 180
@@ -191,7 +195,7 @@ func handleContinuousInput(delta: float):
 		return
 	
 	# Can't do this stuff whilst attacking
-	if not $Arm/Attack.is_playing():
+	if not $Arm/Attack.is_playing() and knockback == Vector2.ZERO:
 		
 		# Shielding
 		shielding = true if Input.is_action_pressed("shield") else false
@@ -215,8 +219,7 @@ func handleContinuousInput(delta: float):
 		var angleToTheMouse = get_global_mouse_position().angle_to_point(position)
 		$Arm.rotation = deg_to_rad( snapped( rad_to_deg(angleToTheMouse) + 180 , snappingAngle) )
 	else:
-		velocity = Vector2.ZERO
-		shielding = false
+		velocity = lerp(velocity, Vector2.ZERO, delta * friction)
 
 ## Rudimentary shooting method
 func shoot():

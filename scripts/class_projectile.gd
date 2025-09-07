@@ -86,7 +86,7 @@ func on_touch_body(body: Node2D):
 		strength = 0
 		#reparent(body)
 		stabbed = true
-		queue_free()
+		#queue_free()
 	else:
 		$SmokeParticles.emitting = true
 	initial_velocity = Vector2.ZERO
