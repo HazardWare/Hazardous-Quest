@@ -47,7 +47,9 @@ func _ready() -> void:
 	$HitBox.area_exited.connect(_on_hit_box_area_exited)
 	self.onDamaged.connect(_on_on_damaged)
 	self.onHeal.connect(_on_on_heal)
-	
+	SaveLoad.load.connect(readSaveData)
+	SaveLoad.save.connect(writeSaveData)
+
 	$UIElements/UI.update_health(self)
 
 	# Fix all nulls
@@ -55,6 +57,12 @@ func _ready() -> void:
 		floorTilemap = get_tree().get_first_node_in_group("Tilemap")
 
 	$EnvironmentComponent/AnimationPlayer.play("RESET")
+	
+	
+	SaveLoad._load()
+	$UIElements/UI.update_health(self)
+	
+	
 
 func _physics_process(delta: float) -> void:
 	super(delta)
@@ -87,7 +95,11 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_text_delete"):
 		nextScene = "res://scenes/world/overworld.tscn"
 		$UIElements/SceneTransitionAnimation.play("fade_out")
-		
+	
+	if event.is_action_pressed("save"):
+		SaveLoad._save()
+	if event.is_action_pressed("load"):
+		SaveLoad._load()
 		
 	if event.is_action_pressed("ui_down"):
 		health -= 1
@@ -96,6 +108,15 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_up"):
 		health += 1
 		print("Healed. " + str(health) + " overall. " + str(redHealth) + "r | " + str(blueHealth) + "b")
+
+	if event.is_action_pressed("ui_left"):
+		maximumHealth -= 1
+		$UIElements/UI.update_health(self)
+		
+	if event.is_action_pressed("ui_right"):
+		maximumHealth += 1
+		$UIElements/UI.update_health(self)
+
 
 	# Jab:
 	if event.is_action_pressed("sword") and not shielding:
@@ -238,6 +259,21 @@ func _on_on_damaged(amount) -> void:
 
 func _on_on_heal(amount) -> void:
 	$UIElements/UI.update_health(self)
+	
+func writeSaveData():
+	SaveLoad.saveFileData.expandedHealth["red"] = redHealth
+	SaveLoad.saveFileData.expandedHealth["max"] = maximumHealth
+	SaveLoad.saveFileData.expandedHealth["blue"] = blueHealth
+	
+	
+func readSaveData():
+	redHealth = SaveLoad.saveFileData.expandedHealth["red"]
+	maximumHealth = SaveLoad.saveFileData.expandedHealth["max"]
+	blueHealth = SaveLoad.saveFileData.expandedHealth["blue"]
+	
+	$UIElements/UI.update_health(self)
+
+
 
 func _on_scene_transition_animation_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "fade_out":
