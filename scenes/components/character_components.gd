@@ -1,0 +1,11 @@
+extends Node
+@onready var parent : Node2D = get_parent()
+@export var color : Color :
+	set(a):
+		parent.modulate = a
+	get():
+		return parent.modulate
+
+
+func _on_damage_animation_animation_finished(anim_name: StringName) -> void:
+	$DamageAnimation.play("reset_hack")

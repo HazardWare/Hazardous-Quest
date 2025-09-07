@@ -35,7 +35,6 @@ hurtBox = NodePath("HurtBox")
 metadata/_custom_type_script = "uid://n4ljwa117710"
 
 [node name="WorldCollision" type="CollisionShape2D" parent="."]
-process_mode = 4
 visible = false
 position = Vector2(1, -0.5)
 shape = SubResource("RectangleShape2D_iyfe7")

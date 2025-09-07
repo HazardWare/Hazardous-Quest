@@ -19,9 +19,8 @@ signal onDamaged(amount:int) ## Emitted on a negative decrease on health.
 @export var strength : int = 1 ## Damage the character does.
 @export var invulnerable : bool = false ## Unable to be damaged.
 @export var toxic : bool = false ## Character inflicts poison.
+@export var shouldBleed : bool = true
 
-## How much time [i] (in seconds, don't be fooled) [/i] should the character be invulnerable after just getting hit.
-@export var iFrames : float = 0
 
 ## PushForce
 @export var push_force := 5.0
@@ -39,23 +38,48 @@ signal onDamaged(amount:int) ## Emitted on a negative decrease on health.
 		var _prev = health
 		health = setHealth(value)
 		
-		if(_prev > health):
+		# Hurt
+		if _prev > health :
 			
-			var currentParticle = $CharacterComponents/BloodParticles.duplicate()
-			currentParticle.emitting = true
-			add_child(currentParticle)
+			iFraming = true
+			
+			if shouldBleed:
+				var currentParticle = $CharacterComponents/BloodParticles.duplicate()
+				currentParticle.emitting = true
+				add_child(currentParticle)
+				
+			$CharacterComponents/DamageAnimation.stop()
+			$CharacterComponents/DamageAnimation.play("damaged")
 			
 			onDamaged.emit(health-value)
-		else:
+		# Healed
+		elif _prev < health:
 			
-			var currentParticle = $CharacterComponents/HealthParticles.duplicate()
-			currentParticle.emitting = true
-			add_child(currentParticle)
+			if shouldBleed:
+				var currentParticle = $CharacterComponents/HealthParticles.duplicate()
+				currentParticle.emitting = true
+				add_child(currentParticle)
+			
+			$CharacterComponents/DamageAnimation.stop()
+			$CharacterComponents/DamageAnimation.play("heal")
 			
 			onHeal.emit(health-value)
+		# Dead 
+		if health == 0:
+			onDeath.emit()
+			die()
 	get:
 		return redHealth + blueHealth
-var iFraming : bool = false ## Temporarily invulnerable due to being hit.
+		
+		
+## How much time [i] (in seconds, don't be fooled) [/i] should the character be invulnerable after just getting hit.
+@export var iFrames : float = 0
+var iFraming : bool : ## Temporarily invulnerable due to being hit.
+	set(s):
+		if !iFraming:
+			$CharacterComponents/iFrameTimer.start(iFrames)
+	get():
+		return bool($CharacterComponents/iFrameTimer.time_left) 
 var stunned : bool = false ## Stunned via something that stuns.
 var shielding : bool = false ## Invulnerable(?) due to defending via shield.
 var poisonDuration : float = 0 ## (Seconds) If above zero, character takes damage on an interval until poison duration runs out.
@@ -72,6 +96,10 @@ var characterComponent = preload("res://scenes/components/CharacterComponents.ts
 #### Remember you can use SUPER to inherit functions.
 func _ready() -> void:
 	add_child(characterComponent.instantiate())
+	
+func die():
+	$CharacterComponents/DamageAnimation.play("die")
+	queue_free()
 
 ## Handles overall healing and damaging
 func setHealth(value : int) -> int :

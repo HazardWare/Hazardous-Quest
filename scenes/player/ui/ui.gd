@@ -1,5 +1,6 @@
 extends Control
 
+
 func update_health(player : Character):
 	
 	# Clear children

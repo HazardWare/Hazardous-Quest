@@ -22,6 +22,8 @@ var spawnerNode : Node2D
 @export var navAgent : NavigationAgent2D
 @export var hurtBox : Area2D
 @export_subgroup("")
+@onready var floorTilemap :TileMapLayer = get_tree().get_nodes_in_group("Tilemap")[0]
+@onready var obstacles :TileMapLayer = get_tree().get_nodes_in_group("Tilemap")[1]
 
 #region Godot Functions:
 func _ready() -> void:
@@ -32,26 +34,47 @@ func _ready() -> void:
 	navInterval.start()
 	navInterval.timeout.connect(makePath)
 	
-	hurtBox.area_entered.connect(damagePlayer)
+	hurtBox.area_entered.connect(areaEntered)
+	
+	self.onDamaged.connect(func(d):print(health))
 	
 func _physics_process(delta: float) -> void:
-	
-	move_to(navAgent.get_next_path_position(), delta)
-	move_and_slide()
-	handlePush()
+	basic_moving(delta)
+	for x in hurtBox.get_overlapping_areas():
+		var parent : Node = x.get_parent()
+		if parent is Character:
+			parent.health -= strength
+		if parent is Weapon or parent is Projectile:
+			self.health -= parent.strength
 	
 #endregion
 #region Custom Methods:
 func makePath():
-	navAgent.target_position = get_tree().get_first_node_in_group("Player").position
+	if navAgent.target_position != get_tree().get_first_node_in_group("Player").position:
+		navAgent.target_position = get_tree().get_first_node_in_group("Player").position
 	
-
+	#for curPoint in navAgent.get_current_navigation_path():
+		#
+		#var tileCoord = floorTilemap.local_to_map(floorTilemap.to_local(curPoint))
+		#prints(tileCoord, " - ", curPoint)
+		#if obstacles.get_used_cells().has(tileCoord):
+			#print("true")
+			#floorTilemap.get_cell_tile_data(tileCoord).set_navigation_polygon(0, null)
+## Basic move-to-player function for enemies.
+func basic_moving(delta):
+	if !navAgent.is_target_reached():
+		move_to(navAgent.get_next_path_position(), delta)
+	else:
+		velocity = Vector2.ZERO
+	move_and_slide()
+	handlePush()
 #endregion
 #region Signal:
 
-
-
-func damagePlayer(area : Area2D):
+func areaEntered(area : Area2D):
+	
 	var parent : Node = area.get_parent()
 	if parent is Character:
 		parent.health -= strength
+	if parent is Weapon or parent is Projectile:
+		self.health -= parent.strength

@@ -48,6 +48,7 @@ func _ready() -> void:
 	self.onDamaged.connect(_on_on_damaged)
 	self.onHeal.connect(_on_on_heal)
 	
+	$UIElements/UI.update_health(self)
 
 	# Fix all nulls
 	if floorTilemap == null:
@@ -89,7 +90,8 @@ func _input(event: InputEvent) -> void:
 	# Jab:
 	if event.is_action_pressed("sword") and not shielding:
 		$AnimationPlayer.play("RESET")
-		$Arm/Attack.play("jab")
+		$Arm/Attack.play("big_swipe")
+		$Arm/Bow.modulate.a = 0.0
 		$UIElements/UI.update_health(self)
 		var lookingLeft = snapped( rad_to_deg(get_global_mouse_position().angle_to_point(position)) + 180 , 180) == 180
 		$AnimatedSprite2D.flip_h = lookingLeft
@@ -101,6 +103,11 @@ func _input(event: InputEvent) -> void:
 		currentFire.transform = $Arm.global_transform
 	
 
+#endregion
+
+#region Overrides:
+func die():
+	pass
 #endregion
 
 #region Custom methods:
@@ -209,7 +216,8 @@ func _on_hit_box_area_exited(_area: Area2D) -> void:
 
 func _on_on_damaged(amount) -> void:
 	$UIElements/UI.update_health(self)
-# i wonder what this does - n
+	$UIElements/AnimationPlayer.stop()
+	$UIElements/AnimationPlayer.play("Hurt")
 	if health == 0:
 		$EnvironmentComponent/AnimationPlayer.play("die")
 

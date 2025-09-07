@@ -24,12 +24,14 @@ animations = [{
 radius = 8.06226
 
 [node name="Testemy" type="CharacterBody2D" node_paths=PackedStringArray("navInterval", "navAgent", "hurtBox")]
-collision_layer = 19
-collision_mask = 19
+collision_layer = 26
+collision_mask = 27
+motion_mode = 1
 script = ExtResource("1_p1msc")
 navInterval = NodePath("Timer")
 navAgent = NodePath("NavigationAgent2D")
 hurtBox = NodePath("HurtBox")
+shouldBleed = false
 metadata/_custom_type_script = "uid://c8cqyjlah7m1e"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -50,4 +52,6 @@ autostart = true
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_postprocessing = 1
+avoidance_layers = 2
+avoidance_mask = 2
 debug_enabled = true

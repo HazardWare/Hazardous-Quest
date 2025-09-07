@@ -9,7 +9,7 @@ extends CharacterBody2D
 
 ## I'm sorry this script looks awful and is poorly documented.
 
-@export var damage : int = 1
+@export var strength : int = 1
 @export var speed := 350.0
 @export var isFire := false
 

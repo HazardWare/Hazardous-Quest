@@ -1,9 +1,10 @@
-[gd_scene load_steps=33 format=3 uid="uid://cbaut5bbgnqxc"]
+[gd_scene load_steps=39 format=3 uid="uid://cbaut5bbgnqxc"]
 
 [ext_resource type="Texture2D" uid="uid://mg42qt04rif8" path="res://assets/tilesheets/tile_dungeon.png" id="1_8afob"]
 [ext_resource type="Script" uid="uid://0fays8i2wtql" path="res://scenes/player/player.gd" id="1_dovo2"]
 [ext_resource type="PackedScene" uid="uid://7m71hjxpym6n" path="res://scenes/player/ui/ui.tscn" id="2_lvxji"]
 [ext_resource type="Texture2D" uid="uid://dvvtfemm130je" path="res://assets/tilesheets/tile_items.png" id="3_gmlin"]
+[ext_resource type="Script" uid="uid://by2ab2dudvubd" path="res://scripts/class_weapon.gd" id="3_p47bc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dovo2"]
 atlas = ExtResource("1_8afob")
@@ -115,7 +116,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Weapon:position")
+tracks/0/path = NodePath("Marker2D/Weapon:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -127,7 +128,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Weapon:visible")
+tracks/1/path = NodePath("Marker2D/Weapon:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -136,6 +137,70 @@ tracks/1/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Marker2D/Weapon:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.5708]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Marker2D:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_h17s1"]
+resource_name = "big_swipe"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Marker2D/Weapon:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(10, 0), Vector2(10, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Marker2D/Weapon:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0333333, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Marker2D:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0333333, 0.3),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [-1.5708, 1.5708]
+}
 
 [sub_resource type="Animation" id="Animation_p47bc"]
 resource_name = "jab"
@@ -143,7 +208,7 @@ length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Weapon:position")
+tracks/0/path = NodePath("Marker2D/Weapon:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -155,7 +220,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Weapon:visible")
+tracks/1/path = NodePath("Marker2D/Weapon:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -164,15 +229,69 @@ tracks/1/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Marker2D/Weapon:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.5708]
+}
 
 [sub_resource type="Animation" id="Animation_lvxji"]
 resource_name = "shield"
 
+[sub_resource type="Animation" id="Animation_5gtgg"]
+resource_name = "swipe"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Marker2D/Weapon:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.3),
+"transitions": PackedFloat32Array(-2, 2),
+"update": 0,
+"values": [0.0, 3.14159]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Marker2D/Weapon:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0333333, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(10, 0), Vector2(10, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Marker2D/Weapon:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0333333, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0owmy"]
 _data = {
 &"RESET": SubResource("Animation_75vfm"),
+&"big_swipe": SubResource("Animation_h17s1"),
 &"jab": SubResource("Animation_p47bc"),
-&"shield": SubResource("Animation_lvxji")
+&"shield": SubResource("Animation_lvxji"),
+&"swipe": SubResource("Animation_5gtgg")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gmlin"]
@@ -191,7 +310,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dovo2"]
-size = Vector2(14, 4)
+size = Vector2(18, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_75vfm"]
 atlas = ExtResource("3_gmlin")
@@ -356,11 +475,48 @@ _data = {
 &"flowerfield": SubResource("Animation_koevj")
 }
 
+[sub_resource type="Animation" id="Animation_0owmy"]
+resource_name = "Hurt"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HurtDiscolor:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 0.392157), Color(1, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_qek5x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HurtDiscolor:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5gtgg"]
+_data = {
+&"Hurt": SubResource("Animation_0owmy"),
+&"RESET": SubResource("Animation_qek5x")
+}
+
 [node name="Player" type="CharacterBody2D" groups=["Friendly", "Player"]]
 y_sort_enabled = true
 collision_mask = 28
 script = ExtResource("1_dovo2")
 snappingAngle = 15.0
+iFrames = 0.5
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -379,6 +535,7 @@ frame = 1
 frame_progress = 0.653446
 
 [node name="WorldCollision" type="CollisionShape2D" parent="."]
+z_index = 3
 position = Vector2(0, 7)
 rotation = 1.57079
 shape = SubResource("CapsuleShape2D_dovo2")
@@ -400,17 +557,24 @@ libraries = {
 }
 speed_scale = 2.0
 
-[node name="Weapon" type="AnimatedSprite2D" parent="Arm"]
+[node name="Marker2D" type="Marker2D" parent="Arm"]
+
+[node name="Weapon" type="AnimatedSprite2D" parent="Arm/Marker2D"]
 visible = false
-z_index = -1
+z_index = 1
 texture_filter = 1
 rotation = 1.5708
 sprite_frames = SubResource("SpriteFrames_lvxji")
+offset = Vector2(0, -8)
+flip_h = true
+script = ExtResource("3_p47bc")
 
-[node name="DamageBox" type="Area2D" parent="Arm/Weapon" groups=["Friendly"]]
+[node name="DamageBox" type="Area2D" parent="Arm/Marker2D/Weapon" groups=["Friendly"]]
+z_index = 4
 rotation = -1.5708
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Arm/Weapon/DamageBox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Arm/Marker2D/Weapon/DamageBox"]
+position = Vector2(8, 2.89599e-05)
 shape = SubResource("RectangleShape2D_dovo2")
 debug_color = Color(1, 0, 0, 0.392157)
 
@@ -421,13 +585,14 @@ position = Vector2(12, 0)
 sprite_frames = SubResource("SpriteFrames_0owmy")
 
 [node name="HitBox" type="Area2D" parent="." groups=["Friendly"]]
+z_index = 2
 rotation = -1.5708
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(-1.5, -3.03986e-07)
 shape = SubResource("RectangleShape2D_gmlin")
-debug_color = Color(0.994525, 0, 0.220672, 0.42)
+debug_color = Color(1.92523e-07, 0.625928, 0.516391, 0.42)
 
 [node name="EnvironmentComponent" type="Node" parent="."]
 
@@ -443,3 +608,16 @@ libraries = {
 [node name="UIElements" type="CanvasLayer" parent="."]
 
 [node name="UI" parent="UIElements" instance=ExtResource("2_lvxji")]
+
+[node name="HurtDiscolor" type="ColorRect" parent="UIElements"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UIElements"]
+libraries = {
+&"": SubResource("AnimationLibrary_5gtgg")
+}
