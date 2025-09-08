@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=3 uid="uid://dl5mokpsoa2lv"]
+
+[ext_resource type="Script" uid="uid://c8cqyjlah7m1e" path="res://scripts/inheritsCharacter/class_enemy.gd" id="1_20p6a"]
+[ext_resource type="Texture2D" uid="uid://j25fmegii0o0" path="res://assets/tilesheets/tile_characters.png" id="2_fwtfq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_20p6a"]
+atlas = ExtResource("2_fwtfq")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_62va0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_20p6a")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t37u7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iccoa"]
+radius = 7.0
+
+[node name="Slime" type="CharacterBody2D" node_paths=PackedStringArray("navInterval", "navAgent", "hurtBox", "sprite")]
+collision_layer = 26
+collision_mask = 59
+motion_mode = 1
+script = ExtResource("1_20p6a")
+navInterval = NodePath("Timer")
+navAgent = NodePath("NavigationAgent2D")
+hurtBox = NodePath("HurtBox")
+maximumHealth = 5
+shouldBleed = false
+sprite = NodePath("AnimatedSprite2D")
+metadata/_custom_type_script = "uid://c8cqyjlah7m1e"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_62va0")
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 33
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("CircleShape2D_t37u7")
+debug_color = Color(0.7, 0, 0.0116665, 0.419608)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_iccoa")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_postprocessing = 1
+simplify_path = true
+avoidance_enabled = true
+avoidance_layers = 2
+avoidance_mask = 2

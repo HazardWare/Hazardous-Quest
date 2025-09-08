@@ -226,6 +226,7 @@ label_settings = SubResource("LabelSettings_5gxme")
 horizontal_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="PotionList/BigPotionSlot2"]
+layout_mode = 0
 offset_left = 5.0
 offset_top = 6.0
 offset_right = 45.0
@@ -257,6 +258,7 @@ label_settings = SubResource("LabelSettings_5gxme")
 horizontal_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="PotionList/BigPotionSlot3"]
+layout_mode = 0
 offset_left = 5.0
 offset_top = 6.0
 offset_right = 45.0
@@ -287,6 +289,7 @@ label_settings = SubResource("LabelSettings_oiwrs")
 horizontal_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="PotionList/MiniPotionSlot"]
+layout_mode = 0
 offset_left = 5.0
 offset_top = 6.0
 offset_right = 35.0
@@ -317,6 +320,7 @@ label_settings = SubResource("LabelSettings_oiwrs")
 horizontal_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="PotionList/MiniPotionSlot2"]
+layout_mode = 0
 offset_left = 5.0
 offset_top = 6.0
 offset_right = 35.0
@@ -347,6 +351,7 @@ label_settings = SubResource("LabelSettings_oiwrs")
 horizontal_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="PotionList/MiniPotionSlot3"]
+layout_mode = 0
 offset_left = 5.0
 offset_top = 6.0
 offset_right = 35.0
@@ -377,6 +382,7 @@ label_settings = SubResource("LabelSettings_oiwrs")
 horizontal_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="PotionList/MiniPotionSlot4"]
+layout_mode = 0
 offset_left = 5.0
 offset_top = 6.0
 offset_right = 35.0
@@ -407,6 +413,7 @@ label_settings = SubResource("LabelSettings_oiwrs")
 horizontal_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="PotionList/MiniPotionSlot5"]
+layout_mode = 0
 offset_left = 5.0
 offset_top = 6.0
 offset_right = 35.0
