@@ -1,7 +1,5 @@
 extends Enemy
 
-var newPos := Vector2.ZERO
-
 
 
 func _ready() -> void:
@@ -18,11 +16,10 @@ func _on_enemy_hit() -> void:
 	$HurtBox/CollisionShape2D.disabled = true
 	$CollisionShape2D.disabled = true
 	$InvisTimer.start(1)
-	newPos = Vector2(randf_range(-50, 50), randf_range(-50, 50))
-	acceleration = 1
+	position = Vector2(position.x + randf_range(-50, 50), position.y + randf_range(-50, 50))
+	acceleration = .25
 
 func _on_invis_timer_timeout() -> void:
-	## Wait for not collide
 	var tween = get_tree().create_tween()
 	tween.tween_property($AnimatedSprite2D, "modulate", Color.WHITE, 0.5)
 	$EnemyComponents.visible = true
