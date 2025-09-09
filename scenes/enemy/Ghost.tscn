@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://b28l6ka3lf1be"]
 
-[ext_resource type="Script" uid="uid://c8cqyjlah7m1e" path="res://scripts/inheritsCharacter/class_enemy.gd" id="1_q252t"]
+[ext_resource type="Script" uid="uid://ihc1ppoh35he" path="res://scenes/enemy/ghost.gd" id="1_q252t"]
 [ext_resource type="Texture2D" uid="uid://j25fmegii0o0" path="res://assets/tilesheets/tile_characters.png" id="2_xtsy0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q252t"]
@@ -54,9 +54,15 @@ shape = SubResource("CircleShape2D_iccoa")
 wait_time = 0.1
 autostart = true
 
+[node name="InvisTimer" type="Timer" parent="."]
+one_shot = true
+
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_postprocessing = 1
 simplify_path = true
 avoidance_enabled = true
 avoidance_layers = 2
 avoidance_mask = 2
+
+[connection signal="enemy_hit" from="." to="." method="_on_enemy_hit"]
+[connection signal="timeout" from="InvisTimer" to="." method="_on_invis_timer_timeout"]
