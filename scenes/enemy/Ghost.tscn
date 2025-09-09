@@ -1,17 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://fld1btwmqjbj"]
+[gd_scene load_steps=7 format=3 uid="uid://b28l6ka3lf1be"]
 
-[ext_resource type="Script" uid="uid://qc75hlcfhnl2" path="res://scenes/enemy/Rats.gd" id="1_4jwsr"]
-[ext_resource type="Texture2D" uid="uid://j25fmegii0o0" path="res://assets/tilesheets/tile_characters.png" id="2_iyyln"]
+[ext_resource type="Script" uid="uid://c8cqyjlah7m1e" path="res://scripts/inheritsCharacter/class_enemy.gd" id="1_q252t"]
+[ext_resource type="Texture2D" uid="uid://j25fmegii0o0" path="res://assets/tilesheets/tile_characters.png" id="2_xtsy0"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_otq2w"]
-atlas = ExtResource("2_iyyln")
-region = Rect2(48, 48, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_q252t"]
+atlas = ExtResource("2_xtsy0")
+region = Rect2(16, 48, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_62va0"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_otq2w")
+"texture": SubResource("AtlasTexture_q252t")
 }],
 "loop": true,
 "name": &"default",
@@ -23,16 +23,16 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_iccoa"]
 radius = 7.0
 
-[node name="BrownRat" type="CharacterBody2D" node_paths=PackedStringArray("navInterval", "navAgent", "hurtBox", "sprite")]
+[node name="Ghost" type="CharacterBody2D" node_paths=PackedStringArray("navInterval", "navAgent", "hurtBox", "sprite")]
 collision_layer = 26
 collision_mask = 59
 motion_mode = 1
-script = ExtResource("1_4jwsr")
+script = ExtResource("1_q252t")
 navInterval = NodePath("Timer")
 navAgent = NodePath("NavigationAgent2D")
 hurtBox = NodePath("HurtBox")
-maximumHealth = 6
-speed = 650.0
+speed = 100.0
+shouldBleed = false
 sprite = NodePath("AnimatedSprite2D")
 metadata/_custom_type_script = "uid://c8cqyjlah7m1e"
 

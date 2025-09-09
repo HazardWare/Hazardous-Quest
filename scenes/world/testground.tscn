@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=4 uid="uid://sngxe0i2hgws"]
+[gd_scene load_steps=6 format=4 uid="uid://sngxe0i2hgws"]
 
 [ext_resource type="TileSet" uid="uid://cmv7wt2iltbsn" path="res://resources/tileset_overworld.tres" id="2_6jbqq"]
-[ext_resource type="PackedScene" uid="uid://bbmsi7opk6onn" path="res://scenes/enemy/Testemy.tscn" id="3_8mpw0"]
+[ext_resource type="PackedScene" uid="uid://fld1btwmqjbj" path="res://scenes/enemy/BrownRat.tscn" id="3_gbcc7"]
 [ext_resource type="PackedScene" uid="uid://cbaut5bbgnqxc" path="res://scenes/player/player.tscn" id="3_hoi4q"]
+[ext_resource type="PackedScene" uid="uid://cwolfcl87eo2" path="res://scenes/enemy/GrayRat.tscn" id="4_6jbqq"]
+[ext_resource type="PackedScene" uid="uid://dl5mokpsoa2lv" path="res://scenes/enemy/Slime.tscn" id="5_hoi4q"]
 
 [node name="TestingSpace" type="Node2D"]
 y_sort_enabled = true
@@ -34,25 +36,21 @@ z_index = 1
 position = Vector2(33, -35)
 floorTilemap = NodePath("../Ground")
 
-[node name="Testemy" parent="." instance=ExtResource("3_8mpw0")]
-position = Vector2(-231, -116)
+[node name="BrownRat" parent="." instance=ExtResource("3_gbcc7")]
+position = Vector2(148.83, -77.205)
 
-[node name="Testemy2" parent="." instance=ExtResource("3_8mpw0")]
-position = Vector2(-167, 35)
+[node name="GrayRat" parent="." instance=ExtResource("4_6jbqq")]
+position = Vector2(0, -133.935)
+maximumHealth = 10
+knockbackResistance = -8.0
 
-[node name="Testemy3" parent="." instance=ExtResource("3_8mpw0")]
-position = Vector2(280, -46)
-
-[node name="Testemy4" parent="." instance=ExtResource("3_8mpw0")]
-position = Vector2(170, 34)
-
-[node name="Testemy5" parent="." instance=ExtResource("3_8mpw0")]
-position = Vector2(150, -145)
+[node name="Slime" parent="." instance=ExtResource("5_hoi4q")]
+position = Vector2(-171.265, 0)
 
 [node name="Grass" type="ColorRect" parent="."]
 z_index = -100
-offset_left = -10145.0
-offset_top = -7309.0
-offset_right = 9756.0
-offset_bottom = 7912.0
+offset_left = -10015.0
+offset_top = -7275.0
+offset_right = 9886.0
+offset_bottom = 7946.0
 color = Color(0.517647, 0.776471, 0.411765, 1)
