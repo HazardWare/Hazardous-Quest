@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=32 format=3 uid="uid://bf2aaq8bhli1p"]
+[gd_resource type="TileSet" load_steps=32 format=3 uid="uid://bf0282xnk7ejk"]
 
 [ext_resource type="Texture2D" uid="uid://j4b6c53j130d" path="res://assets/tilesheets/stolen/Game Boy Advance - Mother 3 (JPN) - Tilesets - Alec's House (Exterior) Tileset.png" id="1_g614h"]
 [ext_resource type="Texture2D" uid="uid://bix4bl033r35o" path="res://assets/tilesheets/stolen/Game Boy _ GBC - The Legend of Zelda_ Link's Awakening _ DX - Tilesets - Overworld Tileset.png" id="2_yb7co"]

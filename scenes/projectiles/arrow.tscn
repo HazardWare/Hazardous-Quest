@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://b8qtyphhgsstd"]
 
-[ext_resource type="Script" uid="uid://n4ljwa117710" path="res://scripts/class_projectile.gd" id="1_ugh5m"]
+[ext_resource type="Script" uid="uid://dbwjycxw60uc" path="res://scenes/projectiles/arrow.gd" id="1_m2i7i"]
 [ext_resource type="Texture2D" uid="uid://dvvtfemm130je" path="res://assets/tilesheets/tile_items.png" id="2_iyfe7"]
 [ext_resource type="Script" uid="uid://bqgj7njek38cs" path="res://scenes/projectiles/off_screen_deleter.gd" id="3_m2i7i"]
 
@@ -27,7 +27,7 @@ y_sort_enabled = true
 collision_layer = 32
 collision_mask = 2
 input_pickable = true
-script = ExtResource("1_ugh5m")
+script = ExtResource("1_m2i7i")
 speed = 400.0
 sprite = NodePath("AnimatedSprite2D")
 collisionShape = NodePath("HurtBox/CollisionShape2D")
