@@ -26,7 +26,7 @@ func on_touch_body(body: Node2D):
 		if !body.is_in_group("friendly") and not stabbed:
 			#queue_free()
 			
-			collisionShape.disabled = true
+			collisionShape.set_deferred("disabled", true)
 		
 			self.velocity = Vector2.ZERO
 			if body is Enemy && !stabbed:
@@ -37,7 +37,7 @@ func on_touch_body(body: Node2D):
 			strength = 0
 			
 			self.modulate = Color(1,1,1,0.6)
-			self.reparent(body)
+			call_deferred("reparent", body)
 			
 			if(body is TileMapLayer and not already_dropped):
 				already_dropped = true

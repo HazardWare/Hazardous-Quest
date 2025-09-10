@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b8qtyphhgsstd"]
+[gd_scene load_steps=8 format=3 uid="uid://b8qtyphhgsstd"]
 
 [ext_resource type="Script" uid="uid://dbwjycxw60uc" path="res://scenes/projectiles/arrow.gd" id="1_m2i7i"]
 [ext_resource type="Texture2D" uid="uid://dvvtfemm130je" path="res://assets/tilesheets/tile_items.png" id="2_iyfe7"]
@@ -21,6 +21,8 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iyfe7"]
 size = Vector2(14, 4)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m2i7i"]
 
 [node name="Arrow" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "collisionShape", "hurtBox")]
 y_sort_enabled = true
@@ -50,3 +52,9 @@ collision_mask = 10
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2(1, 0)
 shape = SubResource("RectangleShape2D_iyfe7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+process_mode = 4
+visible = false
+shape = SubResource("CircleShape2D_m2i7i")
+disabled = true
