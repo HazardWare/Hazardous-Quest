@@ -1,8 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://7m71hjxpym6n"]
+[gd_scene load_steps=26 format=3 uid="uid://7m71hjxpym6n"]
 
 [ext_resource type="Script" uid="uid://ki77yappuguq" path="res://scenes/player/ui/ui.gd" id="1_lpj6m"]
 [ext_resource type="FontFile" uid="uid://2tmbtr1x8urg" path="res://assets/fonts/PublicPixel.ttf" id="2_crj82"]
 [ext_resource type="Texture2D" uid="uid://dvvtfemm130je" path="res://assets/tilesheets/tile_items.png" id="2_oiwrs"]
+[ext_resource type="Texture2D" uid="uid://dvvtfemm130je" path="res://assets/tilemaps/tile_items.png" id="3_5gxme"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qno0g"]
 bg_color = Color(0.247059, 0.14902, 0.192157, 0.403922)
@@ -13,17 +14,20 @@ border_width_bottom = 5
 border_color = Color(0.247059, 0.14902, 0.192157, 1)
 anti_aliasing = false
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5gxme"]
-bg_color = Color(0.25, 0.15, 0.193333, 0)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(0.247059, 0.14902, 0.192157, 1)
-anti_aliasing = false
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qno0g"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_00btf"]
 font = ExtResource("2_crj82")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oiwrs"]
+atlas = ExtResource("3_5gxme")
+region = Rect2(48, 32, 16, 16)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_00btf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dnt87"]
+atlas = ExtResource("3_5gxme")
+region = Rect2(80, 80, 16, 16)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oiwrs"]
 bg_color = Color(0.247059, 0.14902, 0.192157, 0.392157)
@@ -130,11 +134,12 @@ anchor_bottom = 1.0
 offset_left = -150.0
 grow_horizontal = 0
 grow_vertical = 2
+theme_override_constants/separation = 2
 
 [node name="Weap1" type="Panel" parent="PanelTop/WeaponContainer"]
 custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_5gxme")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_qno0g")
 
 [node name="Label" type="Label" parent="PanelTop/WeaponContainer/Weap1"]
 layout_mode = 1
@@ -153,16 +158,21 @@ label_settings = SubResource("LabelSettings_00btf")
 horizontal_alignment = 1
 
 [node name="WeapTexture" type="TextureRect" parent="PanelTop/WeaponContainer/Weap1"]
-custom_minimum_size = Vector2(0, 95)
+custom_minimum_size = Vector2(0, 80)
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
+offset_top = 10.0
+offset_bottom = 70.0
 grow_horizontal = 2
+texture = SubResource("AtlasTexture_oiwrs")
+expand_mode = 2
+stretch_mode = 5
 
 [node name="Weap2" type="Panel" parent="PanelTop/WeaponContainer"]
 custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_5gxme")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_00btf")
 
 [node name="Label" type="Label" parent="PanelTop/WeaponContainer/Weap2"]
 layout_mode = 1
@@ -181,11 +191,16 @@ label_settings = SubResource("LabelSettings_00btf")
 horizontal_alignment = 1
 
 [node name="WeapTexture" type="TextureRect" parent="PanelTop/WeaponContainer/Weap2"]
-custom_minimum_size = Vector2(0, 95)
+custom_minimum_size = Vector2(0, 80)
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
+offset_top = 10.0
+offset_bottom = 70.0
 grow_horizontal = 2
+texture = SubResource("AtlasTexture_dnt87")
+expand_mode = 2
+stretch_mode = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelTop"]
 layout_mode = 1
