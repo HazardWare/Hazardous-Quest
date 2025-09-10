@@ -35,6 +35,7 @@ func on_touch_body(body: Node2D):
 				show_behind_parent = true
 			stabbed = true
 			strength = 0
+			$Hit.play()
 			
 			self.modulate = Color(1,1,1,0.6)
 			call_deferred("reparent", body)

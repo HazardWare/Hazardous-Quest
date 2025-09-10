@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b3h26cpn7xq28"
+path="res://.godot/imported/isaac dies new.wav-148e6034bd2ba0d5ecb5697aa765619f.sample"
+
+[deps]
+
+source_file="res://assets/sounds/outsourced/Isaac/isaac dies new.wav"
+dest_files=["res://.godot/imported/isaac dies new.wav-148e6034bd2ba0d5ecb5697aa765619f.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

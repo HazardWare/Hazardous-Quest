@@ -72,7 +72,9 @@ func _ready() -> void:
 	
 	SaveLoad._load()
 	$UIElements/UI.update_health(self)
-	
+	super()
+	$CharacterComponents/Hit.stream = AudioStreamWAV.load_from_file("res://assets/sounds/outsourced/Toby/snd_hurt1.wav")
+
 	
 
 func _physics_process(delta: float) -> void:
@@ -119,6 +121,7 @@ func _input(event: InputEvent) -> void:
 		
 	if event.is_action_pressed("ui_down"):
 		health -= 1
+		iFraming = false
 		print("Hurt. " + str(health) + " overall. " + str(redHealth) + "r | " + str(blueHealth) + "b")
 
 	if event.is_action_pressed("ui_up"):
@@ -145,6 +148,7 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("action_primary") and not shielding and not $Arm/Attack.is_playing() and knockback == Vector2.ZERO:
 		$AnimationPlayer.play("RESET")
 		$Arm/Attack.play("RESET")
+		$Arm/SwordSound.play()
 		if _swipedir or attackMode == "jab":
 			$Arm/Attack.play(attackMode)
 		else:
@@ -242,6 +246,7 @@ func shoot():
 	currentArrow.initial_velocity = velocity
 	currentArrow.add_to_group("friendly")
 	owner.add_child(currentArrow)
+	$Arm/Shoot.play()
 	currentArrow.transform = $Arm.global_transform
 
 ## Detect patchable tiles and ladder them.

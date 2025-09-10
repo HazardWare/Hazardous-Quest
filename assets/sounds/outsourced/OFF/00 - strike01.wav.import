@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bq45m0jk23xoy"
+path="res://.godot/imported/00 - strike01.wav-a33867df240044f4e8c5c7397ccaa274.sample"
+
+[deps]
+
+source_file="res://assets/sounds/outsourced/OFF/00 - strike01.wav"
+dest_files=["res://.godot/imported/00 - strike01.wav-a33867df240044f4e8c5c7397ccaa274.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

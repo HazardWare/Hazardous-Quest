@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://5donekev4x5m"
+path="res://.godot/imported/hurt grunt .wav-070eb70d38ca6c3aea92f7a00e38c5ce.sample"
+
+[deps]
+
+source_file="res://assets/sounds/outsourced/Isaac/hurt grunt .wav"
+dest_files=["res://.godot/imported/hurt grunt .wav-070eb70d38ca6c3aea92f7a00e38c5ce.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://37rtee5owvf0"
+path="res://.godot/imported/15. Might Is Right But Tight.mp3-ad7872cd9ee46e755731e6a4e2056c46.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/outsourced/Guy/15. Might Is Right But Tight.mp3"
+dest_files=["res://.godot/imported/15. Might Is Right But Tight.mp3-ad7872cd9ee46e755731e6a4e2056c46.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

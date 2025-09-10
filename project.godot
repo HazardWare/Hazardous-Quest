@@ -21,6 +21,7 @@ config/icon="uid://d7myph0coxos"
 [autoload]
 
 SaveLoad="*res://scripts/globals/SaveLoad.gd"
+Global="*res://scripts/globals/Global.gd"
 
 [display]
 

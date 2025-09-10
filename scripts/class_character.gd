@@ -59,7 +59,13 @@ var knockbackTimer := 0.0
 			# Dead 
 			if health == 0:
 				onDeath.emit()
+				var curAudio = $CharacterComponents/Death.duplicate()
+				get_parent().add_child(curAudio)
+				curAudio.play()
 				die()
+			else:
+				$CharacterComponents/Hit.pitch_scale = randf_range(0.8,1.2)
+				$CharacterComponents/Hit.play()
 		# Healed
 		elif _prev < health:
 			
@@ -81,6 +87,11 @@ var knockbackTimer := 0.0
 @export var iFrames : float = 0
 var iFraming : bool : ## Temporarily invulnerable due to being hit.
 	set(s):
+		if !s:
+			$CharacterComponents/iFrameTimer.stop()
+			$CharacterComponents/iFrameBlinker.stop()
+			return
+		
 		if !iFraming:
 			$CharacterComponents/iFrameTimer.start(iFrames)
 			$CharacterComponents/iFrameBlinker.start()
@@ -139,6 +150,9 @@ func setHealth(value : int) -> int :
 	if( value < health ): 	
 		# Deny damage when unable to be heart.
 		if (shielding or iFraming or invulnerable):
+			if shielding or invulnerable:
+				$CharacterComponents/Shield.play()
+				pass
 			return health 
 
 		
