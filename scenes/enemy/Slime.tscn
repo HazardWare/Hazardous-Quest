@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dl5mokpsoa2lv"]
 
 [ext_resource type="Script" uid="uid://c8cqyjlah7m1e" path="res://scripts/inheritsCharacter/class_enemy.gd" id="1_20p6a"]
-[ext_resource type="Texture2D" uid="uid://j25fmegii0o0" path="res://assets/tilesheets/tile_characters.png" id="2_fwtfq"]
+[ext_resource type="Texture2D" uid="uid://j25fmegii0o0" path="res://assets/tilemaps/tile_characters.png" id="2_fwtfq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_20p6a"]
 atlas = ExtResource("2_fwtfq")
