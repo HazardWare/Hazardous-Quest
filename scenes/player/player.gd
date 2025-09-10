@@ -82,7 +82,7 @@ func _physics_process(delta: float) -> void:
 		bowHeldTime += delta
 	else:
 		bowHeldTime = 0.0
-	
+
 	
 	buildBridges()
 	handleContinuousInput(delta)
