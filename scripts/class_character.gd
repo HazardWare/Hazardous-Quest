@@ -56,6 +56,10 @@ var knockbackTimer := 0.0
 			$CharacterComponents/DamageAnimation.play("damaged")
 			
 			onDamaged.emit(health-value)
+			# Dead 
+			if health == 0:
+				onDeath.emit()
+				die()
 		# Healed
 		elif _prev < health:
 			
@@ -68,10 +72,7 @@ var knockbackTimer := 0.0
 			$CharacterComponents/DamageAnimation.play("heal")
 			
 			onHeal.emit(health-value)
-		# Dead 
-		if health == 0:
-			onDeath.emit()
-			die()
+		
 	get:
 		return redHealth + blueHealth
 		

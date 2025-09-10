@@ -77,11 +77,8 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	super(delta)
-	# Count timers:
-	if Input.is_action_pressed("action_secondary") and not $Arm/Attack.is_playing():
-		bowHeldTime += delta
-	else:
-		bowHeldTime = 0.0
+	if health == 0:
+		return
 
 	
 	buildBridges()
@@ -94,6 +91,7 @@ func _physics_process(delta: float) -> void:
 		area_touching.trigger()
 
 var nextScene = ""
+var _swipedir = false
 
 func _input(event: InputEvent) -> void:
 	
@@ -136,15 +134,9 @@ func _input(event: InputEvent) -> void:
 		$UIElements/UI.update_health(self)
 	#endregion
 	
-	#if event.is_action_pressed("one") and not $Arm/Attack.is_playing():
-		#attackMode = "jab"
-		#$Arm/Attack.play("RESET")
-	#if event.is_action_pressed("two") and not $Arm/Attack.is_playing():
-		#attackMode = "swipe"
-		#$Arm/Attack.play("RESET")
-	#if event.is_action_pressed("three") and not $Arm/Attack.is_playing():
-		#attackMode = "big_swipe"
-		#$Arm/Attack.play("RESET")
+	if health == 0:
+		return
+	
 	if event.is_action_pressed("swap") and not $Arm/Attack.is_playing():
 		attackMode = "big_swipe" if attackMode != "big_swipe" else "jab"
 		$Arm/Attack.play("RESET")
@@ -153,7 +145,12 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("action_primary") and not shielding and not $Arm/Attack.is_playing() and knockback == Vector2.ZERO:
 		$AnimationPlayer.play("RESET")
 		$Arm/Attack.play("RESET")
-		$Arm/Attack.play(attackMode)
+		if _swipedir or attackMode == "jab":
+			$Arm/Attack.play(attackMode)
+		else:
+			$Arm/Attack.play_backwards(attackMode)
+			
+		_swipedir = !_swipedir
 		#$Arm/Marker2D/Weapon.strength = attackModeStrength[attackMode]
 		$Arm/Bow.modulate.a = 0.0
 		$UIElements/UI.update_health(self)
@@ -171,7 +168,13 @@ func _input(event: InputEvent) -> void:
 
 #region Overrides:
 func die():
-	pass
+	$AnimatedSprite2D.modulate.a = 0.0
+	$Arm.hide()
+	
+	$EnvironmentComponent/AnimationPlayer.play("die")
+	$UIElements/Dead.visible = true
+	$UIElements/Dead/Song.play()
+
 #endregion
 
 #region Custom methods:
@@ -185,6 +188,7 @@ func handleAnimations():
 	else:
 		$AnimationPlayer.play("RESET")
 		
+	
 	if bowHeldTime > 0:
 		$Arm/Bow.modulate.a = ( bowHeldTime / requiredBowTime ) 
 	
@@ -194,7 +198,7 @@ func handleAnimations():
 ## Handles input per frame for inputs that are usually held.
 func handleContinuousInput(delta: float):
 	
-	if Input.is_action_pressed("ui_text_select_all"):
+	if Input.is_action_pressed("ui_text_select_all") or health == 0:
 		return
 	
 	# Can't do this stuff whilst attacking
@@ -202,6 +206,8 @@ func handleContinuousInput(delta: float):
 		
 		# Shielding
 		shielding = true if Input.is_action_pressed("shield") else false
+		
+		
 		
 		# Handle movement
 		var direction := Input.get_vector("walk_left", "walk_right", "walk_up", "walk_down")
@@ -212,6 +218,12 @@ func handleContinuousInput(delta: float):
 		velocity = lerp(velocity, direction * calculatedSpeed, lerp_weight)
 		
 		if not shielding:
+			# Count timers:
+			if Input.is_action_pressed("action_secondary") and not $Arm/Attack.is_playing():
+				bowHeldTime += delta
+			else:
+				bowHeldTime = 0.0
+			
 			if bowHeldTime >= requiredBowTime:
 				shoot()
 				bowHeldTime = 0.0
@@ -287,9 +299,6 @@ func _on_on_damaged(amount) -> void:
 	$UIElements/UI.update_health(self)
 	$UIElements/AnimationPlayer.stop()
 	$UIElements/AnimationPlayer.play("hurt")
-	if health == 0:
-		$EnvironmentComponent/AnimationPlayer.play("die")
-
 func _on_on_heal(amount) -> void:
 	$UIElements/UI.update_health(self)
 	
