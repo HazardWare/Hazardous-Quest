@@ -78,7 +78,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	super(delta)
 	# Count timers:
-	if Input.is_action_pressed("bow") and not $Arm/Attack.is_playing():
+	if Input.is_action_pressed("action_secondary") and not $Arm/Attack.is_playing():
 		bowHeldTime += delta
 	else:
 		bowHeldTime = 0.0
@@ -150,7 +150,7 @@ func _input(event: InputEvent) -> void:
 		$Arm/Attack.play("RESET")
 
 	# Jab:
-	if event.is_action_pressed("sword") and not shielding and not $Arm/Attack.is_playing() and knockback == Vector2.ZERO:
+	if event.is_action_pressed("action_primary") and not shielding and not $Arm/Attack.is_playing() and knockback == Vector2.ZERO:
 		$AnimationPlayer.play("RESET")
 		$Arm/Attack.play("RESET")
 		$Arm/Attack.play(attackMode)
