@@ -2,7 +2,7 @@
 class_name Enemy
 extends Character
 
-signal onDetectPlayer
+signal enemy_hit
 
 @export var randomDrop := false ## Tick this to make item drops random, keep it un-ticked for a specific item drop
 @export_enum("Money", "Health") var Drops : String ## Item that the enemy drops. Ignore this if randomDrop is ticked
@@ -93,6 +93,7 @@ func areaEntered(area : Area2D):
 	if parent is Character and parent.is_in_group("Friendly"):
 		parent.applyKnockback((area.global_position - global_position).normalized(), 250.0, 0.12)
 	if parent is Weapon or parent is Projectile:
+		enemy_hit.emit()
 		applyKnockback((global_position - area.global_position).normalized(), 250.0, 0.12 * parent.strength)
 	if parent is Projectile:
 			self.health -= parent.strength
