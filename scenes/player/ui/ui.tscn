@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ki77yappuguq" path="res://scenes/player/ui/ui.gd" id="1_lpj6m"]
 [ext_resource type="FontFile" uid="uid://2tmbtr1x8urg" path="res://assets/fonts/PublicPixel.ttf" id="2_crj82"]
-[ext_resource type="Texture2D" uid="uid://dvvtfemm130je" path="res://assets/tilemaps/tile_items.png" id="2_oiwrs"]
+[ext_resource type="Texture2D" uid="uid://dvvtfemm130je" path="res://assets/tilesheets/tile_items.png" id="2_oiwrs"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qno0g"]
 bg_color = Color(0.247059, 0.14902, 0.192157, 0.403922)
