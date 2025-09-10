@@ -1,10 +1,10 @@
 [gd_resource type="TileSet" load_steps=36 format=3 uid="uid://cmv7wt2iltbsn"]
 
-[ext_resource type="Texture2D" uid="uid://dwydofcpmq6ek" path="res://assets/tilemaps/tile_town.png" id="1_p8bbk"]
-[ext_resource type="Texture2D" uid="uid://mg42qt04rif8" path="res://assets/tilemaps/tile_dungeon.png" id="2_7fh3v"]
-[ext_resource type="Texture2D" uid="uid://cbg3mvy6p8r7o" path="res://assets/tilemaps/tile_war.png" id="3_ihtos"]
-[ext_resource type="Texture2D" uid="uid://dnxfxaa0kdmrr" path="res://assets/tilemaps/tile_outdoor.png" id="4_q85gv"]
-[ext_resource type="Texture2D" uid="uid://su5hnluljkqr" path="res://assets/tilemaps/tile_dev.png" id="5_d0eqm"]
+[ext_resource type="Texture2D" uid="uid://dwydofcpmq6ek" path="res://assets/tilesheets/tile_town.png" id="1_p8bbk"]
+[ext_resource type="Texture2D" uid="uid://mg42qt04rif8" path="res://assets/tilesheets/tile_dungeon.png" id="2_7fh3v"]
+[ext_resource type="Texture2D" uid="uid://cbg3mvy6p8r7o" path="res://assets/tilesheets/tile_war.png" id="3_ihtos"]
+[ext_resource type="Texture2D" uid="uid://dnxfxaa0kdmrr" path="res://assets/tilesheets/tile_outdoor.png" id="4_q85gv"]
+[ext_resource type="Texture2D" uid="uid://su5hnluljkqr" path="res://assets/tilesheets/tile_dev.png" id="5_d0eqm"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_iktnb"]
 tile_data = PackedInt32Array(0, 589825, 4, 1, 393216, 10, 2, 393216, 10, 3, 393216, 10, 4, 393216, 10, 5, 393216, 10, 6, 393216, 10, 7, 393216, 10, 8, 393216, 10, 9, 393216, 10, 10, 393216, 10, 11, 720897, 4)

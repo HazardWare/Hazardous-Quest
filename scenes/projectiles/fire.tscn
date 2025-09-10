@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://cjsbg5upiyow4"]
 
 [ext_resource type="Script" uid="uid://n4ljwa117710" path="res://scripts/class_projectile.gd" id="1_paiu8"]
-[ext_resource type="Texture2D" uid="uid://dwbj7v8gwu4ig" path="res://assets/tilemaps/IWishWeUsedThisInstead.png" id="2_paiu8"]
+[ext_resource type="Texture2D" uid="uid://dwbj7v8gwu4ig" path="res://assets/tilesheets/IWishWeUsedThisInstead.png" id="2_paiu8"]
 [ext_resource type="Script" uid="uid://bqgj7njek38cs" path="res://scenes/projectiles/off_screen_deleter.gd" id="3_gufwn"]
 [ext_resource type="Script" uid="uid://cjr7v24055x32" path="res://scenes/components/blood.gd" id="4_2ftoy"]
 

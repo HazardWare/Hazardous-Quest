@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://b8qtyphhgsstd"]
 
 [ext_resource type="Script" uid="uid://dbwjycxw60uc" path="res://scenes/projectiles/arrow.gd" id="1_m2i7i"]
-[ext_resource type="Texture2D" uid="uid://dvvtfemm130je" path="res://assets/tilemaps/tile_items.png" id="2_iyfe7"]
+[ext_resource type="Texture2D" uid="uid://dvvtfemm130je" path="res://assets/tilesheets/tile_items.png" id="2_iyfe7"]
 [ext_resource type="Script" uid="uid://bqgj7njek38cs" path="res://scenes/projectiles/off_screen_deleter.gd" id="3_m2i7i"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m2i7i"]
