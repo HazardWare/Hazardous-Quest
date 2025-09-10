@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://b28l6ka3lf1be"]
 
 [ext_resource type="Script" uid="uid://ihc1ppoh35he" path="res://scenes/enemy/ghost.gd" id="1_q252t"]
-[ext_resource type="Texture2D" uid="uid://j25fmegii0o0" path="res://assets/tilesheets/tile_characters.png" id="2_xtsy0"]
+[ext_resource type="Texture2D" uid="uid://j25fmegii0o0" path="res://assets/tilemaps/tile_characters.png" id="2_xtsy0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q252t"]
 atlas = ExtResource("2_xtsy0")

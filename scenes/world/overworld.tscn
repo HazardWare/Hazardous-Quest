@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cpstvau0nlnqw" path="res://assets/Screenshot 2025-08-28 153026.png" id="1_fxtkv"]
 [ext_resource type="TileSet" uid="uid://cmv7wt2iltbsn" path="res://resources/tileset_overworld.tres" id="1_pwl2g"]
 [ext_resource type="PackedScene" uid="uid://cbaut5bbgnqxc" path="res://scenes/player/player.tscn" id="2_het3u"]
-[ext_resource type="Texture2D" uid="uid://su5hnluljkqr" path="res://assets/tilesheets/tile_dev.png" id="7_o3ojk"]
+[ext_resource type="Texture2D" uid="uid://su5hnluljkqr" path="res://assets/tilemaps/tile_dev.png" id="7_o3ojk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eccxn"]
 atlas = ExtResource("7_o3ojk")
