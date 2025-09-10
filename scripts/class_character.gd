@@ -103,12 +103,15 @@ func _ready() -> void:
 	add_child(characterComponent.instantiate())
 	
 func _physics_process(delta: float) -> void:
+	characterProcess(delta)
+
+func characterProcess(delta):
 	handleKnockback(delta)
 	
 	if !iFraming and $CharacterComponents/iFrameBlinker.time_left != 0.0:
 		$CharacterComponents/iFrameBlinker.stop()
 		sprite.visible = true
-	
+
 func handleKnockback(delta):
 	if knockbackTimer > 0.0:
 		velocity = knockback
