@@ -2,10 +2,15 @@ extends Control
 
 @export var player : Character
 
+@onready var health_bar: HBoxContainer = $PanelTop/VBoxContainer/HealthBar
+@onready var blue_bar: HBoxContainer = $PanelTop/VBoxContainer/BlueBar
+
 func update_health(player : Character):
 	
 	# Clear children
-	for child in $HealthBar.get_children():
+	for child in health_bar.get_children():
+		child.queue_free()
+	for child in blue_bar.get_children():
 		child.queue_free()
 
 	# Red health
@@ -23,7 +28,7 @@ func update_health(player : Character):
 		else:
 			this_heart.initiate_heart(Heart.POSSIBLE_HEARTS.EMPTY, false)
 
-		$HealthBar.add_child(this_heart)
+		health_bar.add_child(this_heart)
 
 	# Blue health
 	var blueHearts := int(ceil(player.blueHealth / 2.0))
@@ -40,7 +45,7 @@ func update_health(player : Character):
 		else:
 			this_heart.initiate_heart(Heart.POSSIBLE_HEARTS.EMPTY, true)
 
-		$HealthBar.add_child(this_heart)
+		blue_bar.add_child(this_heart)
 
 func _process(delta: float) -> void:
 	if player.attackMode == "big_swipe":

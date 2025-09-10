@@ -1,10 +1,8 @@
-[gd_scene load_steps=23 format=3 uid="uid://7m71hjxpym6n"]
+[gd_scene load_steps=22 format=3 uid="uid://7m71hjxpym6n"]
 
 [ext_resource type="Script" uid="uid://ki77yappuguq" path="res://scenes/player/ui/ui.gd" id="1_lpj6m"]
 [ext_resource type="FontFile" uid="uid://2tmbtr1x8urg" path="res://assets/fonts/PublicPixel.ttf" id="2_crj82"]
 [ext_resource type="Texture2D" uid="uid://dvvtfemm130je" path="res://assets/tilesheets/tile_items.png" id="2_oiwrs"]
-[ext_resource type="Texture2D" uid="uid://d7myph0coxos" path="res://assets/sprites/heart.png" id="2_qno0g"]
-[ext_resource type="Script" uid="uid://btls2b8sul58f" path="res://scripts/class_heart.gd" id="3_00btf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qno0g"]
 bg_color = Color(0.247059, 0.14902, 0.192157, 0.403922)
@@ -14,6 +12,18 @@ border_width_right = 5
 border_width_bottom = 5
 border_color = Color(0.247059, 0.14902, 0.192157, 1)
 anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5gxme"]
+bg_color = Color(0.25, 0.15, 0.193333, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.247059, 0.14902, 0.192157, 1)
+anti_aliasing = false
+
+[sub_resource type="LabelSettings" id="LabelSettings_00btf"]
+font = ExtResource("2_crj82")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oiwrs"]
 bg_color = Color(0.247059, 0.14902, 0.192157, 0.392157)
@@ -77,14 +87,6 @@ region = Rect2(4, 66, 8, 13)
 atlas = ExtResource("2_oiwrs")
 region = Rect2(4, 66, 8, 13)
 
-[sub_resource type="LabelSettings" id="LabelSettings_qno0g"]
-font = ExtResource("2_crj82")
-font_size = 32
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qno0g"]
-atlas = ExtResource("2_oiwrs")
-region = Rect2(67, 2, 10, 12)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_00btf"]
 bg_color = Color(0.247059, 0.14902, 0.192157, 0.403922)
 border_width_left = 5
@@ -93,6 +95,10 @@ border_width_right = 5
 border_width_bottom = 5
 border_color = Color(0.247059, 0.14902, 0.192157, 1)
 anti_aliasing = false
+
+[sub_resource type="LabelSettings" id="LabelSettings_qno0g"]
+font = ExtResource("2_crj82")
+font_size = 32
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -106,57 +112,102 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_lpj6m")
 
-[node name="HealthBackground" type="Panel" parent="."]
+[node name="PanelTop" type="Panel" parent="."]
+custom_minimum_size = Vector2(300, 100)
 layout_mode = 1
-offset_left = 10.0
-offset_top = 8.0
-offset_right = 848.0
-offset_bottom = 98.0
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 120.0
+grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_qno0g")
 
-[node name="HealthBar" type="HBoxContainer" parent="."]
-layout_direction = 2
+[node name="WeaponContainer" type="HBoxContainer" parent="PanelTop"]
 layout_mode = 1
-offset_left = 16.0
-offset_top = 14.0
-offset_right = 428.0
-offset_bottom = 54.0
-scale = Vector2(2, 2)
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -150.0
+grow_horizontal = 0
+grow_vertical = 2
 
-[node name="Heart" type="TextureRect" parent="HealthBar"]
+[node name="Weap1" type="Panel" parent="PanelTop/WeaponContainer"]
+custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
-texture = ExtResource("2_qno0g")
-expand_mode = 2
-script = ExtResource("3_00btf")
-metadata/_custom_type_script = "uid://btls2b8sul58f"
+theme_override_styles/panel = SubResource("StyleBoxFlat_5gxme")
 
-[node name="Heart2" type="TextureRect" parent="HealthBar"]
-layout_mode = 2
-texture = ExtResource("2_qno0g")
-expand_mode = 2
-script = ExtResource("3_00btf")
-metadata/_custom_type_script = "uid://btls2b8sul58f"
+[node name="Label" type="Label" parent="PanelTop/WeaponContainer/Weap1"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "1"
+label_settings = SubResource("LabelSettings_00btf")
+horizontal_alignment = 1
 
-[node name="Heart3" type="TextureRect" parent="HealthBar"]
-layout_mode = 2
-texture = ExtResource("2_qno0g")
-expand_mode = 2
-script = ExtResource("3_00btf")
-metadata/_custom_type_script = "uid://btls2b8sul58f"
+[node name="WeapTexture" type="TextureRect" parent="PanelTop/WeaponContainer/Weap1"]
+custom_minimum_size = Vector2(0, 95)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
 
-[node name="Heart4" type="TextureRect" parent="HealthBar"]
+[node name="Weap2" type="Panel" parent="PanelTop/WeaponContainer"]
+custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
-texture = ExtResource("2_qno0g")
-expand_mode = 2
-script = ExtResource("3_00btf")
-metadata/_custom_type_script = "uid://btls2b8sul58f"
+theme_override_styles/panel = SubResource("StyleBoxFlat_5gxme")
 
-[node name="Heart5" type="TextureRect" parent="HealthBar"]
+[node name="Label" type="Label" parent="PanelTop/WeaponContainer/Weap2"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "2"
+label_settings = SubResource("LabelSettings_00btf")
+horizontal_alignment = 1
+
+[node name="WeapTexture" type="TextureRect" parent="PanelTop/WeaponContainer/Weap2"]
+custom_minimum_size = Vector2(0, 95)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelTop"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 7.0
+offset_top = 7.0
+offset_right = 7.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HealthBar" type="HBoxContainer" parent="PanelTop/VBoxContainer"]
+custom_minimum_size = Vector2(5, 50)
+layout_direction = 2
 layout_mode = 2
-texture = ExtResource("2_qno0g")
-expand_mode = 2
-script = ExtResource("3_00btf")
-metadata/_custom_type_script = "uid://btls2b8sul58f"
+
+[node name="BlueBar" type="HBoxContainer" parent="PanelTop/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_direction = 2
+layout_mode = 2
 
 [node name="PotionList" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -226,6 +277,7 @@ label_settings = SubResource("LabelSettings_5gxme")
 horizontal_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="PotionList/BigPotionSlot2"]
+layout_mode = 0
 offset_left = 5.0
 offset_top = 6.0
 offset_right = 45.0
@@ -257,6 +309,7 @@ label_settings = SubResource("LabelSettings_5gxme")
 horizontal_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="PotionList/BigPotionSlot3"]
+layout_mode = 0
 offset_left = 5.0
 offset_top = 6.0
 offset_right = 45.0
@@ -287,6 +340,7 @@ label_settings = SubResource("LabelSettings_oiwrs")
 horizontal_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="PotionList/MiniPotionSlot"]
+layout_mode = 0
 offset_left = 5.0
 offset_top = 6.0
 offset_right = 35.0
@@ -317,6 +371,7 @@ label_settings = SubResource("LabelSettings_oiwrs")
 horizontal_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="PotionList/MiniPotionSlot2"]
+layout_mode = 0
 offset_left = 5.0
 offset_top = 6.0
 offset_right = 35.0
@@ -347,6 +402,7 @@ label_settings = SubResource("LabelSettings_oiwrs")
 horizontal_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="PotionList/MiniPotionSlot3"]
+layout_mode = 0
 offset_left = 5.0
 offset_top = 6.0
 offset_right = 35.0
@@ -377,6 +433,7 @@ label_settings = SubResource("LabelSettings_oiwrs")
 horizontal_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="PotionList/MiniPotionSlot4"]
+layout_mode = 0
 offset_left = 5.0
 offset_top = 6.0
 offset_right = 35.0
@@ -407,58 +464,13 @@ label_settings = SubResource("LabelSettings_oiwrs")
 horizontal_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="PotionList/MiniPotionSlot5"]
+layout_mode = 0
 offset_left = 5.0
 offset_top = 6.0
 offset_right = 35.0
 offset_bottom = 37.0
 texture = SubResource("AtlasTexture_fvvt8")
 stretch_mode = 5
-
-[node name="Gold Counter" type="Panel" parent="."]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -296.235
-offset_top = 7.77364
-offset_right = -10.2351
-offset_bottom = 97.7736
-grow_horizontal = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_qno0g")
-
-[node name="Label" type="Label" parent="Gold Counter"]
-clip_contents = true
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.755483
-anchor_bottom = 0.959
-offset_right = -0.0680084
-offset_bottom = 3.68999
-grow_horizontal = 0
-size_flags_horizontal = 10
-text = "100"
-label_settings = SubResource("LabelSettings_qno0g")
-horizontal_alignment = 2
-vertical_alignment = 1
-autowrap_mode = 1
-metadata/_edit_use_anchors_ = true
-
-[node name="TextureRect" type="TextureRect" parent="Gold Counter"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.755245
-anchor_top = 0.0666667
-anchor_right = 1.00175
-anchor_bottom = 1.0
-offset_right = -37.1667
-offset_bottom = -45.0
-grow_horizontal = 0
-scale = Vector2(2, 2)
-size_flags_horizontal = 10
-texture = SubResource("AtlasTexture_qno0g")
-expand_mode = 3
-stretch_mode = 4
-metadata/_edit_use_anchors_ = true
 
 [node name="Action" type="Panel" parent="."]
 layout_mode = 1
