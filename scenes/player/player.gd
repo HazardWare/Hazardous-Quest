@@ -228,6 +228,7 @@ func handleContinuousInput(delta: float):
 func shoot():
 	var currentArrow : Projectile = arrowScene.instantiate()
 	currentArrow.initial_velocity = velocity
+	currentArrow.add_to_group("friendly")
 	owner.add_child(currentArrow)
 	currentArrow.transform = $Arm.global_transform
 

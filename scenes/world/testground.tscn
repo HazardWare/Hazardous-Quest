@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=4 uid="uid://sngxe0i2hgws"]
 
 [ext_resource type="TileSet" uid="uid://cmv7wt2iltbsn" path="res://resources/tileset_overworld.tres" id="2_6jbqq"]
-[ext_resource type="TileSet" uid="uid://bf2aaq8bhli1p" path="res://resources/tileset_stolen.tres" id="2_hoi4q"]
+[ext_resource type="TileSet" uid="uid://bf0282xnk7ejk" path="res://resources/tileset_stolen.tres" id="2_hoi4q"]
 [ext_resource type="PackedScene" uid="uid://fld1btwmqjbj" path="res://scenes/enemy/BrownRat.tscn" id="3_gbcc7"]
 [ext_resource type="PackedScene" uid="uid://cbaut5bbgnqxc" path="res://scenes/player/player.tscn" id="3_hoi4q"]
 [ext_resource type="PackedScene" uid="uid://cwolfcl87eo2" path="res://scenes/enemy/GrayRat.tscn" id="4_6jbqq"]
