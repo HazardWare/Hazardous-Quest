@@ -34,7 +34,6 @@ hurtBox = NodePath("HurtBox")
 maximumHealth = 15
 speed = 100.0
 sprite = NodePath("AnimatedSprite2D")
-knockbackResistance = 8.0
 metadata/_custom_type_script = "uid://c8cqyjlah7m1e"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
