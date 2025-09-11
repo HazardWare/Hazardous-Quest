@@ -119,9 +119,9 @@ colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 random_pitch = 1.5
 streams_count = 3
 stream_0/stream = ExtResource("3_dtbbv")
-stream_0/weight = 0.1
+stream_0/weight = 0.0
 stream_1/stream = ExtResource("4_u6npe")
-stream_1/weight = 0.1
+stream_1/weight = 0.0
 stream_2/stream = ExtResource("3_f7ker")
 stream_2/weight = 2.0
 
