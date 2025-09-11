@@ -13,7 +13,7 @@ func _physics_process(delta: float) -> void:
 	
 	$EnemyComponents/HealthBar.value = health
 	$EnemyComponents/HealthBar.max_value = maximumHealth
-	
+	$CollisionShape2D.position = $AnimatedSprite2D.position
 	if $EnemyComponents/StallTimer.time_left != 0.0:
 		return
 	

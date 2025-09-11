@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=4 uid="uid://sngxe0i2hgws"]
+[gd_scene load_steps=10 format=4 uid="uid://sngxe0i2hgws"]
 
 [ext_resource type="TileSet" uid="uid://cmv7wt2iltbsn" path="res://resources/tileset_overworld.tres" id="2_6jbqq"]
 [ext_resource type="TileSet" uid="uid://bf0282xnk7ejk" path="res://resources/tileset_stolen.tres" id="2_hoi4q"]
 [ext_resource type="Shader" uid="uid://cuj6586hcjnpt" path="res://addons/eye_dropper/eye_dropper.gdshader" id="2_ncjw0"]
 [ext_resource type="PackedScene" uid="uid://cbaut5bbgnqxc" path="res://scenes/player/player.tscn" id="3_hoi4q"]
 [ext_resource type="PackedScene" uid="uid://bt30reciuchwo" path="res://scenes/enemy/Bat.tscn" id="6_6jbqq"]
+[ext_resource type="PackedScene" uid="uid://dtma0pwtpayhs" path="res://scenes/enemy/Spider.tscn" id="7_hoi4q"]
 [ext_resource type="Shader" uid="uid://ueciorkgjdck" path="res://addons/eye_dropper/xBRZ.gdshader" id="11_mfjm1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8mcbw"]
@@ -104,3 +105,6 @@ offset_top = 70.0
 offset_right = 552.0
 offset_bottom = 93.0
 text = "Smoothin'"
+
+[node name="Testemy2" parent="." instance=ExtResource("7_hoi4q")]
+position = Vector2(-24, -28)

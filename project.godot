@@ -23,7 +23,6 @@ config/icon="uid://d7myph0coxos"
 SaveLoad="*res://scripts/globals/SaveLoad.gd"
 Global="*res://scripts/globals/Global.gd"
 Console="*res://addons/console/console.gd"
-BMOD="*res://addons/bmod/autoloads/bmod/bmod.tscn"
 
 [display]
 
