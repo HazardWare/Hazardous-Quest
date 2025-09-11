@@ -1,0 +1,8 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=2 format=3 uid="uid://ipnqihq06awh"]
+
+[ext_resource type="AudioStream" uid="uid://bclpl2e0xprgq" path="res://assets/sounds/outsourced/Zelda/Zelda Sword.wav" id="1_0ccm4"]
+
+[resource]
+random_pitch = 1.15
+streams_count = 1
+stream_0/stream = ExtResource("1_0ccm4")

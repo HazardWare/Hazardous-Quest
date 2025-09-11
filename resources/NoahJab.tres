@@ -1,0 +1,8 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=2 format=3 uid="uid://m6t455urm2n1"]
+
+[ext_resource type="AudioStream" uid="uid://dhcod1nj1lmb" path="res://assets/sounds/jab.wav" id="1_eeh08"]
+
+[resource]
+random_pitch = 1.15
+streams_count = 1
+stream_0/stream = ExtResource("1_eeh08")
