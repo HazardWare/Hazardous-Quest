@@ -165,6 +165,7 @@ func _input(event: InputEvent) -> void:
 		var currentFire : Projectile = fireScene.instantiate()
 		currentFire.initial_velocity = Vector2.ZERO # No init velocity
 		owner.add_child(currentFire)
+		$Arm/Flame.play()
 		currentFire.transform = $Arm.global_transform
 	
 

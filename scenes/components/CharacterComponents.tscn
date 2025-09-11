@@ -198,16 +198,16 @@ one_shot = true
 [node name="iFrameBlinker" type="Timer" parent="."]
 wait_time = 0.1
 
-[node name="Death" type="AudioStreamPlayer" parent="."]
+[node name="Death" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_vms71")
 
-[node name="Hit" type="AudioStreamPlayer" parent="."]
+[node name="Hit" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_87r22")
 
-[node name="Heal" type="AudioStreamPlayer" parent="."]
+[node name="Heal" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_ysarf")
 
-[node name="Shield" type="AudioStreamPlayer" parent="."]
+[node name="Shield" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_3ngkf")
 
 [connection signal="animation_finished" from="DamageAnimation" to="." method="_on_damage_animation_animation_finished"]

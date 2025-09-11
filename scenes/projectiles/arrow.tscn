@@ -42,7 +42,7 @@ collisionShape = NodePath("HurtBox/CollisionShape2D")
 hurtBox = NodePath("HurtBox")
 metadata/_custom_type_script = "uid://n4ljwa117710"
 
-[node name="Hit" type="AudioStreamPlayer" parent="."]
+[node name="Hit" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_nl28u")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

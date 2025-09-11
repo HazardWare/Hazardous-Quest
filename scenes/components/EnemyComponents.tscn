@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cr0n1oh77knc0"]
+[gd_scene load_steps=8 format=3 uid="uid://cr0n1oh77knc0"]
 
 [ext_resource type="Script" uid="uid://pwtjsc18y4lk" path="res://scenes/components/health_bar.gd" id="1_0k52e"]
+[ext_resource type="AudioStream" uid="uid://b2m2pd4ske0s6" path="res://assets/sounds/outsourced/Pizza/sfx_escapespawn.ogg" id="2_ktywn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7t4eu"]
 bg_color = Color(1, 1, 1, 1)
@@ -22,6 +23,11 @@ bg_color = Color(1, 0, 0.294118, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k1pk0"]
 bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ktywn"]
+random_pitch = 1.5
+streams_count = 1
+stream_0/stream = ExtResource("2_ktywn")
 
 [node name="EnemyComponents" type="Node2D"]
 
@@ -55,3 +61,6 @@ show_percentage = false
 
 [node name="StallTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="Spawn" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_ktywn")

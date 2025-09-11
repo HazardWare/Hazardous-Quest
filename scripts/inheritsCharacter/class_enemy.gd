@@ -41,6 +41,8 @@ func _ready() -> void:
 	
 	hurtBox.area_entered.connect(areaEntered)
 	
+	$EnemyComponents/Spawn.play()
+	
 	#self.onDamaged.connect(func(d):print(health))
 	
 func _physics_process(delta: float) -> void:
