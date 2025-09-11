@@ -813,6 +813,7 @@ libraries = {
 }
 
 [node name="UIElements" type="CanvasLayer" parent="."]
+visible = false
 script = ExtResource("5_0owmy")
 
 [node name="UI" parent="UIElements" node_paths=PackedStringArray("player") instance=ExtResource("2_lvxji")]
@@ -849,29 +850,6 @@ offset_bottom = 74.5
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("9_h17s1")
-
-[node name="Label2" type="Label" parent="UIElements/Dead/GAMEOVER"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.064
-anchor_bottom = 0.154
-offset_left = 299.0
-offset_top = 117.5
-offset_right = 299.232
-offset_bottom = 117.554
-text = "----------
-"
-
-[node name="Label" type="Label" parent="UIElements/Dead/GAMEOVER"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.064
-anchor_bottom = 0.154
-offset_left = 300.0
-offset_top = 138.5
-offset_right = 300.232
-offset_bottom = 138.554
-text = "UNDO"
 
 [node name="HurtDiscolor" type="ColorRect" parent="UIElements"]
 anchors_preset = 15

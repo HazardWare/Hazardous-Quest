@@ -98,7 +98,7 @@ var _swipedir = false
 func _input(event: InputEvent) -> void:
 	
 	#region debug
-	if event.is_action_pressed("ui_undo"):
+	if event.is_action_pressed("ui_undo") or event.is_action_pressed("restart"):
 		nextScene = ""
 		$UIElements/SceneTransitionAnimation.play("fade_out")
 		

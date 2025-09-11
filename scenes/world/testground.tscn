@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://sngxe0i2hgws"]
+[gd_scene load_steps=8 format=4 uid="uid://sngxe0i2hgws"]
 
 [ext_resource type="TileSet" uid="uid://cmv7wt2iltbsn" path="res://resources/tileset_overworld.tres" id="2_6jbqq"]
 [ext_resource type="TileSet" uid="uid://bf0282xnk7ejk" path="res://resources/tileset_stolen.tres" id="2_hoi4q"]
@@ -6,9 +6,18 @@
 [ext_resource type="PackedScene" uid="uid://cbaut5bbgnqxc" path="res://scenes/player/player.tscn" id="3_hoi4q"]
 [ext_resource type="PackedScene" uid="uid://cwolfcl87eo2" path="res://scenes/enemy/GrayRat.tscn" id="4_6jbqq"]
 [ext_resource type="PackedScene" uid="uid://dl5mokpsoa2lv" path="res://scenes/enemy/Slime.tscn" id="5_hoi4q"]
+[ext_resource type="PackedScene" uid="uid://b28l6ka3lf1be" path="res://scenes/enemy/Ghost.tscn" id="7_hoi4q"]
 
 [node name="TestingSpace" type="Node2D"]
 y_sort_enabled = true
+
+[node name="Grass" type="ColorRect" parent="."]
+z_index = -100
+offset_left = -10015.0
+offset_top = -7275.0
+offset_right = 9886.0
+offset_bottom = 7946.0
+color = Color(0.517647, 0.776471, 0.411765, 1)
 
 [node name="Ground" type="TileMapLayer" parent="." groups=["Tilemap"]]
 z_index = -2
@@ -55,6 +64,24 @@ floorTilemap = NodePath("../Ground")
 [node name="BrownRat" parent="." instance=ExtResource("3_gbcc7")]
 position = Vector2(148.83, -77.205)
 
+[node name="BrownRat2" parent="." instance=ExtResource("3_gbcc7")]
+position = Vector2(157, -204)
+
+[node name="BrownRat3" parent="." instance=ExtResource("3_gbcc7")]
+position = Vector2(157, -204)
+
+[node name="BrownRat4" parent="." instance=ExtResource("3_gbcc7")]
+position = Vector2(-27, -180)
+
+[node name="BrownRat5" parent="." instance=ExtResource("3_gbcc7")]
+position = Vector2(-193, -142)
+
+[node name="BrownRat6" parent="." instance=ExtResource("3_gbcc7")]
+position = Vector2(177, 17)
+
+[node name="BrownRat7" parent="." instance=ExtResource("3_gbcc7")]
+position = Vector2(29, 133)
+
 [node name="GrayRat" parent="." instance=ExtResource("4_6jbqq")]
 position = Vector2(0, -133.935)
 maximumHealth = 10
@@ -63,10 +90,8 @@ knockbackResistance = -8.0
 [node name="Slime" parent="." instance=ExtResource("5_hoi4q")]
 position = Vector2(-171.265, 0)
 
-[node name="Grass" type="ColorRect" parent="."]
-z_index = -100
-offset_left = -10015.0
-offset_top = -7275.0
-offset_right = 9886.0
-offset_bottom = 7946.0
-color = Color(0.517647, 0.776471, 0.411765, 1)
+[node name="Ghost" parent="." instance=ExtResource("7_hoi4q")]
+position = Vector2(200, 143)
+
+[node name="Ghost2" parent="." instance=ExtResource("7_hoi4q")]
+position = Vector2(-174, 108)
