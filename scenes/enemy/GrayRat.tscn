@@ -32,9 +32,10 @@ navInterval = NodePath("Timer")
 navAgent = NodePath("NavigationAgent2D")
 hurtBox = NodePath("HurtBox")
 maximumHealth = 15
-speed = 100.0
+speed = 75.0
+strength = 2
 sprite = NodePath("AnimatedSprite2D")
-knockbackResistance = 8.0
+knockbackResistance = 5.5
 metadata/_custom_type_script = "uid://c8cqyjlah7m1e"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
