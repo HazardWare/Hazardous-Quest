@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://cbaut5bbgnqxc"]
+[gd_scene load_steps=57 format=3 uid="uid://cbaut5bbgnqxc"]
 
 [ext_resource type="Texture2D" uid="uid://mg42qt04rif8" path="res://assets/tilesheets/tile_dungeon.png" id="1_8afob"]
 [ext_resource type="Script" uid="uid://0fays8i2wtql" path="res://scenes/player/player.gd" id="1_dovo2"]
@@ -8,18 +8,13 @@
 [ext_resource type="Texture2D" uid="uid://j25fmegii0o0" path="res://assets/tilesheets/tile_characters.png" id="3_qek5x"]
 [ext_resource type="Texture2D" uid="uid://cp7f51vup8voy" path="res://assets/sprites/fox.png" id="4_5gtgg"]
 [ext_resource type="Script" uid="uid://db12v3qrf6by" path="res://scenes/player/ui_elements.gd" id="5_0owmy"]
-[ext_resource type="AudioStream" uid="uid://bclpl2e0xprgq" path="res://assets/sounds/outsourced/Zelda/Zelda Sword.wav" id="5_fm80t"]
+[ext_resource type="AudioStream" uid="uid://dxiwcrffolknm" path="res://assets/sounds/slash.wav" id="5_fcs02"]
 [ext_resource type="Script" uid="uid://bvpigbs724kgf" path="res://scenes/player/scene_transition.gd" id="6_75vfm"]
 [ext_resource type="AudioStream" uid="uid://bru3wbkx4vxyh" path="res://assets/sounds/outsourced/Castle/sound_arrowshot.wav" id="6_gx1jg"]
-[ext_resource type="AudioStream" uid="uid://cp5p071yillxw" path="res://assets/sounds/outsourced/Castle/sound_swinger1.wav" id="6_lgqa7"]
-[ext_resource type="AudioStream" uid="uid://c3mucrrfmc7fw" path="res://assets/sounds/outsourced/Castle/sound_swinger2.wav" id="7_8ydkj"]
-[ext_resource type="AudioStream" uid="uid://geisjjhcpdre" path="res://assets/sounds/outsourced/Castle/sound_swinger3.wav" id="8_3j4b4"]
+[ext_resource type="AudioStream" uid="uid://dhcod1nj1lmb" path="res://assets/sounds/jab.wav" id="6_myrg7"]
+[ext_resource type="AudioStream" uid="uid://dlmugtocoy505" path="res://assets/sounds/fire.wav" id="7_myrg7"]
 [ext_resource type="Texture2D" uid="uid://b758kfihtjo1x" path="res://assets/sprites/game-over.png" id="9_h17s1"]
 [ext_resource type="AudioStream" uid="uid://37rtee5owvf0" path="res://assets/sounds/outsourced/Guy/15. Might Is Right But Tight.mp3" id="9_je7p5"]
-[ext_resource type="AudioStream" uid="uid://c0kl1lnfr5esw" path="res://assets/sounds/outsourced/Castle/sound_swinger4.wav" id="9_yj68g"]
-[ext_resource type="AudioStream" uid="uid://d0s4j8msnrko3" path="res://assets/sounds/outsourced/Castle/sound_swinger5.wav" id="10_ioxgp"]
-[ext_resource type="AudioStream" uid="uid://bs0yfikk1cb3y" path="res://assets/sounds/outsourced/Castle/sound_swinger6.wav" id="11_cnsyf"]
-[ext_resource type="AudioStream" uid="uid://b0fgyiv2shwn7" path="res://assets/sounds/outsourced/Zelda/Flame.wav" id="13_8ydkj"]
 [ext_resource type="AudioStream" uid="uid://ld0damuhr2qf" path="res://assets/sounds/outsourced/Toby/snd_board_escaped.wav" id="21_3j4b4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dovo2"]
@@ -130,7 +125,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 8), Vector2(0, 5), Vector2(0, 8)]
+"values": [Vector2(0, 8), Vector2(0, 7), Vector2(0, 8)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_p47bc"]
@@ -291,7 +286,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5, 1.2),
 "transitions": PackedFloat32Array(-2, -2, -2),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(18, 0), Vector2(0, 0)]
+"values": [Vector2(0, 0), Vector2(12, 0), Vector2(0, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -406,23 +401,25 @@ _data = {
 &"swipe": SubResource("Animation_5gtgg")
 }
 
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_fm80t"]
-random_pitch = 1.25
-random_volume_offset_db = 1.05
-streams_count = 7
-stream_0/stream = ExtResource("5_fm80t")
-stream_0/weight = 0.25
-stream_1/stream = ExtResource("6_lgqa7")
-stream_2/stream = ExtResource("7_8ydkj")
-stream_3/stream = ExtResource("8_3j4b4")
-stream_4/stream = ExtResource("9_yj68g")
-stream_5/stream = ExtResource("10_ioxgp")
-stream_6/stream = ExtResource("11_cnsyf")
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_uf5tr"]
+random_pitch = 1.3
+streams_count = 1
+stream_0/stream = ExtResource("5_fcs02")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_kvlxm"]
+random_pitch = 1.15
+streams_count = 1
+stream_0/stream = ExtResource("6_myrg7")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_gx1jg"]
 random_pitch = 1.1
 streams_count = 1
 stream_0/stream = ExtResource("6_gx1jg")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_myrg7"]
+random_pitch = 1.3
+streams_count = 1
+stream_0/stream = ExtResource("7_myrg7")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gmlin"]
 atlas = ExtResource("1_8afob")
@@ -693,6 +690,7 @@ y_sort_enabled = true
 collision_mask = 28
 script = ExtResource("1_dovo2")
 snappingAngle = 0.0
+jab_thrust_force = 20.0
 speed = 100.0
 sprite = NodePath("AnimatedSprite2D")
 friction = 10.0
@@ -752,7 +750,11 @@ libraries = {
 speed_scale = 2.0
 
 [node name="SwordSound" type="AudioStreamPlayer" parent="Arm"]
-stream = SubResource("AudioStreamRandomizer_fm80t")
+stream = SubResource("AudioStreamRandomizer_uf5tr")
+max_polyphony = 3
+
+[node name="JabSound" type="AudioStreamPlayer" parent="Arm"]
+stream = SubResource("AudioStreamRandomizer_kvlxm")
 max_polyphony = 3
 
 [node name="Shoot" type="AudioStreamPlayer" parent="Arm"]
@@ -760,7 +762,7 @@ stream = SubResource("AudioStreamRandomizer_gx1jg")
 max_polyphony = 3
 
 [node name="Flame" type="AudioStreamPlayer" parent="Arm"]
-stream = ExtResource("13_8ydkj")
+stream = SubResource("AudioStreamRandomizer_myrg7")
 max_polyphony = 3
 
 [node name="Marker2D" type="Marker2D" parent="Arm"]

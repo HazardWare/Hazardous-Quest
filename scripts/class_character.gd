@@ -192,12 +192,13 @@ func handlePush():
 		if c.get_collider() is RigidBody2D:
 			c.get_collider().apply_central_impulse(-c.get_normal() * push_force)
 
-func applyKnockback(direction, force, duration):
+# Please please please type ts next time :). I'm slow and didn't know how to use this function - n
+func applyKnockback(direction : Vector2, force : float, duration : float):
 	knockback = direction * (force / ( knockbackResistance + 1.0 ) )
 	knockbackTimer = duration
 	
 func move_to(pos, delta):
 	
-	var direction = global_position.direction_to(pos)
+	var direction := global_position.direction_to(pos)
 	var lerp_weight = delta * (acceleration if direction else friction)
 	velocity = lerp(velocity, direction * speed, lerp_weight)

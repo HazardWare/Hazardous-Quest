@@ -32,6 +32,11 @@ const attackModeStrength = {
 	"jab" : 4
 }
 
+@export_subgroup("AttackStuff")
+@export var jab_thrust_force : float = 10
+@export var requiredBowTime := 0.5
+var bowHeldTime : float = 0.0
+
 ## 0 is verticle, 1 is horizontal. These are from ID 1
 const LADDER_TILE := [Vector2i(9,6),Vector2i(10,5)]
 var lastLadder : Vector2 ## The last ladder position
@@ -41,12 +46,11 @@ var readyForAction: bool :
 	get():
 		return true if ( not $Arm/Attack.is_playing() and knockback == Vector2.ZERO) else false
 
-var bowHeldTime : float = 0.0
-@export var requiredBowTime := 0.5
 
 var hitbox_touching : bool = false
 var area_touching : Area2D
 
+var angleToTheMouse
 #region Godot functions:
 
 func _ready() -> void:
@@ -81,7 +85,8 @@ func _physics_process(delta: float) -> void:
 	super(delta)
 	if health == 0:
 		return
-
+	
+	angleToTheMouse = get_global_mouse_position().angle_to_point(position)
 	
 	buildBridges()
 	handleContinuousInput(delta)
@@ -144,11 +149,26 @@ func _input(event: InputEvent) -> void:
 		attackMode = "big_swipe" if attackMode != "big_swipe" else "jab"
 		$Arm/Attack.play("RESET")
 
-	# Jab:
-	if event.is_action_pressed("action_primary") and not shielding and not $Arm/Attack.is_playing() and knockback == Vector2.ZERO:
+	# Sword:
+	# STORAGE : and knockback == Vector2.ZERO
+	# The above is commented out because it prevented the player from attacking while being thrusted forward.
+	# This is a band-aid fix, and I'll solve it later. - n
+	if event.is_action_pressed("action_primary") and not shielding and not $Arm/Attack.is_playing():
 		$AnimationPlayer.play("RESET")
 		$Arm/Attack.play("RESET")
-		$Arm/SwordSound.play()
+
+		if attackMode == "big_swipe":
+			$Arm/SwordSound.play()
+		elif attackMode == "jab":
+			$Arm/JabSound.play()
+			
+		# using knockback but in reverse, a trick I learned from DOOM modding. - n
+
+		if attackMode == "jab":
+			applyKnockback(Vector2.from_angle($Arm.rotation),80,0.1)
+		if attackMode == "big_swipe":
+			applyKnockback(Vector2.from_angle($Arm.rotation),30,0.05)
+		
 		if _swipedir or attackMode == "jab":
 			$Arm/Attack.play(attackMode)
 		else:
@@ -236,7 +256,7 @@ func handleContinuousInput(delta: float):
 			bowHeldTime = 0.0
 		
 		# Rotate the sword toward the mouse
-		var angleToTheMouse = get_global_mouse_position().angle_to_point(position)
+
 		$Arm.rotation = deg_to_rad( snapped( rad_to_deg(angleToTheMouse) + 180 , snappingAngle) )
 	else:
 		velocity = lerp(velocity, Vector2.ZERO, delta * friction)
