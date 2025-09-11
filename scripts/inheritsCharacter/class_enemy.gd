@@ -11,6 +11,8 @@ signal enemy_hit
 enum DetectionSystems {MANUAL, LINE_OF_SIGHT, DAMAGE}
 @export var PlayerDetectionSystem := DetectionSystems.LINE_OF_SIGHT
 
+@export var stuns := false ## For if the enemy can stun lock the player (W.I.P.)
+
 @export_subgroup("Linked nodes")
 #@export var rayCast : RayCast2D
 
@@ -99,6 +101,5 @@ func areaEntered(area : Area2D):
 		applyKnockback((global_position - area.global_position).normalized(), 250.0, 0.12)
 	if parent is Projectile:
 			enemy_hit.emit()
-			pass
 	if parent is Weapon:
 			self.health -= parent.strength
