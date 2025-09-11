@@ -11,6 +11,9 @@ func _ready() -> void:
 	add_child(audio_player)
 	audio_player.play()
 	
+	Console.pause_enabled = true
+
+	
 func play(audio) -> void:
 	var audio_player := AudioStreamPlayer2D.new()
 	if audio is String:

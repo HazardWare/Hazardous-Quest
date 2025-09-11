@@ -22,11 +22,16 @@ config/icon="uid://d7myph0coxos"
 
 SaveLoad="*res://scripts/globals/SaveLoad.gd"
 Global="*res://scripts/globals/Global.gd"
+Console="*res://addons/console/console.gd"
 
 [display]
 
 window/stretch/mode="canvas_items"
 window/stretch/scale_mode="integer"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/console/plugin.cfg")
 
 [file_customization]
 
