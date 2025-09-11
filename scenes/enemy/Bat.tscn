@@ -65,8 +65,8 @@ _data = {
 }
 
 [node name="Bat" type="CharacterBody2D" node_paths=PackedStringArray("navInterval", "navAgent", "hurtBox", "sprite")]
-collision_layer = 26
-collision_mask = 59
+collision_layer = 2
+collision_mask = 34
 motion_mode = 1
 script = ExtResource("1_v3x7j")
 navInterval = NodePath("Timer")
@@ -100,7 +100,6 @@ debug_color = Color(0.7, 0, 0.0116665, 0.419608)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 shape = SubResource("CircleShape2D_iccoa")
-disabled = true
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.1

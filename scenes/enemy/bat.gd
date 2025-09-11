@@ -14,13 +14,15 @@ func _physics_process(delta: float) -> void:
 	$EnemyComponents/HealthBar.value = health
 	$EnemyComponents/HealthBar.max_value = maximumHealth
 	
+	move_and_slide()
+	handlePush()
+	
 	if $EnemyComponents/StallTimer.time_left != 0.0:
 		return
 	
 	move(delta)
 	continousDamage(delta)
-	move_and_slide()
-	handlePush()
+	
 
 func fly():
 	$FlyTime.start(1)
