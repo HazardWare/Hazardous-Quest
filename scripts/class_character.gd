@@ -193,7 +193,7 @@ func handlePush():
 			c.get_collider().apply_central_impulse(-c.get_normal() * push_force)
 
 func applyKnockback(direction, force, duration):
-	knockback = direction * (force * ( knockbackResistance + 1.0 ) )
+	knockback = direction * (force / ( knockbackResistance + 1.0 ) )
 	knockbackTimer = duration
 	
 func move_to(pos, delta):
