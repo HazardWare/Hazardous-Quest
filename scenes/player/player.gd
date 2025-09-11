@@ -324,6 +324,7 @@ func readSaveData():
 
 
 func _on_scene_transition_animation_animation_finished(anim_name: StringName) -> void:
+	$SwitchScene.play()
 	if anim_name == "fade_out":
 		if nextScene != "":
 			get_tree().change_scene_to_file(nextScene)
