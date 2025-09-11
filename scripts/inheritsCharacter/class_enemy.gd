@@ -98,8 +98,7 @@ func areaEntered(area : Area2D):
 		enemy_hit.emit()
 		applyKnockback((global_position - area.global_position).normalized(), 250.0, 0.12)
 	if parent is Projectile:
-			#self.health -= parent.strength
-			#parent.queue_free()
+			enemy_hit.emit()
 			pass
 	if parent is Weapon:
 			self.health -= parent.strength

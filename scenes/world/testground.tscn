@@ -153,20 +153,6 @@ position = Vector2(-171.265, 0)
 
 [node name="Ghost" parent="." instance=ExtResource("7_hoi4q")]
 position = Vector2(200, 143)
-randomDrop = null
-Drops = null
-overworldEnemy = null
-PlayerDetectionSystem = null
-maximumHealth = null
-blueHealth = null
-strength = null
-invulnerable = null
-toxic = null
-push_force = null
-friction = null
-acceleration = null
-knockbackResistance = null
-iFrames = null
 
 [node name="Testemy" parent="." instance=ExtResource("8_blyci")]
 position = Vector2(-22, -18)

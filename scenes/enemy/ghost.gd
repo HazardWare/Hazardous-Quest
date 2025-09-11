@@ -24,7 +24,7 @@ func _on_enemy_hit() -> void:
 	var tween = get_tree().create_tween()
 	tween.tween_property($AnimatedSprite2D, "modulate", Color.TRANSPARENT, 0.5)
 	$EnemyComponents.visible = false
-	$HurtBox/CollisionShape2D.set_deferred(disabled, true)
+	$HurtBox/CollisionShape2D.set_deferred("disabled", true)
 	$InvisTimer.start(1)
 	acceleration = .25
 
