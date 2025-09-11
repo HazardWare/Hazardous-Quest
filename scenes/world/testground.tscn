@@ -1,17 +1,11 @@
-[gd_scene load_steps=20 format=4 uid="uid://sngxe0i2hgws"]
+[gd_scene load_steps=9 format=4 uid="uid://sngxe0i2hgws"]
 
 [ext_resource type="TileSet" uid="uid://cmv7wt2iltbsn" path="res://resources/tileset_overworld.tres" id="2_6jbqq"]
 [ext_resource type="TileSet" uid="uid://bf0282xnk7ejk" path="res://resources/tileset_stolen.tres" id="2_hoi4q"]
 [ext_resource type="Shader" uid="uid://cuj6586hcjnpt" path="res://addons/eye_dropper/eye_dropper.gdshader" id="2_ncjw0"]
-[ext_resource type="PackedScene" uid="uid://fld1btwmqjbj" path="res://scenes/enemy/BrownRat.tscn" id="3_gbcc7"]
 [ext_resource type="PackedScene" uid="uid://cbaut5bbgnqxc" path="res://scenes/player/player.tscn" id="3_hoi4q"]
-[ext_resource type="PackedScene" uid="uid://cwolfcl87eo2" path="res://scenes/enemy/GrayRat.tscn" id="4_6jbqq"]
-[ext_resource type="PackedScene" uid="uid://dl5mokpsoa2lv" path="res://scenes/enemy/Slime.tscn" id="5_hoi4q"]
-[ext_resource type="PackedScene" uid="uid://b28l6ka3lf1be" path="res://scenes/enemy/Ghost.tscn" id="7_hoi4q"]
-[ext_resource type="PackedScene" uid="uid://bbmsi7opk6onn" path="res://scenes/enemy/Testemy.tscn" id="8_blyci"]
-[ext_resource type="Script" uid="uid://c8cqyjlah7m1e" path="res://scripts/inheritsCharacter/class_enemy.gd" id="10_8mcbw"]
+[ext_resource type="PackedScene" uid="uid://dtma0pwtpayhs" path="res://scenes/enemy/Spider.tscn" id="6_6jbqq"]
 [ext_resource type="Shader" uid="uid://ueciorkgjdck" path="res://addons/eye_dropper/xBRZ.gdshader" id="11_mfjm1"]
-[ext_resource type="Texture2D" uid="uid://j25fmegii0o0" path="res://assets/tilesheets/tile_characters.png" id="12_k0dn7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8mcbw"]
 shader = ExtResource("11_mfjm1")
@@ -25,33 +19,6 @@ shader = ExtResource("2_ncjw0")
 shader_parameter/palette_array_size = 8
 shader_parameter/input_palette_array = PackedColorArray(0.517647, 0.776471, 0.411765, 1, 0.278431, 0.623529, 0.290196, 1, 0.247059, 0.141176, 0.188235, 1, 0.917647, 0.647059, 0.423529, 1, 0.396078, 0.647059, 0.337255, 1, 0.247059, 0.141176, 0.188235, 1, 0, 0.603922, 0.862745, 1, 0, 0, 0, 1)
 shader_parameter/output_palette_array = PackedColorArray(1, 0, 0, 1, 0.819608, 0, 0, 0.733333, 0.803922, 0.768627, 0.407843, 1, 0.654902, 0.235294, 0.192157, 1, 0.639216, 0, 0.227451, 1, 0.94902, 0.0470588, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ldn16"]
-shader = ExtResource("11_mfjm1")
-shader_parameter/LUMINANCE_WEIGHT = 0.69
-shader_parameter/EQUAL_COLOR_TOLERANCE = -0.005
-shader_parameter/STEEP_DIRECTION_THRESHOLD = 1.2
-shader_parameter/DOMINANT_DIRECTION_THRESHOLD = 3.545
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_otq2w"]
-atlas = ExtResource("12_k0dn7")
-region = Rect2(48, 48, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_62va0"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_otq2w")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_t37u7"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_iccoa"]
-radius = 7.0
 
 [node name="TestingSpace" type="Node2D"]
 y_sort_enabled = true
@@ -122,82 +89,10 @@ z_index = 1
 position = Vector2(33, -35)
 floorTilemap = NodePath("../Ground")
 
-[node name="BrownRat" parent="." instance=ExtResource("3_gbcc7")]
-position = Vector2(148.83, -77.205)
-
-[node name="BrownRat2" parent="." instance=ExtResource("3_gbcc7")]
-position = Vector2(157, -204)
-
-[node name="BrownRat3" parent="." instance=ExtResource("3_gbcc7")]
-position = Vector2(157, -204)
-
-[node name="BrownRat4" parent="." instance=ExtResource("3_gbcc7")]
-position = Vector2(-27, -180)
-
-[node name="BrownRat5" parent="." instance=ExtResource("3_gbcc7")]
-position = Vector2(-193, -142)
-
-[node name="BrownRat6" parent="." instance=ExtResource("3_gbcc7")]
-position = Vector2(177, 17)
-
-[node name="BrownRat7" parent="." instance=ExtResource("3_gbcc7")]
-position = Vector2(29, 133)
-
-[node name="GrayRat" parent="." instance=ExtResource("4_6jbqq")]
-position = Vector2(0, -133.935)
-maximumHealth = 10
-knockbackResistance = -8.0
-
-[node name="Slime" parent="." instance=ExtResource("5_hoi4q")]
-position = Vector2(-171.265, 0)
-
-[node name="Ghost" parent="." instance=ExtResource("7_hoi4q")]
-position = Vector2(200, 143)
-
-[node name="Testemy" parent="." instance=ExtResource("8_blyci")]
-position = Vector2(-22, -18)
-
-[node name="Testemy2" type="CharacterBody2D" parent="." node_paths=PackedStringArray("navInterval", "navAgent", "hurtBox", "sprite")]
-position = Vector2(4, 9)
-collision_layer = 26
-collision_mask = 59
-motion_mode = 1
-script = ExtResource("10_8mcbw")
-navInterval = NodePath("Timer")
-navAgent = NodePath("NavigationAgent2D")
-hurtBox = NodePath("HurtBox")
-speed = 100.0
-shouldBleed = false
-sprite = NodePath("AnimatedSprite2D")
-metadata/_custom_type_script = "uid://c8cqyjlah7m1e"
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Testemy2"]
-material = SubResource("ShaderMaterial_ldn16")
-sprite_frames = SubResource("SpriteFrames_62va0")
-
-[node name="HurtBox" type="Area2D" parent="Testemy2"]
-visible = false
-collision_layer = 2
-collision_mask = 33
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Testemy2/HurtBox"]
-shape = SubResource("CircleShape2D_t37u7")
-debug_color = Color(0.7, 0, 0.0116665, 0.419608)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Testemy2"]
-visible = false
-shape = SubResource("CircleShape2D_iccoa")
-
-[node name="Timer" type="Timer" parent="Testemy2"]
-wait_time = 0.1
-autostart = true
-
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Testemy2"]
-path_postprocessing = 1
-simplify_path = true
-avoidance_enabled = true
-avoidance_layers = 2
-avoidance_mask = 2
+[node name="Testemy" parent="." instance=ExtResource("6_6jbqq")]
+z_index = 1
+position = Vector2(-291, -48)
+moving = true
 
 [node name="Label" type="Label" parent="."]
 offset_left = 262.0
