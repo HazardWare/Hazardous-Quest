@@ -48,8 +48,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	super(delta)
 	
-	$EnemyComponents/HealthBar.value = health
-	$EnemyComponents/HealthBar.max_value = maximumHealth
+	updateHealth()
 	
 	if $EnemyComponents/StallTimer.time_left != 0.0:
 		return
@@ -80,6 +79,10 @@ func basicMoving(delta):
 	move_and_slide()
 	handlePush()
 	
+func updateHealth():
+	$EnemyComponents/HealthBar.value = health
+	$EnemyComponents/HealthBar.max_value = maximumHealth
+	$EnemyComponents/HealthBar.position.y = sprite.position.y + 11
 func continousDamage(delta):
 	for x in hurtBox.get_overlapping_areas():
 		var parent : Node = x.get_parent()
