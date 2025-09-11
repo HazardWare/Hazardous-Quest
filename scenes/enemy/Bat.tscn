@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://bt30reciuchwo"]
+[gd_scene load_steps=12 format=3 uid="uid://bt30reciuchwo"]
 
 [ext_resource type="Script" uid="uid://bswdc61wcq64w" path="res://scenes/enemy/bat.gd" id="1_v3x7j"]
+[ext_resource type="Texture2D" uid="uid://bfhvj6oinr7t0" path="res://assets/sprites/shadow.png" id="2_dw5eu"]
 [ext_resource type="Texture2D" uid="uid://j25fmegii0o0" path="res://assets/tilesheets/tile_characters.png" id="3_iok2d"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1d85k"]
@@ -25,7 +26,45 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_iccoa"]
 radius = 7.0
 
-[node name="Testemy" type="CharacterBody2D" node_paths=PackedStringArray("navInterval", "navAgent", "hurtBox", "sprite")]
+[sub_resource type="Animation" id="Animation_dw5eu"]
+resource_name = "flapping"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:offset")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -2)]
+}
+
+[sub_resource type="Animation" id="Animation_m87sa"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_iok2d"]
+_data = {
+&"RESET": SubResource("Animation_m87sa"),
+&"flapping": SubResource("Animation_dw5eu")
+}
+
+[node name="Bat" type="CharacterBody2D" node_paths=PackedStringArray("navInterval", "navAgent", "hurtBox", "sprite")]
 collision_layer = 26
 collision_mask = 59
 motion_mode = 1
@@ -37,6 +76,13 @@ speed = 100.0
 shouldBleed = false
 sprite = NodePath("AnimatedSprite2D")
 metadata/_custom_type_script = "uid://c8cqyjlah7m1e"
+
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.729412)
+show_behind_parent = true
+position = Vector2(0, 7)
+texture = ExtResource("2_dw5eu")
+offset = Vector2(0, 2.5)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_1d85k")
@@ -68,5 +114,11 @@ simplify_path = true
 avoidance_enabled = true
 avoidance_layers = 2
 avoidance_mask = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_iok2d")
+}
+autoplay = "flapping"
 
 [connection signal="timeout" from="FlyTime" to="." method="_on_fly_time_timeout"]
