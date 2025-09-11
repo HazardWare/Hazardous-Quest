@@ -4,7 +4,7 @@
 [ext_resource type="TileSet" uid="uid://bf0282xnk7ejk" path="res://resources/tileset_stolen.tres" id="2_hoi4q"]
 [ext_resource type="Shader" uid="uid://cuj6586hcjnpt" path="res://addons/eye_dropper/eye_dropper.gdshader" id="2_ncjw0"]
 [ext_resource type="PackedScene" uid="uid://cbaut5bbgnqxc" path="res://scenes/player/player.tscn" id="3_hoi4q"]
-[ext_resource type="PackedScene" uid="uid://dtma0pwtpayhs" path="res://scenes/enemy/Spider.tscn" id="6_6jbqq"]
+[ext_resource type="PackedScene" uid="uid://bt30reciuchwo" path="res://scenes/enemy/Bat.tscn" id="6_6jbqq"]
 [ext_resource type="Shader" uid="uid://ueciorkgjdck" path="res://addons/eye_dropper/xBRZ.gdshader" id="11_mfjm1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8mcbw"]
@@ -90,9 +90,6 @@ position = Vector2(33, -35)
 floorTilemap = NodePath("../Ground")
 
 [node name="Testemy" parent="." instance=ExtResource("6_6jbqq")]
-z_index = 1
-position = Vector2(-291, -48)
-moving = true
 
 [node name="Label" type="Label" parent="."]
 offset_left = 262.0
