@@ -19,6 +19,8 @@ func _physics_process(delta: float) -> void:
 	
 	move(delta)
 	continousDamage(delta)
+	move_and_slide()
+	handlePush()
 
 func fly():
 	$FlyTime.start(1)
@@ -28,8 +30,6 @@ func move(delta):
 		move_to(get_tree().get_first_node_in_group("Player").position, delta)
 	else:
 		velocity = Vector2.ZERO
-		move_and_slide()
-		handlePush()
 
 func _on_fly_time_timeout() -> void:
 	if moving:
