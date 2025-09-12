@@ -86,7 +86,7 @@ tile_set = ExtResource("2_6jbqq")
 
 [node name="Player" parent="." node_paths=PackedStringArray("floorTilemap") instance=ExtResource("3_hoi4q")]
 z_index = 1
-position = Vector2(91, -39)
+position = Vector2(44, 13)
 floorTilemap = NodePath("../Ground")
 
 [node name="Label" type="Label" parent="."]
@@ -104,4 +104,4 @@ offset_bottom = 93.0
 text = "Smoothin'"
 
 [node name="Testemy" parent="." instance=ExtResource("8_blyci")]
-position = Vector2(77, -58)
+position = Vector2(64, -41)

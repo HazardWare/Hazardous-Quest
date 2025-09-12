@@ -1,6 +1,6 @@
 extends Enemy
 
-var direction := 1
+var direction := 1.0
 
 
 
@@ -20,7 +20,7 @@ func _physics_process(delta: float) -> void:
 	continousDamage(delta)
 
 func move(delta):
-	velocity = direction * speed * delta
+	velocity.x = direction * speed * delta
 	move_and_slide()
 	handlePush()
 
