@@ -11,7 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://cu1gtbv1mtvh6" path="res://resources/NoahSword.tres" id="5_fcs02"]
 [ext_resource type="Script" uid="uid://bvpigbs724kgf" path="res://scenes/player/scene_transition.gd" id="6_75vfm"]
 [ext_resource type="AudioStream" uid="uid://bru3wbkx4vxyh" path="res://assets/sounds/outsourced/Castle/sound_arrowshot.wav" id="6_gx1jg"]
-[ext_resource type="AudioStream" uid="uid://crxrhuvgjk8b2" path="res://resources/OldFire.tres" id="8_uf5tr"]
+[ext_resource type="AudioStream" uid="uid://dlmugtocoy505" path="res://assets/sounds/fire.wav" id="7_fcs02"]
 [ext_resource type="Texture2D" uid="uid://b758kfihtjo1x" path="res://assets/sprites/game-over.png" id="9_h17s1"]
 [ext_resource type="AudioStream" uid="uid://37rtee5owvf0" path="res://assets/sounds/outsourced/Guy/15. Might Is Right But Tight.mp3" id="9_je7p5"]
 [ext_resource type="AudioStream" uid="uid://ld0damuhr2qf" path="res://assets/sounds/outsourced/Toby/snd_board_escaped.wav" id="21_3j4b4"]
@@ -746,7 +746,7 @@ stream = SubResource("AudioStreamRandomizer_gx1jg")
 max_polyphony = 3
 
 [node name="Flame" type="AudioStreamPlayer" parent="Arm"]
-stream = ExtResource("8_uf5tr")
+stream = ExtResource("7_fcs02")
 max_polyphony = 3
 
 [node name="Marker2D" type="Marker2D" parent="Arm"]
