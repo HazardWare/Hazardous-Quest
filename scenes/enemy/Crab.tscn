@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bgaa4f8ceawc5"]
+[gd_scene load_steps=9 format=3 uid="uid://bgaa4f8ceawc5"]
 
 [ext_resource type="Script" uid="uid://blqnns5gjimqw" path="res://scenes/enemy/crab.gd" id="1_h2udd"]
 [ext_resource type="Texture2D" uid="uid://j25fmegii0o0" path="res://assets/tilesheets/tile_characters.png" id="3_cw47l"]
@@ -25,6 +25,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_iccoa"]
 radius = 7.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h2udd"]
+size = Vector2(2, 16)
+
 [node name="Testemy" type="CharacterBody2D" node_paths=PackedStringArray("navInterval", "navAgent", "hurtBox", "sprite")]
 collision_layer = 26
 collision_mask = 59
@@ -33,7 +36,7 @@ script = ExtResource("1_h2udd")
 navInterval = NodePath("Timer")
 navAgent = NodePath("NavigationAgent2D")
 hurtBox = NodePath("HurtBox")
-speed = 100.0
+speed = 75.0
 strength = 0
 shouldBleed = false
 sprite = NodePath("AnimatedSprite2D")
@@ -46,11 +49,11 @@ material = SubResource("ShaderMaterial_1d85k")
 sprite_frames = SubResource("SpriteFrames_62va0")
 
 [node name="HurtBox" type="Area2D" parent="."]
-visible = false
 collision_layer = 2
 collision_mask = 33
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+visible = false
 shape = SubResource("CircleShape2D_t37u7")
 debug_color = Color(0.7, 0, 0.0116665, 0.419608)
 
@@ -68,3 +71,18 @@ simplify_path = true
 avoidance_enabled = true
 avoidance_layers = 2
 avoidance_mask = 2
+
+[node name="LeftBoundary" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftBoundary"]
+position = Vector2(-9, 0)
+shape = SubResource("RectangleShape2D_h2udd")
+
+[node name="RightBoundary" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightBoundary"]
+position = Vector2(9, 0)
+shape = SubResource("RectangleShape2D_h2udd")
+
+[connection signal="area_entered" from="LeftBoundary" to="." method="_on_left_boundary_area_entered"]
+[connection signal="area_entered" from="RightBoundary" to="." method="_on_right_boundary_area_entered"]

@@ -1,5 +1,7 @@
 extends Enemy
 
+var direction := 1
+
 
 
 func _ready() -> void:
@@ -14,8 +16,16 @@ func _physics_process(delta: float) -> void:
 	if $EnemyComponents/StallTimer.time_left != 0.0:
 		return
 	
-	move_to(Vector2(get_tree().get_first_node_in_group("Player").position.x, global_position.y), delta)
+	move(delta)
 	continousDamage(delta)
+
+func move(delta):
+	velocity = direction * speed * delta
 	move_and_slide()
 	handlePush()
-	
+
+func _on_left_boundary_area_entered(area: Area2D) -> void:
+	direction = 1
+
+func _on_right_boundary_area_entered(area: Area2D) -> void:
+	direction = -1

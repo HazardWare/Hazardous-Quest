@@ -18,6 +18,7 @@ signal onDamaged(amount:int) ## Emitted on a negative decrease on health.
 @export var speed : float = 5000.0 ## Physical, in-world speed.
 @export var strength : int = 1 ## Damage the character does.
 @export var invulnerable : bool = false ## Unable to be damaged.
+@export var unknockbackable : bool = false ## Whether or not a character can be knocked back
 @export var toxic : bool = false ## Character inflicts poison.
 @export var shouldBleed : bool = true
 @export var sprite : AnimatedSprite2D 
@@ -118,7 +119,8 @@ func _physics_process(delta: float) -> void:
 	characterProcess(delta)
 
 func characterProcess(delta):
-	handleKnockback(delta)
+	if !unknockbackable:
+		handleKnockback(delta)
 	
 	if !iFraming and $CharacterComponents/iFrameBlinker.time_left != 0.0:
 		$CharacterComponents/iFrameBlinker.stop()
