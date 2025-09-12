@@ -17,9 +17,9 @@
 [ext_resource type="AudioStream" uid="uid://37rtee5owvf0" path="res://assets/sounds/outsourced/Guy/15. Might Is Right But Tight.mp3" id="9_je7p5"]
 [ext_resource type="AudioStream" uid="uid://ld0damuhr2qf" path="res://assets/sounds/outsourced/Toby/snd_board_escaped.wav" id="21_3j4b4"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dovo2"]
-atlas = ExtResource("1_8afob")
-region = Rect2(48, 128, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_myrg7"]
+atlas = ExtResource("3_qek5x")
+region = Rect2(48, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5gtgg"]
 atlas = ExtResource("3_qek5x")
@@ -29,7 +29,7 @@ region = Rect2(80, 16, 16, 16)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_dovo2")
+"texture": SubResource("AtlasTexture_myrg7")
 }],
 "loop": true,
 "name": &"default",
@@ -44,22 +44,22 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_kvlxm"]
+atlas = ExtResource("3_gmlin")
+region = Rect2(0, 32, 16, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_lvxji"]
 atlas = ExtResource("1_8afob")
 region = Rect2(96, 128, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_p47bc"]
-atlas = ExtResource("1_8afob")
-region = Rect2(80, 128, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_p47bc"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_lvxji")
+"texture": SubResource("AtlasTexture_kvlxm")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_p47bc")
+"texture": SubResource("AtlasTexture_lvxji")
 }],
 "loop": true,
 "name": &"shield",
@@ -406,15 +406,15 @@ random_pitch = 1.1
 streams_count = 1
 stream_0/stream = ExtResource("6_gx1jg")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gmlin"]
-atlas = ExtResource("1_8afob")
-region = Rect2(128, 128, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_uf5tr"]
+atlas = ExtResource("3_gmlin")
+region = Rect2(48, 32, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_lvxji"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_gmlin")
+"texture": SubResource("AtlasTexture_uf5tr")
 }],
 "loop": true,
 "name": &"default",
@@ -696,7 +696,6 @@ texture_filter = 1
 position = Vector2(4, -4)
 sprite_frames = SubResource("SpriteFrames_p47bc")
 animation = &"shield"
-frame = 1
 frame_progress = 0.653446
 
 [node name="Fox" type="Sprite2D" parent="AnimatedSprite2D"]
