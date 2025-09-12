@@ -477,3 +477,11 @@ offset_right = 1276.0
 offset_bottom = -1948.0
 theme_override_font_sizes/font_size = 500
 text = "KINGDOM OF ALENNIA"
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 62.0
+offset_top = -56.0
+offset_right = 484.0
+offset_bottom = -7.0
+text = "if max changes the sound effects one more time
+i will kill him"
