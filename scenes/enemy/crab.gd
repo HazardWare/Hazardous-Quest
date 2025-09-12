@@ -1,6 +1,6 @@
 extends Enemy
 
-var direction := 1.0
+var direction := -1.0
 
 
 
@@ -8,6 +8,7 @@ func _ready() -> void:
 	super()
 
 func _physics_process(delta: float) -> void:
+	print(direction)
 	characterProcess(delta)
 	
 	$EnemyComponents/HealthBar.value = health
@@ -20,7 +21,7 @@ func _physics_process(delta: float) -> void:
 	continousDamage(delta)
 
 func move(delta):
-	velocity.x = direction * speed * delta
+	velocity.x = direction * speed * delta * 100
 	move_and_slide()
 	handlePush()
 
