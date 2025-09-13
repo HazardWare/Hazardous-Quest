@@ -35,6 +35,7 @@ toScene = "uid://sngxe0i2hgws"
 texture = ExtResource("5_4toup")
 
 [node name="ChangeSceneTrigger2" parent="." instance=ExtResource("4_w8xv3")]
+z_index = -2
 position = Vector2(337, 211)
 toScene = "uid://1i7d15bac2tf"
 

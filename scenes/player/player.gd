@@ -76,9 +76,9 @@ func _ready() -> void:
 	
 	SaveLoad._load()
 	$UIElements/UI.update_health(self)
-	super()
+	#super()
 	$CharacterComponents/Hit.stream = AudioStreamWAV.load_from_file("res://assets/sounds/outsourced/Toby/snd_hurt1.wav")
-
+	
 	
 
 func _physics_process(delta: float) -> void:
@@ -101,7 +101,6 @@ var nextScene = ""
 var _swipedir = false
 
 func _input(event: InputEvent) -> void:
-	
 	#region debug
 	if event.is_action_pressed("ui_undo"):
 		nextScene = ""
