@@ -103,9 +103,11 @@ var _swipedir = false
 func _input(event: InputEvent) -> void:
 	
 	#region debug
-	if event.is_action_pressed("ui_undo") or event.is_action_pressed("restart"):
+	if event.is_action_pressed("ui_undo"):
 		nextScene = ""
 		$UIElements/SceneTransitionAnimation.play("fade_out")
+	if event.is_action_pressed("restart"):
+		get_tree().reload_current_scene()
 		
 	if event.is_action_pressed("ui_text_select_all"):
 		nextScene = "res://scenes/world/testground.tscn"

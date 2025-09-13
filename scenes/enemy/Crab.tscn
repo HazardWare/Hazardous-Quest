@@ -31,14 +31,15 @@ size = Vector2(2, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dgi1e"]
 size = Vector2(2, 16)
 
-[node name="Testemy" type="CharacterBody2D" node_paths=PackedStringArray("navInterval", "navAgent", "hurtBox", "sprite")]
+[node name="Crab" type="CharacterBody2D" node_paths=PackedStringArray("navInterval", "navAgent", "hurtBox", "sprite")]
 collision_layer = 26
-collision_mask = 59
+collision_mask = 58
 motion_mode = 1
 script = ExtResource("1_h2udd")
 navInterval = NodePath("Timer")
 navAgent = NodePath("NavigationAgent2D")
 hurtBox = NodePath("HurtBox")
+maximumHealth = 15
 speed = 100.0
 strength = 0
 shouldBleed = false

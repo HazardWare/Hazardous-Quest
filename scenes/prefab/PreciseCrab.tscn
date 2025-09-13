@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=3 uid="uid://dek7cq2b4upjp"]
+
+[ext_resource type="Script" uid="uid://cwneiwc2kyof8" path="res://scenes/prefab/precise_crab.gd" id="1_j8k8f"]
+[ext_resource type="Texture2D" uid="uid://j25fmegii0o0" path="res://assets/tilesheets/tile_characters.png" id="2_61mlm"]
+[ext_resource type="Shader" uid="uid://cuj6586hcjnpt" path="res://addons/eye_dropper/eye_dropper.gdshader" id="2_m4p6p"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7dtna"]
+shader = ExtResource("2_m4p6p")
+shader_parameter/palette_array_size = 6
+shader_parameter/input_palette_array = PackedColorArray(0.909804, 0.270588, 0.215686, 1, 1, 0.439216, 0.427451, 1, 0.462745, 0.231373, 0.211765, 1, 0.741176, 0.423529, 0.290196, 1, 0.968627, 0.760784, 0.509804, 1, 0.247059, 0.14902, 0.192157, 1, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/output_palette_array = PackedColorArray(0.1564, 0.21148, 0.34, 1, 0.385, 0.5, 0.5, 1, 0.71, 0.71, 0.71, 1, 0.33, 0.33, 0.33, 1, 0.4418, 0.47, 0.45167, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h2udd"]
+atlas = ExtResource("2_61mlm")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_62va0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h2udd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t37u7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iccoa"]
+radius = 7.0
+
+[node name="PreciseCrab" type="CharacterBody2D" node_paths=PackedStringArray("hurtBox")]
+collision_layer = 26
+collision_mask = 26
+motion_mode = 1
+script = ExtResource("1_j8k8f")
+hurtBox = NodePath("HurtBox")
+invulnerable = true
+metadata/_custom_type_script = "uid://c8cqyjlah7m1e"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_7dtna")
+sprite_frames = SubResource("SpriteFrames_62va0")
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 33
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+visible = false
+shape = SubResource("CircleShape2D_t37u7")
+debug_color = Color(0.7, 0, 0.0116665, 0.419608)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_iccoa")
+disabled = true

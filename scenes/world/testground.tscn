@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=4 uid="uid://sngxe0i2hgws"]
+[gd_scene load_steps=14 format=4 uid="uid://sngxe0i2hgws"]
 
 [ext_resource type="TileSet" uid="uid://cmv7wt2iltbsn" path="res://resources/tileset_overworld.tres" id="2_6jbqq"]
 [ext_resource type="TileSet" uid="uid://bf0282xnk7ejk" path="res://resources/tileset_stolen.tres" id="2_hoi4q"]
 [ext_resource type="Shader" uid="uid://cuj6586hcjnpt" path="res://addons/eye_dropper/eye_dropper.gdshader" id="2_ncjw0"]
 [ext_resource type="PackedScene" uid="uid://cbaut5bbgnqxc" path="res://scenes/player/player.tscn" id="3_hoi4q"]
+[ext_resource type="PackedScene" uid="uid://dysnokkn1iw31" path="res://scenes/prefab/Spike.tscn" id="7_hoi4q"]
 [ext_resource type="PackedScene" uid="uid://bgaa4f8ceawc5" path="res://scenes/enemy/Crab.tscn" id="8_blyci"]
+[ext_resource type="PackedScene" uid="uid://dek7cq2b4upjp" path="res://scenes/prefab/PreciseCrab.tscn" id="8_ncjw0"]
 [ext_resource type="Shader" uid="uid://ueciorkgjdck" path="res://addons/eye_dropper/xBRZ.gdshader" id="11_mfjm1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8mcbw"]
@@ -19,6 +21,45 @@ shader = ExtResource("2_ncjw0")
 shader_parameter/palette_array_size = 8
 shader_parameter/input_palette_array = PackedColorArray(0.517647, 0.776471, 0.411765, 1, 0.278431, 0.623529, 0.290196, 1, 0.247059, 0.141176, 0.188235, 1, 0.917647, 0.647059, 0.423529, 1, 0.396078, 0.647059, 0.337255, 1, 0.247059, 0.141176, 0.188235, 1, 0, 0.603922, 0.862745, 1, 0, 0, 0, 1)
 shader_parameter/output_palette_array = PackedColorArray(1, 0, 0, 1, 0.819608, 0, 0, 0.733333, 0.803922, 0.768627, 0.407843, 1, 0.654902, 0.235294, 0.192157, 1, 0.639216, 0, 0.227451, 1, 0.94902, 0.0470588, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0)
+
+[sub_resource type="Animation" id="Animation_blyci"]
+resource_name = "move"
+length = 10.0
+loop_mode = 1
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4, 5, 7, 8, 9, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-32, -8), Vector2(-192, 8), Vector2(-184, -144), Vector2(-16, -56), Vector2(16, 48), Vector2(-296, -96), Vector2(-168, -8), Vector2(-40, -152), Vector2(0, -24), Vector2(-256, -16)]
+}
+
+[sub_resource type="Animation" id="Animation_ncjw0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-32, -8)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u4dwb"]
+_data = {
+&"RESET": SubResource("Animation_ncjw0"),
+&"move": SubResource("Animation_blyci")
+}
 
 [node name="TestingSpace" type="Node2D"]
 y_sort_enabled = true
@@ -103,5 +144,76 @@ offset_right = 552.0
 offset_bottom = 93.0
 text = "Smoothin'"
 
-[node name="Testemy" parent="." instance=ExtResource("8_blyci")]
+[node name="Crab" parent="." instance=ExtResource("8_blyci")]
 position = Vector2(64, -41)
+
+[node name="Spikes" type="Node" parent="."]
+
+[node name="Spike" parent="Spikes" instance=ExtResource("7_hoi4q")]
+position = Vector2(96, -40)
+
+[node name="Spike2" parent="Spikes" instance=ExtResource("7_hoi4q")]
+position = Vector2(80, -56)
+
+[node name="Spike3" parent="Spikes" instance=ExtResource("7_hoi4q")]
+position = Vector2(-368, -40)
+
+[node name="Spike4" parent="Spikes" instance=ExtResource("7_hoi4q")]
+position = Vector2(-320, -40)
+
+[node name="Spike5" parent="Spikes" instance=ExtResource("7_hoi4q")]
+position = Vector2(-272, -40)
+
+[node name="Spike6" parent="Spikes" instance=ExtResource("7_hoi4q")]
+position = Vector2(-224, -40)
+
+[node name="Spike7" parent="Spikes" instance=ExtResource("7_hoi4q")]
+position = Vector2(-176, -40)
+
+[node name="Spike8" parent="Spikes" instance=ExtResource("7_hoi4q")]
+position = Vector2(-128, -40)
+
+[node name="Spike9" parent="Spikes" instance=ExtResource("7_hoi4q")]
+position = Vector2(-80, -40)
+
+[node name="Spike10" parent="Spikes" instance=ExtResource("7_hoi4q")]
+position = Vector2(-32, -40)
+
+[node name="Spike11" parent="Spikes" instance=ExtResource("7_hoi4q")]
+position = Vector2(16, -40)
+
+[node name="Spike12" parent="Spikes" instance=ExtResource("7_hoi4q")]
+position = Vector2(40, -56)
+
+[node name="Spike13" parent="Spikes" instance=ExtResource("7_hoi4q")]
+position = Vector2(-8, -56)
+
+[node name="Spike14" parent="Spikes" instance=ExtResource("7_hoi4q")]
+position = Vector2(-56, -56)
+
+[node name="Spike15" parent="Spikes" instance=ExtResource("7_hoi4q")]
+position = Vector2(-104, -56)
+
+[node name="Spike16" parent="Spikes" instance=ExtResource("7_hoi4q")]
+position = Vector2(-152, -56)
+
+[node name="Spike17" parent="Spikes" instance=ExtResource("7_hoi4q")]
+position = Vector2(-200, -56)
+
+[node name="Spike18" parent="Spikes" instance=ExtResource("7_hoi4q")]
+position = Vector2(-248, -56)
+
+[node name="Spike19" parent="Spikes" instance=ExtResource("7_hoi4q")]
+position = Vector2(-296, -56)
+
+[node name="Spike20" parent="Spikes" instance=ExtResource("7_hoi4q")]
+position = Vector2(-344, -56)
+
+[node name="PreciseCrab" parent="." instance=ExtResource("8_ncjw0")]
+position = Vector2(-32, -8)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PreciseCrab"]
+libraries = {
+&"": SubResource("AnimationLibrary_u4dwb")
+}
+autoplay = "move"

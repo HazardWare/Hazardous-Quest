@@ -14,7 +14,7 @@ func _physics_process(delta: float) -> void:
 	if $EnemyComponents/StallTimer.time_left != 0.0:
 		return
 	
-	move_to(get_tree().get_first_node_in_group("Player").position, delta)
+	move_to(playerReference.position, delta)
 	continousDamage(delta)
 	move_and_slide()
 	handlePush()

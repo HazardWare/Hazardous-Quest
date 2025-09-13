@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://dysnokkn1iw31"]
+
+[ext_resource type="Script" uid="uid://cw2r4a5eye8mf" path="res://scenes/prefab/spike.gd" id="1_kv2wc"]
+[ext_resource type="Texture2D" uid="uid://mg42qt04rif8" path="res://assets/tilesheets/tile_dungeon.png" id="2_kv2wc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4h6gr"]
+atlas = ExtResource("2_kv2wc")
+region = Rect2(80, 48, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_62va0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4h6gr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t37u7"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iccoa"]
+radius = 1.0
+
+[node name="Spike" type="CharacterBody2D" node_paths=PackedStringArray("hurtBox")]
+z_index = -1
+collision_layer = 26
+collision_mask = 26
+motion_mode = 1
+script = ExtResource("1_kv2wc")
+hurtBox = NodePath("HurtBox")
+maximumHealth = 5
+speed = 100.0
+strength = 2
+shouldBleed = false
+metadata/_custom_type_script = "uid://c8cqyjlah7m1e"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_62va0")
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 33
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("CircleShape2D_t37u7")
+debug_color = Color(0.7, 0, 0.0116665, 0.419608)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_iccoa")
+disabled = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
