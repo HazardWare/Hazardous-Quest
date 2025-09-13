@@ -31,13 +31,13 @@ tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 2, 3, 4, 5, 7, 8, 9, 10),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-32, -8), Vector2(-192, 8), Vector2(-184, -144), Vector2(-16, -56), Vector2(16, 48), Vector2(-296, -96), Vector2(-168, -8), Vector2(-40, -152), Vector2(0, -24), Vector2(-256, -16)]
+"values": [Vector2(-32, -8), Vector2(-192, 8), Vector2(-184, -144), Vector2(-16, -56), Vector2(16, 48), Vector2(-296, -96), Vector2(32, 128), Vector2(-168, -8), Vector2(-40, -152), Vector2(0, -24), Vector2(-256, -16)]
 }
 
 [sub_resource type="Animation" id="Animation_ncjw0"]
@@ -136,6 +136,14 @@ offset_top = -129.0
 offset_right = 464.0
 offset_bottom = -106.0
 text = "Color palette swap shader"
+
+[node name="Label3" type="Label" parent="."]
+offset_left = -312.0
+offset_top = -128.0
+offset_right = -110.0
+offset_bottom = -105.0
+text = "Bug: if you collide with another crab whilst ontop another,
+once you exit the current crab you will be teleported to the other."
 
 [node name="Label2" type="Label" parent="."]
 offset_left = 350.0
