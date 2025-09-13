@@ -65,10 +65,12 @@ visible = false
 shape = SubResource("CircleShape2D_iccoa")
 
 [node name="Timer" type="Timer" parent="."]
+process_mode = 4
 wait_time = 0.1
 autostart = true
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+process_mode = 4
 path_postprocessing = 1
 simplify_path = true
 avoidance_enabled = true
@@ -90,6 +92,3 @@ collision_mask = 24
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightBoundary"]
 position = Vector2(9, 0)
 shape = SubResource("RectangleShape2D_dgi1e")
-
-[connection signal="area_entered" from="LeftBoundary" to="." method="_on_left_boundary_area_entered"]
-[connection signal="area_entered" from="RightBoundary" to="." method="_on_right_boundary_area_entered"]

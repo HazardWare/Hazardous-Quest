@@ -6,9 +6,12 @@ var direction := -1.0
 
 func _ready() -> void:
 	super()
+	$RightBoundary.body_entered.connect(_on_right)
+	$LeftBoundary.body_entered.connect(_on_left)
+	
 
 func _physics_process(delta: float) -> void:
-	print(direction)
+	#print(direction)
 	characterProcess(delta)
 	
 	$EnemyComponents/HealthBar.value = health
@@ -25,8 +28,8 @@ func move(delta):
 	move_and_slide()
 	handlePush()
 
-func _on_left_boundary_area_entered(area: Area2D) -> void:
+func _on_left(_body) -> void:
 	direction = 1
 
-func _on_right_boundary_area_entered(area: Area2D) -> void:
+func _on_right(_body) -> void:
 	direction = -1
