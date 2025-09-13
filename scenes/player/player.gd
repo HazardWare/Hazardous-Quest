@@ -83,7 +83,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	super(delta)
-	if health == 0:
+	if health == 0 or $UIElements/SceneTransitionAnimation.is_playing():
 		return
 	
 	angleToTheMouse = get_global_mouse_position().angle_to_point(position)

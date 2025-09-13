@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://sngxe0i2hgws"]
+[gd_scene load_steps=16 format=4 uid="uid://sngxe0i2hgws"]
 
 [ext_resource type="TileSet" uid="uid://cmv7wt2iltbsn" path="res://resources/tileset_overworld.tres" id="2_6jbqq"]
 [ext_resource type="TileSet" uid="uid://bf0282xnk7ejk" path="res://resources/tileset_stolen.tres" id="2_hoi4q"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://dysnokkn1iw31" path="res://scenes/prefab/Spike.tscn" id="7_hoi4q"]
 [ext_resource type="PackedScene" uid="uid://bgaa4f8ceawc5" path="res://scenes/enemy/Crab.tscn" id="8_blyci"]
 [ext_resource type="PackedScene" uid="uid://dek7cq2b4upjp" path="res://scenes/prefab/PreciseCrab.tscn" id="8_ncjw0"]
+[ext_resource type="PackedScene" uid="uid://cc87q72ysenpd" path="res://scenes/prefab/ChangeSceneTrigger.tscn" id="9_u4dwb"]
+[ext_resource type="Texture2D" uid="uid://b4de75o7d8q0e" path="res://assets/sprites/floor_button.png" id="10_1xjam"]
 [ext_resource type="Shader" uid="uid://ueciorkgjdck" path="res://addons/eye_dropper/xBRZ.gdshader" id="11_mfjm1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8mcbw"]
@@ -225,3 +227,10 @@ libraries = {
 &"": SubResource("AnimationLibrary_u4dwb")
 }
 autoplay = "move"
+
+[node name="ChangeSceneTrigger" parent="." instance=ExtResource("9_u4dwb")]
+position = Vector2(136, -8)
+toScene = "uid://clmibd6serpft"
+
+[node name="Sprite2D" type="Sprite2D" parent="ChangeSceneTrigger"]
+texture = ExtResource("10_1xjam")

@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=4 uid="uid://clmibd6serpft"]
+[gd_scene load_steps=7 format=4 uid="uid://clmibd6serpft"]
 
 [ext_resource type="Shader" uid="uid://ueciorkgjdck" path="res://addons/eye_dropper/xBRZ.gdshader" id="1_dkwxo"]
 [ext_resource type="TileSet" uid="uid://cmv7wt2iltbsn" path="res://resources/tileset_overworld.tres" id="1_i4ncd"]
 [ext_resource type="PackedScene" uid="uid://cbaut5bbgnqxc" path="res://scenes/player/player.tscn" id="3_g5tlw"]
+[ext_resource type="PackedScene" uid="uid://cc87q72ysenpd" path="res://scenes/prefab/ChangeSceneTrigger.tscn" id="4_w8xv3"]
+[ext_resource type="Texture2D" uid="uid://b4de75o7d8q0e" path="res://assets/sprites/floor_button.png" id="5_4toup"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w8xv3"]
 shader = ExtResource("1_dkwxo")
@@ -24,3 +26,17 @@ tile_set = ExtResource("1_i4ncd")
 [node name="Player" parent="." node_paths=PackedStringArray("floorTilemap") instance=ExtResource("3_g5tlw")]
 position = Vector2(133, 206)
 floorTilemap = NodePath("../Ground")
+
+[node name="ChangeSceneTrigger" parent="." instance=ExtResource("4_w8xv3")]
+position = Vector2(335, 180)
+toScene = "uid://sngxe0i2hgws"
+
+[node name="Sprite2D" type="Sprite2D" parent="ChangeSceneTrigger"]
+texture = ExtResource("5_4toup")
+
+[node name="ChangeSceneTrigger2" parent="." instance=ExtResource("4_w8xv3")]
+position = Vector2(337, 211)
+toScene = "uid://1i7d15bac2tf"
+
+[node name="Sprite2D" type="Sprite2D" parent="ChangeSceneTrigger2"]
+texture = ExtResource("5_4toup")
