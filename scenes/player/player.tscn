@@ -777,6 +777,9 @@ z_index = 3
 position = Vector2(12, 0)
 sprite_frames = SubResource("SpriteFrames_0owmy")
 
+[node name="ShootPos" type="Marker2D" parent="Arm/Bow"]
+position = Vector2(4, 0)
+
 [node name="HitBox" type="Area2D" parent="." groups=["Friendly"]]
 z_index = 2
 rotation = -1.5708

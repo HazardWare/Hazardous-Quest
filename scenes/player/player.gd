@@ -37,8 +37,8 @@ const attackModeStrength = {
 @export var requiredBowTime := 0.5
 var bowHeldTime : float = 0.0
 
-## 0 is verticle, 1 is horizontal. These are from ID 1
-const LADDER_TILE := [Vector2i(9,6),Vector2i(10,5)]
+## 0 is verticle, 1 is horizontal. These are from ID 5
+const LADDER_TILE := [Vector2i(0,2),Vector2i(1,2)]
 var lastLadder : Vector2 ## The last ladder position
 var lastPatchedTileOnAtlas : Vector3i ## The tile (on the atlas) of which lastLadder covered. Z is the ID
 
@@ -120,7 +120,9 @@ func _input(event: InputEvent) -> void:
 		SaveLoad._load()
 		
 	if event.is_action_pressed("spawn"):
-		var curEn = load("res://scenes/enemy/Testemy.tscn").instantiate()
+		
+		var selectedEnemy = Global.enemyScenes[randi_range(0,len(Global.enemyScenes)-1)]
+		var curEn = load("res://scenes/enemy/"+selectedEnemy+".tscn").instantiate()
 		curEn.global_position = get_global_mouse_position()
 		get_parent().add_child(curEn)
 		
@@ -265,21 +267,23 @@ func handleContinuousInput(delta: float):
 func shoot():
 	var currentArrow : Projectile = arrowScene.instantiate()
 	currentArrow.initial_velocity = velocity
+	
 	currentArrow.add_to_group("friendly")
 	owner.add_child(currentArrow)
 	$Arm/Shoot.play()
 	currentArrow.transform = $Arm.global_transform
-
+	currentArrow.global_position = $Arm/Bow/ShootPos.global_position
 ## Detect patchable tiles and ladder them.
 func buildBridges():
 	## Tile the player is standing on
 	var stoodOnTile : Vector2i = \
-		floorTilemap.local_to_map(floorTilemap.to_local(global_position))
+		floorTilemap.local_to_map(floorTilemap.to_local($WorldCollision.global_position))
 	
 	# If the stood on tile is a ladder, don't do nothing.
-	if floorTilemap.get_cell_atlas_coords(stoodOnTile) == LADDER_TILE[0]\
-	or floorTilemap.get_cell_atlas_coords(stoodOnTile) == LADDER_TILE[1]:
-		return
+	if floorTilemap.get_cell_source_id(stoodOnTile) == 5:
+		if floorTilemap.get_cell_atlas_coords(stoodOnTile) == LADDER_TILE[0]\
+		or floorTilemap.get_cell_atlas_coords(stoodOnTile) == LADDER_TILE[1]:
+			return
 	
 	# If the stood on tile is a hole, patch it.
 	if floorTilemap.get_cell_tile_data(stoodOnTile).get_custom_data("patchable"):
@@ -300,7 +304,7 @@ func patchTile(currentTile):
 	var theAtlasCoords = floorTilemap.get_cell_atlas_coords(currentTile)
 	
 	# Using type conversion magic, get the correct ladder
-	floorTilemap.set_cell(currentTile, 1, LADDER_TILE[\
+	floorTilemap.set_cell(currentTile, 5, LADDER_TILE[\
 		int(customData.get_custom_data("verticle"))\
 	])
 	if lastLadder:

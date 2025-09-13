@@ -60,7 +60,7 @@ uniform vec4 output_palette_array[max_palette_array_size]: source_color;
  */
 int compare_floats(float a, float b) {
 	float difference = a - b;
-	
+
 	if(abs(difference) < 0.0001) {
 		return 0;
 	} else if(difference > 0.0) {
@@ -82,12 +82,12 @@ bool color_is_approx_equal(vec4 a, vec4 b) {
 	if (
 	    a.r >= b.r - 0.001 && a.r <= b.r + 0.001 &&
 	    a.g >= b.g - 0.001 && a.g <= b.g + 0.001 &&
-	    a.b >= b.b - 0.001 && a.b <= b.b + 0.001 && 
+	    a.b >= b.b - 0.001 && a.b <= b.b + 0.001 &&
 	    a.a >= b.a - 0.001 && a.a <= b.a + 0.001
 	) {
 		return true;
 	}
-	
+
 	return false;
 }
 
@@ -112,16 +112,16 @@ bool color_is_transparent(vec4 color) {
  */
 vec2 find_color_in_palette_texture(vec4 color, sampler2D palette) {
 	ivec2 palette_size = textureSize(palette, 0);
-	
+
 	for(uint y = uint(0); y < uint(palette_size.y); y++) {
 		for(uint x = uint(0); x < uint(palette_size.x); x++) {
 			vec2 palette_coord = vec2(
 				float(x) / float(palette_size.x),
 				float(y) / float(palette_size.y)
 			);
-			
+
 			vec4 palette_color = texture(palette, palette_coord);
-			
+
 			if(color == palette_color) {
 				return palette_coord;
 			}
@@ -133,7 +133,7 @@ vec2 find_color_in_palette_texture(vec4 color, sampler2D palette) {
 			}
 		}
 	}
-	
+
 	return vec2(-1.0);
 }
 
@@ -163,11 +163,11 @@ void swap_colors_from_palette_textures(
 	vec2 palette_coord = find_color_in_palette_texture(
 		input_color, input_palette_texture
 	);
-	
+
 	if(palette_coord == vec2(-1.0)) {
 		return;
 	}
-	
+
 	output_color = get_color_from_palette_texture(
 		palette_coord,
 		output_palette_texture
@@ -194,10 +194,10 @@ int find_color_in_palette_array(vec4 color, vec4[max_palette_array_size] palette
 		0,
 		max_palette_array_size
 	));
-	
+
 	for(int i = 0; i < safe_palette_array_size; i++) {
 		vec4 palette_color = palette[i];
-		
+
 		if(color_is_approx_equal(color, palette_color)) {
 			return i;
 		}
@@ -205,7 +205,7 @@ int find_color_in_palette_array(vec4 color, vec4[max_palette_array_size] palette
 			return i;
 		}
 	}
-	
+
 	return -1;
 }
 
@@ -239,11 +239,11 @@ void swap_colors_from_palette_arrays(
 		input_color,
 		input_palette_array
 	);
-	
+
 	if(palette_coord == -1) {
 		return;
 	}
-	
+
 	output_color = get_color_from_palette_array(
 		uint(palette_coord),
 		output_palette_array
@@ -262,9 +262,9 @@ void swap_colors_from_palette_arrays(
 void fragment() {
 	vec4 input_color = texture(TEXTURE, UV);
 	vec4 output_color = texture(TEXTURE, UV);
-	
+
 	swap_colors_from_palette_textures(input_color, output_color);
 	swap_colors_from_palette_arrays(input_color, output_color);
-	
+
 	COLOR = output_color;
 }

@@ -154,7 +154,6 @@ randomness = 1.0
 lifetime_randomness = 0.56
 direction = Vector2(0, 0)
 spread = 180.0
-gravity = Vector2(0, 9800)
 initial_velocity_min = 120.0
 initial_velocity_max = 120.0
 angular_velocity_min = -128.0
@@ -200,6 +199,7 @@ one_shot = true
 wait_time = 0.1
 
 [node name="Death" type="AudioStreamPlayer2D" parent="."]
+editor_description = "Test"
 stream = SubResource("AudioStreamRandomizer_vms71")
 
 [node name="Hit" type="AudioStreamPlayer2D" parent="."]
