@@ -18,8 +18,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_t37u7"]
-radius = 8.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rv7ib"]
+size = Vector2(14, 14)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_iccoa"]
 radius = 1.0
@@ -46,10 +46,11 @@ collision_layer = 2
 collision_mask = 33
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-shape = SubResource("CircleShape2D_t37u7")
-debug_color = Color(0.7, 0, 0.0116665, 0.419608)
+shape = SubResource("RectangleShape2D_rv7ib")
+debug_color = Color(0.75, 0, 0.0124998, 0.701961)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_iccoa")
 disabled = true
 
