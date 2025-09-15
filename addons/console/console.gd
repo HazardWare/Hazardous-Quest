@@ -167,7 +167,7 @@ func _ready() -> void:
 	add_command("pause", pause, 0, 0, "Pauses node processing.")
 	add_command("unpause", unpause, 0, 0, "Unpauses node processing.")
 	add_command("exec", exec, 1, 1, "Execute a script.")
-
+	
 
 func _input(event : InputEvent) -> void:
 	if (event is InputEventKey):

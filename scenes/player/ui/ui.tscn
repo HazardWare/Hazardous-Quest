@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://7m71hjxpym6n"]
+[gd_scene load_steps=28 format=3 uid="uid://7m71hjxpym6n"]
 
 [ext_resource type="Script" uid="uid://ki77yappuguq" path="res://scenes/player/ui/ui.gd" id="1_lpj6m"]
 [ext_resource type="FontFile" uid="uid://2tmbtr1x8urg" path="res://assets/fonts/PublicPixel.ttf" id="2_crj82"]
@@ -102,6 +102,25 @@ anti_aliasing = false
 [sub_resource type="LabelSettings" id="LabelSettings_qno0g"]
 font = ExtResource("2_crj82")
 font_size = 32
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5gxme"]
+bg_color = Color(0.247059, 0.14902, 0.192157, 0.403922)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.247059, 0.14902, 0.192157, 1)
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+anti_aliasing = false
+
+[sub_resource type="LabelSettings" id="LabelSettings_djsyo"]
+font = ExtResource("2_crj82")
+
+[sub_resource type="LabelSettings" id="LabelSettings_dnt87"]
+font = ExtResource("2_crj82")
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -224,6 +243,7 @@ layout_direction = 2
 layout_mode = 2
 
 [node name="PotionList" type="HBoxContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -487,6 +507,7 @@ texture = SubResource("AtlasTexture_fvvt8")
 stretch_mode = 5
 
 [node name="Action" type="Panel" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -520,3 +541,38 @@ vertical_alignment = 1
 autowrap_mode = 1
 uppercase = true
 metadata/_edit_use_anchors_ = true
+
+[node name="DialoguePanel" type="Panel" parent="."]
+custom_minimum_size = Vector2(1000, 150)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -400.0
+offset_top = -198.0
+offset_right = 400.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_5gxme")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DialoguePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Name" type="Label" parent="DialoguePanel/VBoxContainer"]
+layout_mode = 2
+text = "the wizard"
+label_settings = SubResource("LabelSettings_djsyo")
+horizontal_alignment = 1
+uppercase = true
+
+[node name="Speech" type="Label" parent="DialoguePanel/VBoxContainer"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_dnt87")
