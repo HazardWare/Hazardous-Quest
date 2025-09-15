@@ -5,6 +5,9 @@ extends Control
 @onready var health_bar: HBoxContainer = $PanelTop/VBoxContainer/HealthBar
 @onready var blue_bar: HBoxContainer = $PanelTop/VBoxContainer/BlueBar
 
+func _ready() -> void:
+	Console.add_command("hq_say", dialogue_box_say, 2)
+
 func update_health(player : Character):
 	
 	# Clear children
@@ -52,3 +55,11 @@ func _process(delta: float) -> void:
 		$Action/Label.text = "SWIPE"
 	else:
 		$Action/Label.text = "JAB"
+
+
+func dialogue_box_say(dialogue : String, speaker_name : String, speed : float = 0.02):
+	$DialoguePanel/VBoxContainer/Speech.text = ""
+	$DialoguePanel/VBoxContainer/Name.text = speaker_name
+	for i in len(dialogue):
+		$DialoguePanel/VBoxContainer/Speech.text += dialogue[i]
+		await get_tree().create_timer(speed).timeout
