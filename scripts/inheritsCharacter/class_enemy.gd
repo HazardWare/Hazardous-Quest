@@ -26,7 +26,13 @@ var spawnerNode : Node2D
 @export_subgroup("")
 #@onready var floorTilemap :TileMapLayer = get_tree().get_nodes_in_group("Tilemap")[0]
 #@onready var obstacles :TileMapLayer = get_tree().get_nodes_in_group("Tilemap")[1]
-
+var canSeePlayer: Variant:
+	get:
+		return $EnemyComponents.canSeePlayer
+		
+var playerReference: Character:
+	get:
+		return get_tree().get_first_node_in_group("Player")
 var enemyComponent = preload("res://scenes/components/EnemyComponents.tscn")
 
 #region Godot Functions:
@@ -90,12 +96,16 @@ func continousDamage(delta):
 		var parent : Node = x.get_parent()
 		if parent is Character and parent.is_in_group("Friendly"):
 			parent.health -= strength
-		
-#endregion
-#region Signal:
 
-func areaEntered(area : Area2D):
-	
+
+var moving := false
+func move(delta):
+	if moving and canSeePlayer:
+		move_to(playerReference.position, delta)
+	else:
+		velocity = lerp(velocity, Vector2.ZERO, friction * delta)		
+
+func handleKnockbackAndDamage(area):
 	var parent : Node = area.get_parent()
 	if parent is Character and parent.is_in_group("Friendly"):
 		parent.applyKnockback((area.global_position - global_position).normalized(), 250.0, 0.12)
@@ -106,3 +116,10 @@ func areaEntered(area : Area2D):
 			enemy_hit.emit()
 	if parent is Weapon:
 			self.health -= parent.strength
+#endregion
+#region Signal:
+
+func areaEntered(area : Area2D):
+	handleKnockbackAndDamage(area)
+	
+	

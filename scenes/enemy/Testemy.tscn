@@ -1,36 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://bbmsi7opk6onn"]
+[gd_scene load_steps=6 format=3 uid="uid://bbmsi7opk6onn"]
 
-[ext_resource type="Shader" uid="uid://cuj6586hcjnpt" path="res://addons/eye_dropper/eye_dropper.gdshader" id="1_2febf"]
-[ext_resource type="Script" uid="uid://c8cqyjlah7m1e" path="res://scripts/inheritsCharacter/class_enemy.gd" id="1_p1msc"]
-[ext_resource type="Texture2D" uid="uid://j25fmegii0o0" path="res://assets/tilesheets/tile_characters.png" id="2_p1msc"]
-
-[sub_resource type="Gradient" id="Gradient_2febf"]
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_1d85k"]
-gradient = SubResource("Gradient_2febf")
-
-[sub_resource type="Gradient" id="Gradient_idcjd"]
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_hrb3h"]
-gradient = SubResource("Gradient_idcjd")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1d85k"]
-shader = ExtResource("1_2febf")
-shader_parameter/palette_array_size = 4
-shader_parameter/input_palette_texture = SubResource("GradientTexture1D_1d85k")
-shader_parameter/output_palette_texture = SubResource("GradientTexture1D_hrb3h")
-shader_parameter/input_palette_array = PackedColorArray(0.247059, 0.14902, 0.192157, 1, 0.741176, 0.423529, 0.290196, 1, 0.917647, 0.647059, 0.423529, 1, 0.752941, 0.796078, 0.862745, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-shader_parameter/output_palette_array = PackedColorArray(1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1, 3.85046e-06, 0.584374, 0.777072, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_otq2w"]
-atlas = ExtResource("2_p1msc")
-region = Rect2(48, 48, 16, 16)
+[ext_resource type="Script" uid="uid://b1vyv0s8qabrx" path="res://scenes/enemy/testemy.gd" id="1_t37u7"]
+[ext_resource type="Texture2D" uid="uid://b26qnouvwsfqt" path="res://assets/sprites/rat.png" id="2_t37u7"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_62va0"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_otq2w")
+"texture": ExtResource("2_t37u7")
 }],
 "loop": true,
 "name": &"default",
@@ -46,7 +23,7 @@ radius = 7.0
 collision_layer = 26
 collision_mask = 59
 motion_mode = 1
-script = ExtResource("1_p1msc")
+script = ExtResource("1_t37u7")
 navInterval = NodePath("Timer")
 navAgent = NodePath("NavigationAgent2D")
 hurtBox = NodePath("HurtBox")
@@ -56,7 +33,6 @@ sprite = NodePath("AnimatedSprite2D")
 metadata/_custom_type_script = "uid://c8cqyjlah7m1e"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-material = SubResource("ShaderMaterial_1d85k")
 sprite_frames = SubResource("SpriteFrames_62va0")
 
 [node name="HurtBox" type="Area2D" parent="."]

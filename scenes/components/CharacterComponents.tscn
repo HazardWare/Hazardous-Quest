@@ -199,6 +199,7 @@ one_shot = true
 wait_time = 0.1
 
 [node name="Death" type="AudioStreamPlayer2D" parent="."]
+editor_description = "Test"
 stream = SubResource("AudioStreamRandomizer_vms71")
 
 [node name="Hit" type="AudioStreamPlayer2D" parent="."]

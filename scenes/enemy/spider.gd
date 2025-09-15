@@ -1,8 +1,5 @@
 extends Enemy
 
-@export var moving := false
-
-
 
 func _ready() -> void:
 	super()
@@ -18,6 +15,8 @@ func _physics_process(delta: float) -> void:
 	move(delta)
 	continousDamage(delta)
 
+	
+
 func jump():
 	$AnimationPlayer.play("jump")
 	await !moving
@@ -31,6 +30,5 @@ func move(delta):
 			velocity = Vector2.ZERO
 		move_and_slide()
 		handlePush()
-
 func _on_walk_timer_timeout() -> void:
 	jump()

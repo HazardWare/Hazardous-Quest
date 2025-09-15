@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://cc87q72ysenpd"]
+
+[ext_resource type="Script" uid="uid://c0hrp0r6dcdff" path="res://scenes/prefab/change_scene_trigger.gd" id="1_hydhe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nfygt"]
+
+[node name="ChangeSceneTrigger" type="Area2D"]
+script = ExtResource("1_hydhe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_nfygt")
+debug_color = Color(0.767369, 0.44698, 0, 0.42)

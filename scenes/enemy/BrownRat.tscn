@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://fld1btwmqjbj"]
 
-[ext_resource type="Script" path="res://scenes/enemy/Rats.gd" id="1_4jwsr"]
+[ext_resource type="Script" uid="uid://qc75hlcfhnl2" path="res://scenes/enemy/Rats.gd" id="1_4jwsr"]
 [ext_resource type="Texture2D" uid="uid://j25fmegii0o0" path="res://assets/tilesheets/tile_characters.png" id="2_iyyln"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_otq2w"]

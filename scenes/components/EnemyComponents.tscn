@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cr0n1oh77knc0"]
+[gd_scene load_steps=10 format=3 uid="uid://cr0n1oh77knc0"]
 
 [ext_resource type="Script" uid="uid://pwtjsc18y4lk" path="res://scenes/components/health_bar.gd" id="1_0k52e"]
+[ext_resource type="Script" uid="uid://dgrevhfy1lwxi" path="res://scenes/components/enemy_components.gd" id="1_msol8"]
 [ext_resource type="AudioStream" uid="uid://b2m2pd4ske0s6" path="res://assets/sounds/outsourced/Pizza/sfx_escapespawn.ogg" id="2_ktywn"]
+[ext_resource type="Script" uid="uid://7jmax7ily27v" path="res://scenes/components/playerDetection.gd" id="3_k1pk0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7t4eu"]
 bg_color = Color(1, 1, 1, 1)
@@ -30,6 +32,7 @@ streams_count = 1
 stream_0/stream = ExtResource("2_ktywn")
 
 [node name="EnemyComponents" type="Node2D"]
+script = ExtResource("1_msol8")
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 z_index = 10
@@ -64,3 +67,9 @@ one_shot = true
 
 [node name="Spawn" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_ktywn")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+collision_mask = 9
+script = ExtResource("3_k1pk0")
+
+[node name="LastSeenPosition" type="Marker2D" parent="."]

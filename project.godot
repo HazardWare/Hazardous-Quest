@@ -31,11 +31,12 @@ window/stretch/scale_mode="integer"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/console/plugin.cfg")
+enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg", "res://addons/console/plugin.cfg", "res://addons/nhb_functions_on_the_fly/plugin.cfg")
 
 [file_customization]
 
 folder_colors={
+"res://addons/": "gray",
 "res://assets/": "green",
 "res://resources/": "teal",
 "res://scenes/": "blue",

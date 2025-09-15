@@ -124,13 +124,12 @@ _data = {
 &"jump": SubResource("Animation_676nr")
 }
 
-[node name="Testemy" type="CharacterBody2D" node_paths=PackedStringArray("navInterval", "navAgent", "hurtBox", "sprite")]
+[node name="Spider" type="CharacterBody2D" node_paths=PackedStringArray("navInterval", "navAgent", "hurtBox", "sprite")]
 z_index = 5
 collision_layer = 26
 collision_mask = 51
 motion_mode = 1
 script = ExtResource("1_676nr")
-moving = true
 navInterval = NodePath("Timer")
 navAgent = NodePath("NavigationAgent2D")
 hurtBox = NodePath("AnimatedSprite2D/HurtBox")
