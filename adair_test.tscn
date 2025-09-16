@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://ibuck1ggssjf"]
+
+[ext_resource type="Texture2D" uid="uid://bemsmgl0t155v" path="res://icon.svg" id="1_p025t"]
+[ext_resource type="Script" uid="uid://cwqj21p2yguwt" path="res://adair_test.gd" id="1_veu5j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_veu5j"]
+size = Vector2(128, 128)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nn8gx"]
+size = Vector2(128, 128)
+
+[node name="AdairTest" type="Area2D"]
+collision_layer = 4
+collision_mask = 63
+script = ExtResource("1_veu5j")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_p025t")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 8
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_veu5j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_nn8gx")
+debug_color = Color(0.994036, 0, 0.228462, 0.42)
