@@ -60,6 +60,7 @@ func _ready() -> void:
 	# Connect all signals
 	$HitBox.area_entered.connect(_on_hit_box_area_entered)
 	$HitBox.area_exited.connect(_on_hit_box_area_exited)
+#	$AnimationPlayer.animation_changed.connect(_on_animation_changed)
 	self.onDamaged.connect(_on_on_damaged)
 	self.onHeal.connect(_on_on_heal)
 	SaveLoad.load.connect(readSaveData)
@@ -143,6 +144,11 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_right"):
 		maximumHealth += 1
 		$UIElements/UI.update_health(self)
+		
+	if event.is_action_pressed("ui_right"):
+		maximumHealth += 1
+		$UIElements/UI.update_health(self)
+		
 	#endregion
 	
 	if health == 0:
@@ -191,6 +197,10 @@ func _input(event: InputEvent) -> void:
 		$Arm/Flame.play()
 		currentFire.transform = $Arm.global_transform
 	
+	if event.is_action_pressed("roll"):
+		$AnimationPlayer.play("roll")
+		applyKnockback(Vector2.from_angle($Arm.rotation),200,0.3)
+
 
 #endregion
 
@@ -208,15 +218,17 @@ func die():
 #region Custom methods:
 ## Play and set appropriate visuals.
 func handleAnimations():
+	var rolling: bool = $AnimationPlayer.current_animation == "roll"
 	var direction := Input.get_vector("walk_left", "walk_right", "walk_up", "walk_down")
-	if direction and velocity.length() > 0 and not $Arm/Attack.is_playing():
-		$AnimationPlayer.play('walk')
-		$AnimatedSprite2D.flip_h = true if velocity.x < 0 else false
-		$AnimationPlayer.speed_scale = (velocity/speed).distance_to(Vector2.ZERO) 
-	else:
-		$AnimationPlayer.play("RESET")
+	if not rolling:
+		if direction and velocity.length() > 0 and not $Arm/Attack.is_playing():
+			$AnimationPlayer.play('walk')
+			$AnimatedSprite2D.flip_h = true if velocity.x < 0 else false
+			$AnimationPlayer.speed_scale = (velocity/speed).distance_to(Vector2.ZERO) 
+		else:
+			$AnimationPlayer.play("RESET")
+			
 		
-	
 	if bowHeldTime > 0:
 		$Arm/Bow.modulate.a = ( bowHeldTime / requiredBowTime ) 
 	
@@ -356,4 +368,8 @@ func _on_scene_transition_animation_animation_finished(anim_name: StringName) ->
 		else:
 			get_tree().reload_current_scene()
 
+func _on_animation_changed(old_name : StringName, new_name : StringName) -> void:
+	if old_name == "roll":
+		applyKnockback(Vector2.ZERO,0,0.5)
+	print(old_name)
 #endregion
