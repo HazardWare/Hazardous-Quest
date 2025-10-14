@@ -18,7 +18,7 @@ func _physics_process(delta: float) -> void:
 		
 	if velocity:
 			sprite.global_rotation = deg_to_rad(45.0) + velocity.angle()
-			collisionShape.global_rotation = sprite.global_rotation
+			#collisionShape.global_rotation = sprite.global_rotation
 	move_and_slide()
 
 func on_touch_body(body: Node2D):
