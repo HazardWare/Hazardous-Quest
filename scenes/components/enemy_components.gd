@@ -1,5 +1,5 @@
 extends Node2D
-var canSeePlayer : bool:
+var canSeePlayer : bool = false:
 	get:
 		return canSeePlayer
 	set(value):
