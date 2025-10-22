@@ -60,15 +60,19 @@ func _physics_process(delta: float) -> void:
 	
 	if $EnemyComponents/StallTimer.time_left != 0.0:
 		return
-	
+
 	basicMoving(delta)
+	
+	move_and_slide()
+	handlePush()
+	
 	continousDamage(delta)
 	
 #endregion
 #region Custom Methods:
 func makePath():
-	if navAgent.target_position != get_tree().get_first_node_in_group("Player").position:
-		navAgent.target_position = get_tree().get_first_node_in_group("Player").position
+	if navAgent.target_position != $EnemyComponents/OffsetDisconnect/LastSeenPosition.position:
+		navAgent.target_position = $EnemyComponents/OffsetDisconnect/LastSeenPosition.position
 	
 	#for curPoint in navAgent.get_current_navigation_path():
 		#
@@ -84,8 +88,7 @@ func basicMoving(delta):
 		move_to(navAgent.get_next_path_position(), delta)
 	else:
 		velocity = Vector2.ZERO
-	move_and_slide()
-	handlePush()
+	
 	
 func updateHealth():
 	$EnemyComponents/HealthBar.value = health

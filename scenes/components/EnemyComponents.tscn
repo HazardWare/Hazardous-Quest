@@ -68,8 +68,9 @@ one_shot = true
 [node name="Spawn" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_ktywn")
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
-collision_mask = 9
-script = ExtResource("3_k1pk0")
+[node name="OffsetDisconnect" type="Node" parent="."]
 
-[node name="LastSeenPosition" type="Marker2D" parent="."]
+[node name="LastSeenPosition" type="Marker2D" parent="OffsetDisconnect"]
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+script = ExtResource("3_k1pk0")
