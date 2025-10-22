@@ -4,11 +4,14 @@ extends Control
 
 @onready var health_bar: HBoxContainer = $PanelTop/VBoxContainer/HealthBar
 @onready var blue_bar: HBoxContainer = $PanelTop/VBoxContainer/BlueBar
+@onready var voice_audio: AudioStreamPlayer = $DialoguePanel/VoiceAudio
+
+@onready var default_voice : VoiceResource = preload("res://resources/voice/voice_npc.tres")
 
 func _ready() -> void:
-	Console.add_command("hq_say", dialogue_box_say, 2)
+	Console.add_command("hq_say", dialogue_box_say, 1)
 
-func update_health(player : Character):
+func update_health():
 	
 	# Clear children
 	for child in health_bar.get_children():
@@ -18,7 +21,7 @@ func update_health(player : Character):
 
 	# Red health
 	var maxHearts := int(ceil(player.maximumHealth / 2.0))
-	var fullHearts := player.redHealth / 2
+	var fullHearts := float(player.redHealth) / 2
 	var hasHalfHeart := player.redHealth % 2 == 1
 
 	for i in (maxHearts):
@@ -35,7 +38,7 @@ func update_health(player : Character):
 
 	# Blue health
 	var blueHearts := int(ceil(player.blueHealth / 2.0))
-	var fullBlueHearts := player.blueHealth / 2
+	var fullBlueHearts := float(player.blueHealth) / 2
 	var hasHalfBlue := player.blueHealth % 2 == 1
 
 	for i in (blueHearts):
@@ -50,16 +53,42 @@ func update_health(player : Character):
 
 		blue_bar.add_child(this_heart)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if player.attackMode == "big_swipe":
 		$Action/Label.text = "SWIPE"
 	else:
 		$Action/Label.text = "JAB"
 
 
-func dialogue_box_say(dialogue : String, speaker_name : String, speed : float = 0.02):
+func dialogue_box_say(dialogue : String, voice : VoiceResource = default_voice):
 	$DialoguePanel/VBoxContainer/Speech.text = ""
-	$DialoguePanel/VBoxContainer/Name.text = speaker_name
+	$DialoguePanel/VBoxContainer/Name.text = voice.speaker_name
+	voice_audio.stream = voice.sound
+	var speed : float = voice.speed
+	var this_speed : float = 0.0 # Speed for individual characters.
+	var mute : bool = false
 	for i in len(dialogue):
+		this_speed = speed
+		
+		match dialogue[i]: # Speeds & Mutes
+			".":
+				this_speed *= 6
+				mute = true
+			"!":
+				this_speed *= 5.5
+				mute = true
+			"?":
+				this_speed *= 7
+				mute = true
+			":" , ";", ",":
+				this_speed *= 2
+				mute = true
+			"(", ")", "-":
+				this_speed *= 0
+				mute = true
+			_:
+				mute = false
+			
 		$DialoguePanel/VBoxContainer/Speech.text += dialogue[i]
-		await get_tree().create_timer(speed).timeout
+		if !mute: voice_audio.play()
+		await get_tree().create_timer(this_speed).timeout

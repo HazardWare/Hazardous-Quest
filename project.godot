@@ -24,6 +24,10 @@ SaveLoad="*res://scripts/globals/SaveLoad.gd"
 Global="*res://scripts/globals/Global.gd"
 Console="*res://addons/console/console.gd"
 
+[debug]
+
+gdscript/warnings/unused_variable=0
+
 [display]
 
 window/stretch/mode="canvas_items"

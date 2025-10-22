@@ -66,7 +66,7 @@ func _ready() -> void:
 	SaveLoad.load.connect(readSaveData)
 	SaveLoad.save.connect(writeSaveData)
 
-	$UIElements/UI.update_health(self)
+	$UIElements/UI.update_health()
 
 	# Fix all nulls
 	if floorTilemap == null:
@@ -76,7 +76,7 @@ func _ready() -> void:
 	
 	
 	SaveLoad._load()
-	$UIElements/UI.update_health(self)
+	$UIElements/UI.update_health()
 	#super()
 	$CharacterComponents/Hit.stream = AudioStreamWAV.load_from_file("res://assets/sounds/outsourced/Toby/snd_hurt1.wav")
 	
@@ -186,7 +186,7 @@ func _input(event: InputEvent) -> void:
 		_swipedir = !_swipedir
 		#$Arm/Marker2D/Weapon.strength = attackModeStrength[attackMode]
 		$Arm/Bow.modulate.a = 0.0
-		$UIElements/UI.update_health(self)
+		$UIElements/UI.update_health()
 		var lookingLeft = snapped( rad_to_deg(get_global_mouse_position().angle_to_point(position)) + 180 , 180) == 180
 		$AnimatedSprite2D.flip_h = lookingLeft
 	
@@ -356,7 +356,7 @@ func readSaveData():
 	maximumHealth = SaveLoad.saveFileData.expandedHealth["max"]
 	blueHealth = SaveLoad.saveFileData.expandedHealth["blue"]
 	
-	$UIElements/UI.update_health(self)
+	$UIElements/UI.update_health()
 
 
 

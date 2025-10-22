@@ -575,4 +575,8 @@ uppercase = true
 
 [node name="Speech" type="Label" parent="DialoguePanel/VBoxContainer"]
 layout_mode = 2
+text = "my collar's blue but my neck is red. been 'a workin' like a dog just to keep ma family fed. living off energy drinks, marlboro reds."
 label_settings = SubResource("LabelSettings_dnt87")
+autowrap_mode = 3
+
+[node name="VoiceAudio" type="AudioStreamPlayer" parent="DialoguePanel"]
