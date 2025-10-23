@@ -60,3 +60,4 @@ simplify_path = true
 avoidance_enabled = true
 avoidance_layers = 2
 avoidance_mask = 2
+debug_enabled = true

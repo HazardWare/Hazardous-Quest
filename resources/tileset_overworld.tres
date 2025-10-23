@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=39 format=3 uid="uid://cmv7wt2iltbsn"]
+[gd_resource type="TileSet" load_steps=40 format=3 uid="uid://cmv7wt2iltbsn"]
 
 [ext_resource type="Texture2D" uid="uid://dwydofcpmq6ek" path="res://assets/tilesheets/tile_town.png" id="1_p8bbk"]
 [ext_resource type="Texture2D" uid="uid://mg42qt04rif8" path="res://assets/tilesheets/tile_dungeon.png" id="2_7fh3v"]
@@ -38,6 +38,12 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8
 agent_radius = 0.0
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_7fh3v"]
+vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
+agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_ywxdo"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
@@ -353,6 +359,7 @@ texture = ExtResource("1_p8bbk")
 10:8/0 = 0
 11:8/0 = 0
 11:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+11:8/0/navigation_layer_1/polygon = SubResource("NavigationPolygon_ywxdo")
 11:8/0/custom_data_3 = true
 10:10/0 = 0
 11:10/0 = 0
@@ -2345,6 +2352,7 @@ terrain_set_0/terrain_10/color = Color(0.28125, 0.25, 0.5, 1)
 terrain_set_0/terrain_11/name = "Dungeon Wall"
 terrain_set_0/terrain_11/color = Color(0.375, 0.25, 0.5, 1)
 navigation_layer_0/layers = 1
+navigation_layer_1/layers = 16
 custom_data_layer_0/name = "patchable"
 custom_data_layer_0/type = 1
 custom_data_layer_1/name = "bush"

@@ -73,4 +73,6 @@ stream = SubResource("AudioStreamRandomizer_ktywn")
 [node name="LastSeenPosition" type="Marker2D" parent="OffsetDisconnect"]
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
+collision_mask = 9
+collide_with_areas = true
 script = ExtResource("3_k1pk0")

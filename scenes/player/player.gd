@@ -339,11 +339,11 @@ func _on_hit_box_area_exited(_area: Area2D) -> void:
 	hitbox_touching = false
 
 func _on_on_damaged(amount) -> void:
-	$UIElements/UI.update_health(self)
+	$UIElements/UI.update_health()
 	$UIElements/AnimationPlayer.stop()
 	$UIElements/AnimationPlayer.play("hurt")
 func _on_on_heal(amount) -> void:
-	$UIElements/UI.update_health(self)
+	$UIElements/UI.update_health()
 	
 func writeSaveData():
 	SaveLoad.saveFileData.expandedHealth["red"] = redHealth
