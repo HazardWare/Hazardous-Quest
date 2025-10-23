@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="VoiceResource" load_steps=3 format=3 uid="uid://b5lr1hil8848f"]
+
+[ext_resource type="Script" uid="uid://518g474jdx01" path="res://scripts/resources/voice.gd" id="1_pfbpo"]
+[ext_resource type="AudioStream" uid="uid://cd4bk5onqa41l" path="res://assets/sounds/speech/talk_wizard_good.wav" id="2_pfbpo"]
+
+[resource]
+script = ExtResource("1_pfbpo")
+speaker_name = "thaddeon the purple"
+speed = 0.07
+sound = ExtResource("2_pfbpo")
+metadata/_custom_type_script = "uid://518g474jdx01"

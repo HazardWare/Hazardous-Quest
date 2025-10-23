@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="VoiceResource" load_steps=3 format=3 uid="uid://d3f01scxos0se"]
+
+[ext_resource type="Script" uid="uid://518g474jdx01" path="res://scripts/resources/voice.gd" id="1_mygxn"]
+[ext_resource type="AudioStream" uid="uid://b54k3focqqhyf" path="res://assets/sounds/speech/talk_monster.wav" id="2_mygxn"]
+
+[resource]
+script = ExtResource("1_mygxn")
+speaker_name = "monster"
+speed = 0.05
+sound = ExtResource("2_mygxn")
+metadata/_custom_type_script = "uid://518g474jdx01"

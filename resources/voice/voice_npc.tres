@@ -1,11 +1,10 @@
-[gd_resource type="Resource" script_class="VoiceResource" load_steps=3 format=3 uid="uid://dwa40fc2w12wy"]
+[gd_resource type="Resource" script_class="VoiceResource" load_steps=2 format=3 uid="uid://dwa40fc2w12wy"]
 
 [ext_resource type="Script" uid="uid://518g474jdx01" path="res://scripts/resources/voice.gd" id="1_jofv1"]
-[ext_resource type="AudioStream" uid="uid://b5o2clijg0j4y" path="res://assets/sounds/speech/talk_npc.wav" id="2_whnd7"]
 
 [resource]
 script = ExtResource("1_jofv1")
-speaker_name = "non-player character"
-speed = 0.030000000000000002
-sound = ExtResource("2_whnd7")
+speaker_name = "the princess"
+speed = 0.03
+volume = 0.6
 metadata/_custom_type_script = "uid://518g474jdx01"
