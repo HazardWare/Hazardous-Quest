@@ -542,6 +542,7 @@ uppercase = true
 metadata/_edit_use_anchors_ = true
 
 [node name="DialoguePanel" type="Panel" parent="."]
+visible = false
 custom_minimum_size = Vector2(1000, 150)
 layout_mode = 1
 anchors_preset = 7

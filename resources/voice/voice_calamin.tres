@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_ghc1c")
-speaker_name = "calamin the gravity"
+speaker_name = "calamin the crafty"
 speed = 0.04
 sound = ExtResource("2_ghc1c")
 metadata/_custom_type_script = "uid://518g474jdx01"

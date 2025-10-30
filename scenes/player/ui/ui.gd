@@ -16,12 +16,16 @@ signal signal_next
 @onready var voice_calamin : VoiceResource = preload("res://resources/voice/voice_calamin.tres")
 @onready var voice_ui : VoiceResource = preload("res://resources/voice/voice_ui.tres")
 
+@onready var fallback_dialogue : DialogueSequenceResource = preload("res://resources/dialogue/dialogue_test.tres")
+
+
 @onready var box_name: Label = $DialoguePanel/VBoxContainer/Name
 
+var _is_talking : bool = false
 
 func _ready() -> void:
 	Console.add_command("hq_say", dialogue_box_say, 1)
-
+	Console.add_command("hq_dialogue_test", read_dialogue_sequence)
 
 func update_health():
 	
@@ -67,9 +71,10 @@ func update_health():
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if $DialoguePanel.visibile == true:
-		if Input.is_anything_pressed():
+	if $DialoguePanel.visible == true:
+		if event.is_action_pressed("ui_accept"):
 			signal_next.emit()
+
 
 func _process(_delta: float) -> void:
 	if player.attackMode == "big_swipe":
@@ -78,8 +83,26 @@ func _process(_delta: float) -> void:
 		$Action/Label.text = "JAB"
 
 
+func read_dialogue_sequence(sequence_res : DialogueSequenceResource = fallback_dialogue) -> void:
+	# Preliminary stuff
+	$DialoguePanel.visible = true
+	
+	var this_entry : DialogueResource
+	for i in sequence_res.sequence:
+		this_entry = i
+		
+		dialogue_box_say(this_entry.text, this_entry.voice)
+		
+		await signal_next
+	
+	# Executes after dialogue finished
+	$DialoguePanel.visible = false	
+
+
 func dialogue_box_say(dialogue : String, voice : VoiceResource = voice_ui):
-	$DialoguePanel.visibility = true
+	if _is_talking == true:
+		return
+	$DialoguePanel.visible = true
 	
 	box_name.visible = false if voice.speaker_name == "" else true
 	
@@ -91,6 +114,8 @@ func dialogue_box_say(dialogue : String, voice : VoiceResource = voice_ui):
 	var speed : float = voice.speed
 	var this_speed : float = 0.0 # Speed for individual characters.
 	var mute : bool = false
+	
+	_is_talking = true
 	
 	for i in len(dialogue):
 
@@ -114,8 +139,8 @@ func dialogue_box_say(dialogue : String, voice : VoiceResource = voice_ui):
 					mute = true
 				_:
 					mute = false
-
+		
 		$DialoguePanel/VBoxContainer/Speech.text += dialogue[i]
 		if !mute: voice_audio.play()
 		await get_tree().create_timer(this_speed).timeout
-	await signal_next
+	_is_talking = false
