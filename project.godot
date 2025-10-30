@@ -160,10 +160,15 @@ roll={
 [layer_names]
 
 2d_physics/layer_1="Player"
+2d_navigation/layer_1="Player Interact"
 2d_physics/layer_2="Enemy"
+2d_navigation/layer_2="Player Touch"
 2d_physics/layer_3="Interactables"
+2d_navigation/layer_3="Arrows"
 2d_physics/layer_4="Environment"
+2d_navigation/layer_4="Boomeramg"
 2d_physics/layer_5="Water"
+2d_navigation/layer_5="Sword"
 2d_physics/layer_6="Projectiles"
 
 [physics]
