@@ -72,19 +72,14 @@ func update_health():
 
 func _unhandled_input(event: InputEvent) -> void:
 	if $DialoguePanel.visible == true:
-		if event.is_action_pressed("ui_accept"):
+		if event.is_action_pressed("interact"):
 			signal_next.emit()
 
-
-func _process(_delta: float) -> void:
-	if player.attackMode == "big_swipe":
-		$Action/Label.text = "SWIPE"
-	else:
-		$Action/Label.text = "JAB"
 
 
 func read_dialogue_sequence(sequence_res : DialogueSequenceResource = fallback_dialogue) -> void:
 	# Preliminary stuff
+	get_tree().paused = true
 	$DialoguePanel.visible = true
 	
 	var this_entry : DialogueResource
@@ -97,7 +92,7 @@ func read_dialogue_sequence(sequence_res : DialogueSequenceResource = fallback_d
 	
 	# Executes after dialogue finished
 	$DialoguePanel.visible = false	
-
+	get_tree().paused = false
 
 func dialogue_box_say(dialogue : String, voice : VoiceResource = voice_ui):
 	if _is_talking == true:

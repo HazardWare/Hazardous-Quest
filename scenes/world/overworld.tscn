@@ -1,9 +1,11 @@
-[gd_scene load_steps=18 format=4 uid="uid://1i7d15bac2tf"]
+[gd_scene load_steps=22 format=4 uid="uid://1i7d15bac2tf"]
 
 [ext_resource type="Texture2D" uid="uid://cpstvau0nlnqw" path="res://assets/Screenshot 2025-08-28 153026.png" id="1_fxtkv"]
 [ext_resource type="TileSet" uid="uid://cmv7wt2iltbsn" path="res://resources/tileset_overworld.tres" id="1_pwl2g"]
 [ext_resource type="PackedScene" uid="uid://cbaut5bbgnqxc" path="res://scenes/player/player.tscn" id="2_het3u"]
-[ext_resource type="PackedScene" uid="uid://ibuck1ggssjf" path="res://adair_test.tscn" id="5_h0wcu"]
+[ext_resource type="Script" uid="uid://dux3fbkqpkja8" path="res://scripts/inheritsInteractable/class_speaker.gd" id="5_espw7"]
+[ext_resource type="Resource" uid="uid://b24l8f7y1q30c" path="res://resources/dialogue/dialogue_test.tres" id="6_eccxn"]
+[ext_resource type="Texture2D" uid="uid://dwydofcpmq6ek" path="res://assets/tilesheets/tile_town.png" id="6_o3ojk"]
 [ext_resource type="Texture2D" uid="uid://su5hnluljkqr" path="res://assets/tilesheets/tile_dev.png" id="7_o3ojk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eccxn"]
@@ -328,6 +330,13 @@ region = Rect2(48, 32, 16, 16)
 atlas = ExtResource("7_o3ojk")
 region = Rect2(32, 32, 16, 14)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_yfnw3"]
+atlas = ExtResource("6_o3ojk")
+region = Rect2(176, 96, 16, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ic2ev"]
+radius = 15.0
+
 [node name="Overworld" type="Node2D"]
 y_sort_enabled = true
 
@@ -476,6 +485,13 @@ offset_bottom = -1948.0
 theme_override_font_sizes/font_size = 500
 text = "KINGDOM OF ALENNIA"
 
-[node name="AdairTest" parent="." instance=ExtResource("5_h0wcu")]
-position = Vector2(165, -27)
-scale = Vector2(0.117401, 0.117401)
+[node name="Speaker" type="Area2D" parent="."]
+script = ExtResource("5_espw7")
+dialogue_sequence = ExtResource("6_eccxn")
+metadata/_custom_type_script = "uid://dux3fbkqpkja8"
+
+[node name="Sprite2D" type="Sprite2D" parent="Speaker"]
+texture = SubResource("AtlasTexture_yfnw3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Speaker"]
+shape = SubResource("CircleShape2D_ic2ev")

@@ -724,11 +724,12 @@ _data = {
 &"hurt": SubResource("Animation_fm80t")
 }
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("sprite") groups=["Friendly", "Player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("ui", "sprite") groups=["Friendly", "Player"]]
 y_sort_enabled = true
 collision_mask = 28
 script = ExtResource("1_dovo2")
 snappingAngle = 0.0
+ui = NodePath("UIElements/UI")
 jab_thrust_force = 20.0
 speed = 100.0
 sprite = NodePath("AnimatedSprite2D")
@@ -860,6 +861,7 @@ visible = false
 script = ExtResource("5_0owmy")
 
 [node name="UI" parent="UIElements" node_paths=PackedStringArray("player") instance=ExtResource("2_lvxji")]
+process_mode = 3
 player = NodePath("../..")
 
 [node name="Dead" type="Control" parent="UIElements"]

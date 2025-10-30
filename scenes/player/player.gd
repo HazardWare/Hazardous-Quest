@@ -17,12 +17,13 @@ extends Character
 
 # This area is considered for cleaner code, type-safety, rename-safety, and reparent-safety
 # Cons are that they aren't colored green.
-#@export_subgroup("Linked Nodes")
+@export_subgroup("Linked Nodes")
 #@export var Arm : Node2D
 #@export var AttackAnimationPlayer : AnimationPlayer
 #@export var HitBox : Area2D
 #@export var primaryAnimationPlayer : AnimationPlayer
 #@export var sprite : AnimatedSprite2D
+@export var ui : Control
 @export_subgroup("")
 
 var attackMode := "big_swipe"
@@ -41,6 +42,7 @@ var bowHeldTime : float = 0.0
 const LADDER_TILE := [Vector2i(0,2),Vector2i(1,2)]
 var lastLadder : Vector2 ## The last ladder position
 var lastPatchedTileOnAtlas : Vector3i ## The tile (on the atlas) of which lastLadder covered. Z is the ID
+
 
 var readyForAction: bool :
 	get():
