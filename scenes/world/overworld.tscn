@@ -395,7 +395,7 @@ root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_ap4hg")
 }
-autoplay = "Sophie"
+autoplay = "Adair"
 
 [node name="Noah" type="Sprite2D" parent="Devs"]
 z_index = 2
@@ -408,7 +408,7 @@ root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_ap4hg")
 }
-autoplay = "Noah"
+autoplay = "Adair"
 
 [node name="Adair" type="Sprite2D" parent="Devs"]
 z_index = 2
@@ -436,7 +436,7 @@ root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_ap4hg")
 }
-autoplay = "Max"
+autoplay = "Adair"
 
 [node name="Harper" type="Sprite2D" parent="Devs"]
 z_index = 2
@@ -449,7 +449,7 @@ root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_ap4hg")
 }
-autoplay = "Harper"
+autoplay = "Adair"
 
 [node name="VisualAbstractions" type="Node" parent="."]
 
