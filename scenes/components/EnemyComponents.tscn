@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://cr0n1oh77knc0"]
+[gd_scene load_steps=11 format=3 uid="uid://cr0n1oh77knc0"]
 
 [ext_resource type="Script" uid="uid://pwtjsc18y4lk" path="res://scenes/components/health_bar.gd" id="1_0k52e"]
 [ext_resource type="Script" uid="uid://dgrevhfy1lwxi" path="res://scenes/components/enemy_components.gd" id="1_msol8"]
 [ext_resource type="AudioStream" uid="uid://b2m2pd4ske0s6" path="res://assets/sounds/outsourced/Pizza/sfx_escapespawn.ogg" id="2_ktywn"]
 [ext_resource type="Script" uid="uid://7jmax7ily27v" path="res://scenes/components/playerDetection.gd" id="3_k1pk0"]
+[ext_resource type="Texture2D" uid="uid://bkc5k7xqrmnew" path="res://assets/sprites/meat.png" id="4_4uhy0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7t4eu"]
 bg_color = Color(1, 1, 1, 1)
@@ -71,6 +72,9 @@ stream = SubResource("AudioStreamRandomizer_ktywn")
 [node name="OffsetDisconnect" type="Node" parent="."]
 
 [node name="LastSeenPosition" type="Marker2D" parent="OffsetDisconnect"]
+
+[node name="Sprite2D" type="Sprite2D" parent="OffsetDisconnect/LastSeenPosition"]
+texture = ExtResource("4_4uhy0")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 collision_mask = 9

@@ -10,18 +10,21 @@
 script = ExtResource("2_w1d6m")
 voice = ExtResource("3_qri7n")
 text = "Hello! I am an NPC!"
+speedmod = 1.0
 metadata/_custom_type_script = "uid://cr6hlmc635exb"
 
 [sub_resource type="Resource" id="Resource_kgfsg"]
 script = ExtResource("2_w1d6m")
 voice = ExtResource("4_fvmgg")
 text = "Hello, NPC! I am the princess!"
+speedmod = 1.0
 metadata/_custom_type_script = "uid://cr6hlmc635exb"
 
 [sub_resource type="Resource" id="Resource_ioiyg"]
 script = ExtResource("2_w1d6m")
 voice = ExtResource("5_fvmgg")
 text = "I am evil!"
+speedmod = 1.0
 metadata/_custom_type_script = "uid://cr6hlmc635exb"
 
 [resource]
