@@ -53,6 +53,9 @@ var hitbox_touching : bool = false
 var area_touching : Area2D
 
 var angleToTheMouse
+
+var rolling = false
+
 #region Godot functions:
 
 func _ready() -> void:
@@ -141,15 +144,15 @@ func _input(event: InputEvent) -> void:
 
 	if event.is_action_pressed("ui_left"):
 		maximumHealth -= 1
-		$UIElements/UI.update_health(self)
+		$UIElements/UI.update_health()
 		
 	if event.is_action_pressed("ui_right"):
 		maximumHealth += 1
-		$UIElements/UI.update_health(self)
+		$UIElements/UI.update_health()
 		
 	if event.is_action_pressed("ui_right"):
 		maximumHealth += 1
-		$UIElements/UI.update_health(self)
+		$UIElements/UI.update_health()
 		
 	#endregion
 	
@@ -199,9 +202,20 @@ func _input(event: InputEvent) -> void:
 		$Arm/Flame.play()
 		currentFire.transform = $Arm.global_transform
 	
-	if event.is_action_pressed("roll"):
-		$AnimationPlayer.play("roll")
-		applyKnockback(Vector2.from_angle($Arm.rotation),200,0.3)
+	var direction := Input.get_vector("walk_left", "walk_right", "walk_up", "walk_down")
+	if Input.is_action_just_pressed("roll"):
+		if rolling == true : return
+		rolling = true
+		if direction.x > 0:
+			$AnimationPlayer.play("roll_right")
+		else:
+			$AnimationPlayer.play("roll_left")
+			$AnimatedSprite2D.flip_h = true
+		applyKnockback(direction,200,0.3)
+		await get_tree().create_timer(0.3).timeout
+		$AnimationPlayer.play("RESET")
+		rotation = 0.0
+		rolling = false
 
 
 #endregion
@@ -220,7 +234,6 @@ func die():
 #region Custom methods:
 ## Play and set appropriate visuals.
 func handleAnimations():
-	var rolling: bool = $AnimationPlayer.current_animation == "roll"
 	var direction := Input.get_vector("walk_left", "walk_right", "walk_up", "walk_down")
 	if not rolling:
 		if direction and velocity.length() > 0 and not $Arm/Attack.is_playing():

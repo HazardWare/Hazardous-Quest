@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://cbaut5bbgnqxc"]
+[gd_scene load_steps=56 format=3 uid="uid://cbaut5bbgnqxc"]
 
 [ext_resource type="Texture2D" uid="uid://mg42qt04rif8" path="res://assets/tilesheets/tile_dungeon.png" id="1_8afob"]
 [ext_resource type="Script" uid="uid://0fays8i2wtql" path="res://scenes/player/player.gd" id="1_dovo2"]
@@ -122,35 +122,6 @@ tracks/3/keys = {
 "values": [false]
 }
 
-[sub_resource type="Animation" id="Animation_myrg7"]
-resource_name = "roll"
-length = 0.3
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = false
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0001, 0.15, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 0.0, 3.14159, 6.28319]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:invulnerable")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
-}
-
 [sub_resource type="Animation" id="Animation_dovo2"]
 resource_name = "walk"
 length = 0.2
@@ -181,10 +152,69 @@ tracks/1/keys = {
 "values": [Vector2(0, 8), Vector2(0, 7), Vector2(0, 8)]
 }
 
+[sub_resource type="Animation" id="Animation_kvlxm"]
+resource_name = "roll_left"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [6.283185307179586, 3.141592653589793, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:invulnerable")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_myrg7"]
+resource_name = "roll_right"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 3.14159, 6.28319]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:invulnerable")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_p47bc"]
 _data = {
 &"RESET": SubResource("Animation_gmlin"),
-&"roll": SubResource("Animation_myrg7"),
+&"roll_left": SubResource("Animation_kvlxm"),
+&"roll_right": SubResource("Animation_myrg7"),
 &"walk": SubResource("Animation_dovo2")
 }
 
@@ -743,6 +773,7 @@ position = Vector2(0, 8)
 sprite_frames = SubResource("SpriteFrames_gmlin")
 autoplay = "default"
 offset = Vector2(0, -8)
+flip_h = true
 
 [node name="Shield" type="AnimatedSprite2D" parent="AnimatedSprite2D"]
 visible = false
