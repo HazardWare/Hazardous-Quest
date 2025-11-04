@@ -455,10 +455,10 @@ autoplay = "Adair"
 
 [node name="Water" type="ColorRect" parent="VisualAbstractions"]
 z_index = -101
-offset_left = -1891.0
-offset_top = -10454.0
-offset_right = 15788.0
-offset_bottom = 10722.0
+offset_left = -1726.0
+offset_top = -10296.0
+offset_right = 15953.0
+offset_bottom = 10880.0
 color = Color(0.458824, 0.890196, 1, 1)
 
 [node name="Grass" type="ColorRect" parent="VisualAbstractions"]
