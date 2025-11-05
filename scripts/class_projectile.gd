@@ -88,7 +88,8 @@ func on_touch_body(body: Node2D):
 		stabbed = true
 		#queue_free()
 	else:
-		$SmokeParticles.emitting = true
+		if $SmokeParticles:
+			$SmokeParticles.emitting = true
 	initial_velocity = Vector2.ZERO
 	velocity = Vector2.ZERO
 	pass
