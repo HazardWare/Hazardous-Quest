@@ -11,7 +11,6 @@ loaded_level = ExtResource("2_k2fmo")
 [node name="Level" type="Node2D" parent="."]
 position = Vector2(33, -35)
 
-[node name="Player" parent="." node_paths=PackedStringArray("floorTilemap") instance=ExtResource("1_hyk8p")]
+[node name="Player" parent="." instance=ExtResource("1_hyk8p")]
 z_index = 1
 position = Vector2(33, -35)
-floorTilemap = NodePath("")

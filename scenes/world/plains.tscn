@@ -62,3 +62,32 @@ text = "KINGDOM OF ALENNIA"
 position = Vector2(-88, -267.00003)
 scale = Vector2(2.3539593, 7.14236)
 toScene = "uid://1i7d15bac2tf"
+
+[node name="VisualAbstractions" type="Node" parent="."]
+
+[node name="Water" type="ColorRect" parent="VisualAbstractions"]
+visible = false
+z_index = -101
+offset_left = -1726.0
+offset_top = -10296.0
+offset_right = 15953.0
+offset_bottom = 10880.0
+color = Color(0.458824, 0.890196, 1, 1)
+
+[node name="Grass" type="ColorRect" parent="VisualAbstractions"]
+visible = false
+z_index = -100
+offset_left = -20982.0
+offset_top = -3733.0
+offset_right = -1081.0
+offset_bottom = 11488.0
+color = Color(0.517647, 0.776471, 0.411765, 1)
+
+[node name="Grass2" type="ColorRect" parent="VisualAbstractions"]
+visible = false
+z_index = -101
+offset_left = -21151.0
+offset_top = -11406.0
+offset_right = 1353.0
+offset_bottom = -1391.0
+color = Color(0.517647, 0.776471, 0.411765, 1)
