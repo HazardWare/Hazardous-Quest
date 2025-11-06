@@ -203,7 +203,7 @@ func _input(event: InputEvent) -> void:
 		currentFire.transform = $Arm.global_transform
 	
 	var direction := Input.get_vector("walk_left", "walk_right", "walk_up", "walk_down")
-	if Input.is_action_just_pressed("roll"):
+	if Input.is_action_just_pressed("roll") and direction != Vector2(0, 0):
 		if rolling == true : return
 		rolling = true
 		if direction.x > 0:
@@ -211,7 +211,8 @@ func _input(event: InputEvent) -> void:
 		else:
 			$AnimationPlayer.play("roll_left")
 			$AnimatedSprite2D.flip_h = true
-		applyKnockback(direction,200,0.3)
+		velocity = direction * 200
+		#applyKnockback(direction,200,0.3)
 		await get_tree().create_timer(0.3).timeout
 		$AnimationPlayer.play("RESET")
 		rotation = 0.0
