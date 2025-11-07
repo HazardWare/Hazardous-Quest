@@ -46,7 +46,7 @@ tile_map_data = PackedByteArray("AACTAFAABAAAAAAAAACTAFEABAAAAAEAAACTAFIABAAAAAE
 tile_set = ExtResource("2_sre1m")
 
 [node name="Player" parent="." instance=ExtResource("3_kj7g6")]
-position = Vector2(-1346, -357)
+position = Vector2(-1574, -378)
 
 [node name="Label" type="Label" parent="."]
 offset_left = -4240.0

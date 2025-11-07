@@ -211,7 +211,7 @@ func _input(event: InputEvent) -> void:
 		else:
 			$AnimationPlayer.play("roll_left")
 			$AnimatedSprite2D.flip_h = true
-		velocity = direction * 200
+		velocity = direction * 1000
 		#applyKnockback(direction,200,0.3)
 		await get_tree().create_timer(0.3).timeout
 		$AnimationPlayer.play("RESET")
