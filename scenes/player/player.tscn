@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://cbaut5bbgnqxc"]
+[gd_scene load_steps=56 format=3 uid="uid://cbaut5bbgnqxc"]
 
 [ext_resource type="Texture2D" uid="uid://mg42qt04rif8" path="res://assets/tilesheets/tile_dungeon.png" id="1_8afob"]
 [ext_resource type="Script" uid="uid://0fays8i2wtql" path="res://scenes/player/player.gd" id="1_dovo2"]
@@ -16,10 +16,6 @@
 [ext_resource type="Texture2D" uid="uid://b758kfihtjo1x" path="res://assets/sprites/game-over.png" id="9_h17s1"]
 [ext_resource type="AudioStream" uid="uid://37rtee5owvf0" path="res://assets/sounds/outsourced/Guy/15. Might Is Right But Tight.mp3" id="9_je7p5"]
 [ext_resource type="AudioStream" uid="uid://ld0damuhr2qf" path="res://assets/sounds/outsourced/Toby/snd_board_escaped.wav" id="21_3j4b4"]
-
-[sub_resource type="Curve" id="Curve_myrg7"]
-_data = [Vector2(0.261364, 0.303371), 0.0, 0.0, 0, 0, Vector2(0.545455, 0.921348), 0.0, 0.0, 0, 0, Vector2(0.801136, 0.303371), 0.0, 0.0, 0, 0]
-point_count = 3
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_myrg7"]
 atlas = ExtResource("3_qek5x")
@@ -751,32 +747,13 @@ y_sort_enabled = true
 collision_mask = 28
 script = ExtResource("1_dovo2")
 snappingAngle = 0.0
-swordLevel = null
-hasBangarang = null
-hasBow = null
-hasShield = null
-hasCandle = null
-hasLadder = null
-grenades = null
-arrowScene = null
-fireScene = null
 ui = NodePath("UIElements/UI")
 jab_thrust_force = 20.0
-requiredBowTime = null
-roll_speed = null
-roll_curve = SubResource("Curve_myrg7")
-maximumHealth = null
-blueHealth = null
+rollSpeed = 670
 speed = 100.0
-strength = null
-unknockbackable = null
-toxic = null
-shouldBleed = null
 sprite = NodePath("AnimatedSprite2D")
-push_force = null
 friction = 10.0
 acceleration = 20.0
-knockbackResistance = null
 iFrames = 0.6
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

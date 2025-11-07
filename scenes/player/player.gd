@@ -57,7 +57,6 @@ var angleToTheMouse
 @export_subgroup("RollStuff")
 var rolling = false
 @export var rollSpeed : int = 850
-@export var rollCurve : Curve
 
 #region Godot functions:
 
@@ -214,7 +213,7 @@ func _input(event: InputEvent) -> void:
 		else:
 			$AnimationPlayer.play("roll_left")
 			$AnimatedSprite2D.flip_h = true
-		velocity = direction * rollSpeed * rollCurve.sample(time)
+		velocity = direction * rollSpeed
 		await get_tree().create_timer(0.3).timeout
 		$AnimationPlayer.play("RESET")
 		rotation = 0.0
