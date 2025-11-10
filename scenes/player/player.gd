@@ -185,8 +185,6 @@ func _input(event: InputEvent) -> void:
 
 		if attackMode == "jab":
 			applyKnockback(Vector2.from_angle($Arm.rotation),80,0.1)
-		if attackMode == "big_swipe":
-			applyKnockback(Vector2.from_angle($Arm.rotation),30,0.05)
 		
 		if _swipedir or attackMode == "jab":
 			$Arm/Attack.play(attackMode)
