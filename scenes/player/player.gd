@@ -271,7 +271,7 @@ func handleContinuousInput(delta: float):
 		# Handle movement
 		var direction := Input.get_vector("walk_left", "walk_right", "walk_up", "walk_down")
 		var calculatedSpeed := speed
-		calculatedSpeed *= 0.5 if shielding else 1.0 # Slow if shielding
+		calculatedSpeed *= 0.1 if shielding else 1.0 # Slow if shielding
 		
 		var lerp_weight = delta * (acceleration if direction else friction)
 		velocity = lerp(velocity, direction * calculatedSpeed, lerp_weight)
