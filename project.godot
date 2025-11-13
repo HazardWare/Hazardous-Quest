@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Hazardous Quest"
 run/main_scene="uid://5mmka4j78w3x"
-config/features=PackedStringArray("4.5", "Forward Plus")
+config/features=PackedStringArray("4.4", "Forward Plus")
 boot_splash/bg_color=Color(0.104133, 0.136534, 0.223468, 1)
 boot_splash/use_filter=false
 boot_splash/image="uid://px5408s38gpr"

@@ -95,27 +95,15 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 8)]
+"values": [Vector2(0, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath(".:rotation")
+tracks/2/path = NodePath(".:invulnerable")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".:invulnerable")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -129,26 +117,14 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
+tracks/0/path = NodePath("AnimatedSprite2D:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.15, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [6.283185307179586, 3.141592653589793, 0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:invulnerable")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
+"values": [6.28319, 1.74533, 0.0]
 }
 
 [sub_resource type="Animation" id="Animation_myrg7"]
@@ -158,26 +134,14 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
+tracks/0/path = NodePath("AnimatedSprite2D:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.15, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [0.0, 3.14159, 6.28319]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:invulnerable")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [true, false]
+"values": [0.0, 1.74533, 6.28319]
 }
 
 [sub_resource type="Animation" id="Animation_dovo2"]
@@ -207,7 +171,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 8), Vector2(0, 7), Vector2(0, 8)]
+"values": [Vector2(0, 0), Vector2(0, -1), Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_p47bc"]
@@ -756,11 +720,13 @@ _data = {
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("ui", "sprite") groups=["Friendly", "Player"]]
 y_sort_enabled = true
-collision_mask = 28
+collision_mask = 156
 script = ExtResource("1_dovo2")
 snappingAngle = 0.0
 ui = NodePath("UIElements/UI")
 jab_thrust_force = 20.0
+bowHideTime = 0.85
+rollSpeed = 670
 speed = 100.0
 sprite = NodePath("AnimatedSprite2D")
 friction = 10.0
@@ -769,17 +735,15 @@ iFrames = 0.6
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(0, 8)
 sprite_frames = SubResource("SpriteFrames_gmlin")
 autoplay = "default"
-offset = Vector2(0, -8)
 flip_h = true
 
 [node name="Shield" type="AnimatedSprite2D" parent="AnimatedSprite2D"]
 visible = false
 z_index = 1
 texture_filter = 1
-position = Vector2(4, -4)
+position = Vector2(4, 3)
 sprite_frames = SubResource("SpriteFrames_p47bc")
 animation = &"shield"
 frame_progress = 0.653446
@@ -960,6 +924,9 @@ speed_scale = 0.1
 
 [node name="SwitchScene" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("21_3j4b4")
+
+[node name="BowHideTimer" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="animation_changed" from="AnimationPlayer" to="." method="_on_animation_changed"]
 [connection signal="animation_finished" from="UIElements/SceneTransitionAnimation" to="." method="_on_scene_transition_animation_animation_finished"]

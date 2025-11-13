@@ -37,6 +37,7 @@ const attackModeStrength = {
 @export var jab_thrust_force : float = 10
 @export var requiredBowTime := 0.5
 var bowHeldTime : float = 0.0
+@export var bowHideTime : float = 1.0
 
 ## 0 is verticle, 1 is horizontal. These are from ID 5
 const LADDER_TILE := [Vector2i(0,2),Vector2i(1,2)]
@@ -54,7 +55,9 @@ var area_touching : Area2D
 
 var angleToTheMouse
 
+@export_subgroup("RollStuff")
 var rolling = false
+@export var rollSpeed : int = 850
 
 #region Godot functions:
 
@@ -65,6 +68,7 @@ func _ready() -> void:
 	# Connect all signals
 	$HitBox.area_entered.connect(_on_hit_box_area_entered)
 	$HitBox.area_exited.connect(_on_hit_box_area_exited)
+	$BowHideTimer.timeout.connect(_on_bow_hide_timer_timeout)
 #	$AnimationPlayer.animation_changed.connect(_on_animation_changed)
 	self.onDamaged.connect(_on_on_damaged)
 	self.onHeal.connect(_on_on_heal)
@@ -79,6 +83,7 @@ func _ready() -> void:
 
 	$EnvironmentComponent/AnimationPlayer.play("RESET")
 	
+	$Arm/Bow.hide()
 	
 	SaveLoad._load()
 	$UIElements/UI.update_health()
@@ -180,8 +185,6 @@ func _input(event: InputEvent) -> void:
 
 		if attackMode == "jab":
 			applyKnockback(Vector2.from_angle($Arm.rotation),80,0.1)
-		if attackMode == "big_swipe":
-			applyKnockback(Vector2.from_angle($Arm.rotation),30,0.05)
 		
 		if _swipedir or attackMode == "jab":
 			$Arm/Attack.play(attackMode)
@@ -202,8 +205,9 @@ func _input(event: InputEvent) -> void:
 		$Arm/Flame.play()
 		currentFire.transform = $Arm.global_transform
 	
+	# The Dodge Roll code
 	var direction := Input.get_vector("walk_left", "walk_right", "walk_up", "walk_down")
-	if Input.is_action_just_pressed("roll"):
+	if Input.is_action_just_pressed("roll") and direction != Vector2(0, 0):
 		if rolling == true : return
 		rolling = true
 		if direction.x > 0:
@@ -211,7 +215,7 @@ func _input(event: InputEvent) -> void:
 		else:
 			$AnimationPlayer.play("roll_left")
 			$AnimatedSprite2D.flip_h = true
-		applyKnockback(direction,200,0.3)
+		velocity = direction * rollSpeed
 		await get_tree().create_timer(0.3).timeout
 		$AnimationPlayer.play("RESET")
 		rotation = 0.0
@@ -267,7 +271,7 @@ func handleContinuousInput(delta: float):
 		# Handle movement
 		var direction := Input.get_vector("walk_left", "walk_right", "walk_up", "walk_down")
 		var calculatedSpeed := speed
-		calculatedSpeed *= 0.5 if shielding else 1.0 # Slow if shielding
+		calculatedSpeed *= 0.1 if shielding else 1.0 # Slow if shielding
 		
 		var lerp_weight = delta * (acceleration if direction else friction)
 		velocity = lerp(velocity, direction * calculatedSpeed, lerp_weight)
@@ -275,15 +279,21 @@ func handleContinuousInput(delta: float):
 		if not shielding:
 			# Count timers:
 			if Input.is_action_pressed("action_secondary") and not $Arm/Attack.is_playing():
+				$BowHideTimer.stop()
 				bowHeldTime += delta
+				$Arm/Bow.show()
+				$BowHideTimer.start()
 			else:
 				bowHeldTime = 0.0
 			
 			if bowHeldTime >= requiredBowTime:
 				shoot()
 				bowHeldTime = 0.0
+				$Arm/Bow.hide()
+				$BowHideTimer.stop()
 		else:
 			bowHeldTime = 0.0
+			$Arm/Bow.hide()
 		
 		# Rotate the sword toward the mouse
 
@@ -340,7 +350,6 @@ func patchTile(currentTile):
 		floorTilemap.set_cell(lastLadder, lastPatchedTileOnAtlas.z, \
 		Vector2i(lastPatchedTileOnAtlas.x, lastPatchedTileOnAtlas.y))
 	lastPatchedTileOnAtlas = Vector3i(theAtlasCoords.x, theAtlasCoords.y, theIDofThePatchedTile)
-	lastLadder = currentTile
 #endregion
 
 #region Signals:
@@ -352,6 +361,9 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 
 func _on_hit_box_area_exited(_area: Area2D) -> void:
 	hitbox_touching = false
+
+func _on_bow_hide_timer_timeout() -> void:
+	$Arm/Bow.hide()
 
 func _on_on_damaged(amount) -> void:
 	$UIElements/UI.update_health()
