@@ -70,14 +70,9 @@ func _physics_process(delta: float) -> void:
 	
 #endregion
 #region Custom Methods:
-var seenPlayerYet = false
 func makePath():
-	#if navAgent.target_position != $EnemyComponents/OffsetDisconnect/LastSeenPosition.position:
-	if not seenPlayerYet:
-		if canSeePlayer:
-			seenPlayerYet = true
-		return
-	navAgent.target_position = $EnemyComponents/OffsetDisconnect/LastSeenPosition.position
+	if navAgent.target_position != $EnemyComponents/OffsetDisconnect/LastSeenPosition.position:
+		navAgent.target_position = $EnemyComponents/OffsetDisconnect/LastSeenPosition.position
 	
 	#for curPoint in navAgent.get_current_navigation_path():
 		#
