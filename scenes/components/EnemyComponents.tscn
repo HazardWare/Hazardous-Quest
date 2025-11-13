@@ -74,6 +74,7 @@ stream = SubResource("AudioStreamRandomizer_ktywn")
 [node name="LastSeenPosition" type="Marker2D" parent="OffsetDisconnect"]
 
 [node name="Sprite2D" type="Sprite2D" parent="OffsetDisconnect/LastSeenPosition"]
+visible = false
 texture = ExtResource("4_4uhy0")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
