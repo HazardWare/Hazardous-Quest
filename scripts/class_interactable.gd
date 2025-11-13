@@ -24,12 +24,14 @@ var playerReference: Character:
 		return get_tree().get_first_node_in_group("Player")
 
 func _ready() -> void:
-	pass
+	body_entered.connect(_body_entered_interactable)
 
 func trigger():
 	powered = !powered
 
-
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact") and overlaps_body(playerReference):
 		trigger()
+
+func _body_entered_interactable():
+	print("Hello")
