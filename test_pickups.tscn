@@ -1,13 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://6t8edaa4cq6"]
+[gd_scene load_steps=4 format=3 uid="uid://8gfufi5cvlw1"]
 
-[ext_resource type="Script" uid="uid://bqbdy0acjwmqt" path="res://test_pickups.gd" id="1_1fcog"]
 [ext_resource type="Texture2D" uid="uid://bemsmgl0t155v" path="res://icon.svg" id="1_74iyn"]
+
+[sub_resource type="GDScript" id="GDScript_74iyn"]
+script/source = "extends Area2D
+
+func _ready() -> void:
+	area_entered.connect(_area_entered)
+
+func _area_entered():
+	pass
+"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1fcog"]
 size = Vector2(18, 18)
 
 [node name="Area2D" type="Area2D"]
-script = ExtResource("1_1fcog")
+script = SubResource("GDScript_74iyn")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.139866, 0.139866)
