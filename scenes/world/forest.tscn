@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=4 uid="uid://o2vlki6brb2s"]
+[gd_scene load_steps=5 format=4 uid="uid://o2vlki6brb2s"]
 
 [ext_resource type="Texture2D" uid="uid://cpstvau0nlnqw" path="res://assets/Screenshot 2025-08-28 153026.png" id="1_uuut2"]
 [ext_resource type="TileSet" uid="uid://cmv7wt2iltbsn" path="res://resources/tileset_overworld.tres" id="2_1da0x"]
 [ext_resource type="PackedScene" uid="uid://cbaut5bbgnqxc" path="res://scenes/player/player.tscn" id="3_bpy6v"]
+[ext_resource type="PackedScene" uid="uid://cc87q72ysenpd" path="res://scenes/prefab/ChangeSceneTrigger.tscn" id="4_tvyim"]
 
 [node name="Forest" type="Node2D"]
 y_sort_enabled = true
@@ -74,4 +75,10 @@ color = Color(0.517647, 0.776471, 0.411765, 1)
 
 [node name="Player" parent="." instance=ExtResource("3_bpy6v")]
 z_index = 1
-position = Vector2(-874, -256)
+position = Vector2(24, -735)
+
+[node name="ChangeSceneTrigger" parent="." instance=ExtResource("4_tvyim")]
+z_index = 2
+position = Vector2(24, -806)
+scale = Vector2(0.4, -0.6)
+toScene = "uid://clmibd6serpft"

@@ -58,8 +58,8 @@ theme_override_font_sizes/font_size = 500
 text = "KINGDOM OF ALENNIA"
 
 [node name="ChangeSceneTrigger" parent="." instance=ExtResource("4_y1lyq")]
-position = Vector2(-207.99998, -267)
-scale = Vector2(2.3539593, 7.14236)
+position = Vector2(-208, -267)
+scale = Vector2(2.35396, 7.14236)
 toScene = "uid://o2vlki6brb2s"
 
 [node name="VisualAbstractions" type="Node" parent="."]

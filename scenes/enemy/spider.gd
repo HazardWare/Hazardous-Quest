@@ -1,5 +1,8 @@
 extends Enemy
 
+var direction : Vector2
+
+
 
 func _ready() -> void:
 	super()
@@ -18,17 +21,31 @@ func _physics_process(delta: float) -> void:
 	
 
 func jump():
+	direction = Vector2(randi_range(-1,1), randi_range(-1,1))
 	$AnimationPlayer.play("jump")
 	await !moving
 	$WalkTimer.start(1)
 
 func move(delta):
 	if moving:
-		if !navAgent.is_target_reached():
-			move_to(navAgent.get_next_path_position(), delta)
-		else:
-			velocity = Vector2.ZERO
+		velocity = speed * direction * delta
+		print(velocity)
 		move_and_slide()
 		handlePush()
+
 func _on_walk_timer_timeout() -> void:
 	jump()
+
+func calculateDirection() -> void:
+	var x1
+	var x2
+	var y1
+	var y2
+	
+	var xDif = playerReference.global_position.x - global_position.x
+	var yDif = playerReference.global_position.y - global_position.y
+	
+	if xDif > (get_viewport_rect().size.x - 160):
+		pass
+	elif xDif > (get_viewport_rect().size.x - 160):
+		pass
