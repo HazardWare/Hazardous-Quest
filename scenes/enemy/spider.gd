@@ -47,5 +47,5 @@ func calculateDirection() -> void:
 	
 	if xDif > (get_viewport_rect().size.x - 160):
 		pass
-	elif xDif > (get_viewport_rect().size.x - 160):
+	elif xDif < (get_viewport_rect().size.x - 160):
 		pass
