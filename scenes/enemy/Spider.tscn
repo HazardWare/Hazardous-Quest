@@ -177,7 +177,4 @@ libraries = {
 shape = SubResource("CircleShape2D_t37u7")
 debug_color = Color(0.7, 0, 0.0116665, 0.419608)
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
-target_position = Vector2(35, -29)
-
 [connection signal="timeout" from="WalkTimer" to="." method="_on_walk_timer_timeout"]
