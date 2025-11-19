@@ -135,9 +135,9 @@ navAgent = NodePath("NavigationAgent2D")
 hurtBox = NodePath("AnimatedSprite2D/HurtBox")
 maximumHealth = 5
 speed = 140.0
-shouldBleed = false
 sprite = NodePath("AnimatedSprite2D")
 metadata/_custom_type_script = "uid://c8cqyjlah7m1e"
+metadata/_edit_group_ = true
 
 [node name="Shadow" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.729412)
@@ -176,5 +176,8 @@ libraries = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_t37u7")
 debug_color = Color(0.7, 0, 0.0116665, 0.419608)
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(35, -29)
 
 [connection signal="timeout" from="WalkTimer" to="." method="_on_walk_timer_timeout"]

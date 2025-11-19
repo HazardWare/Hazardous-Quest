@@ -79,8 +79,6 @@ func calculateDirection() -> void:
 			direction = Vector2(randf_range(-1, 0), randf_range(0, 1))
 		if quadrant == 3:
 			direction = Vector2(randf_range(0, 1), randf_range(-1, 0))
-		else:
+		if quadrant == 4:
 			direction = Vector2(randf_range(-1, 0), randf_range(-1, 0))
 	
-	print(safe)
-#Todo: Fix spider jumping away
