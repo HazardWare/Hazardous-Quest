@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cbaut5bbgnqxc" path="res://scenes/player/player.tscn" id="1_hyk8p"]
 [ext_resource type="Script" uid="uid://coiwt7h8ned7o" path="res://scenes/main/main.gd" id="1_iuonh"]
-[ext_resource type="PackedScene" uid="uid://1i7d15bac2tf" path="res://scenes/world/overworld.tscn" id="2_k2fmo"]
+[ext_resource type="PackedScene" uid="uid://1i7d15bac2tf" path="res://scenes/world/autumn.tscn" id="2_k2fmo"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_iuonh")
