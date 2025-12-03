@@ -5,6 +5,8 @@ extends Area2D
 
 signal onPowerStateChanged
 
+var touchingPlayer: bool
+
 @export var toggleable : bool = false
 
 @export var initial_locked := false ## Does this start locked?
@@ -23,15 +25,15 @@ var playerReference: Character:
 	get:
 		return get_tree().get_first_node_in_group("Player")
 
-func _ready() -> void:
-	body_entered.connect(_body_entered_interactable)
+func _process(_delta: float) -> void:
+	if overlaps_body(playerReference):
+		touchingPlayer = true
+	else: 
+		touchingPlayer = false
 
 func trigger():
 	powered = !powered
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("interact") and overlaps_body(playerReference):
+	if event.is_action_pressed("interact") and touchingPlayer:
 		trigger()
-
-func _body_entered_interactable():
-	print("Hello")
