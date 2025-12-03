@@ -76,6 +76,7 @@ color = Color(0.517647, 0.776471, 0.411765, 1)
 [node name="Player" parent="." instance=ExtResource("3_bpy6v")]
 z_index = 1
 position = Vector2(24, -735)
+rollSpeed = 1050
 
 [node name="ChangeSceneTrigger" parent="." instance=ExtResource("4_tvyim")]
 z_index = 2

@@ -48,6 +48,7 @@ tile_set = ExtResource("2_sre1m")
 z_index = 1
 position = Vector2(-270, -269)
 floorTilemap = NodePath("../Ground")
+rollSpeed = 1050
 
 [node name="Label" type="Label" parent="."]
 offset_left = -4240.0

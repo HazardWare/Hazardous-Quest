@@ -14,3 +14,4 @@ position = Vector2(33, -35)
 [node name="Player" parent="." instance=ExtResource("1_hyk8p")]
 z_index = 1
 position = Vector2(33, -35)
+rollSpeed = 1050

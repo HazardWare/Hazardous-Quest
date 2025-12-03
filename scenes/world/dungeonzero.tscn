@@ -58,6 +58,7 @@ position = Vector2(72, 202)
 [node name="Player" parent="." node_paths=PackedStringArray("floorTilemap") instance=ExtResource("3_00eu7")]
 position = Vector2(133, 206)
 floorTilemap = NodePath("../NavigationRegion2D/Ground")
+rollSpeed = 1050
 
 [node name="ChangeSceneTrigger2" parent="." instance=ExtResource("4_p0nra")]
 z_index = -2

@@ -26,6 +26,7 @@ tile_set = ExtResource("1_i4ncd")
 [node name="Player" parent="." node_paths=PackedStringArray("floorTilemap") instance=ExtResource("3_g5tlw")]
 position = Vector2(133, 206)
 floorTilemap = NodePath("../Ground")
+rollSpeed = 1050
 
 [node name="ChangeSceneTrigger" parent="." instance=ExtResource("4_w8xv3")]
 position = Vector2(335, 180)

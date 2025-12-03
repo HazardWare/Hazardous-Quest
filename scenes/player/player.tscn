@@ -726,7 +726,6 @@ snappingAngle = 0.0
 ui = NodePath("UIElements/UI")
 jab_thrust_force = 20.0
 bowHideTime = 0.85
-rollSpeed = 670
 speed = 100.0
 sprite = NodePath("AnimatedSprite2D")
 friction = 10.0
