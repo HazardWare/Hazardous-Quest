@@ -5,6 +5,10 @@ var stunned := false
 var enemyScenes := []
 var all_levels := []
 
+var inventory: Array = []
+
+var money_hole: int
+
 @export var playerReference : Character :
 	get():
 		return get_tree().get_first_node_in_group("Player")
@@ -48,3 +52,6 @@ func play(audio) -> void:
 	audio_player.play()
 	await audio_player.finished
 	audio_player.queue_free()
+
+func _process(_delta: float) -> void:
+	print(inventory)
