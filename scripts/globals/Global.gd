@@ -52,6 +52,3 @@ func play(audio) -> void:
 	audio_player.play()
 	await audio_player.finished
 	audio_player.queue_free()
-
-func _process(_delta: float) -> void:
-	print(inventory)
