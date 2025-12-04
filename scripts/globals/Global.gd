@@ -5,6 +5,10 @@ var stunned := false
 var enemyScenes := []
 var all_levels := []
 
+var inventory: Array = []
+
+var money_hole: int
+
 @export var playerReference : Character :
 	get():
 		return get_tree().get_first_node_in_group("Player")
