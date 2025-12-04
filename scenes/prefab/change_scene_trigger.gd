@@ -2,6 +2,8 @@ extends Area2D
 
 @export_file("*.tscn") var toScene : String
 
+@export var start_name : String
+
 func _ready() -> void:
 	body_entered.connect(switch)
 
