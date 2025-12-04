@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://dfojk4dfend76"]
+
+[ext_resource type="Script" uid="uid://b7fhpk68umc05" path="res://scripts/inheritsInteractable/inheritsPickups/basic_pickup.gd" id="1_miu4l"]
+[ext_resource type="Texture2D" uid="uid://dvvtfemm130je" path="res://assets/tilesheets/tile_items.png" id="2_op5pu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y7il8"]
+atlas = ExtResource("2_op5pu")
+region = Rect2(50, 2, 12, 12)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sfxfy"]
+radius = 8.0
+
+[node name="HeartPickup" type="Area2D"]
+script = ExtResource("1_miu4l")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_y7il8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_sfxfy")
