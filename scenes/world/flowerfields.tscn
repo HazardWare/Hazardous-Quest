@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=4 uid="uid://4qxvok61oytx"]
+[gd_scene load_steps=16 format=4 uid="uid://4qxvok61oytx"]
 
 [ext_resource type="TileSet" uid="uid://cmv7wt2iltbsn" path="res://resources/tileset_overworld.tres" id="2_27f4s"]
+[ext_resource type="Script" uid="uid://bsppbq12meqpr" path="res://scripts/player_spawn_point.gd" id="3_5cgwb"]
 [ext_resource type="Texture2D" uid="uid://su5hnluljkqr" path="res://assets/tilesheets/tile_dev.png" id="3_y2y4a"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eccxn"]
@@ -424,3 +425,8 @@ libraries = {
 &"": SubResource("AnimationLibrary_ap4hg")
 }
 autoplay = "Adair"
+
+[node name="SpawnForest1" type="Marker2D" parent="."]
+position = Vector2(1790, 369)
+script = ExtResource("3_5cgwb")
+metadata/_custom_type_script = "uid://bsppbq12meqpr"

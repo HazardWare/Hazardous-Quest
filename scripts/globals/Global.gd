@@ -32,7 +32,7 @@ func _ready() -> void:
 			all_levels.append(level_file_name.get_basename())
 	Console.add_command_autocomplete_list("map", all_levels)
 	
-func load_level(map_name : String):	
+func load_level(map_name : String):
 	get_tree().change_scene_to_file("res://scenes/world/%s.tscn" % map_name)
 
 func findEnemyScenes():

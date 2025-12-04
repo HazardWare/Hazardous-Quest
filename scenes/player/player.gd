@@ -1,3 +1,4 @@
+class_name Player
 extends Character
 
 ## The TileMapLayer that the player will be able to climb gaps over.
@@ -386,12 +387,15 @@ func readSaveData():
 	$UIElements/UI.update_health()
 
 
-
+var next_scene_spawn_point_name : StringName = ""
 func _on_scene_transition_animation_animation_finished(anim_name: StringName) -> void:
 	$SwitchScene.play()
 	if anim_name == "fade_out":
 		if nextScene != "":
 			get_tree().change_scene_to_file(nextScene)
+			for i in get_tree().get_nodes_in_group("PlayerSpawnPoints"):
+				if i is PlayerSpawnPoint && i.name == next_scene_spawn_point_name:
+					position = i.position
 		else:
 			get_tree().reload_current_scene()
 

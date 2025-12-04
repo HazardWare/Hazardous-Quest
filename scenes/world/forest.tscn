@@ -82,3 +82,10 @@ z_index = 2
 position = Vector2(24, -806)
 scale = Vector2(0.4, -0.6)
 toScene = "uid://clmibd6serpft"
+
+[node name="ChangeSceneTrigger2" parent="." instance=ExtResource("4_tvyim")]
+z_index = 2
+position = Vector2(1557.0001, 351)
+scale = Vector2(5.2579226, 13.254442)
+toScene = "uid://4qxvok61oytx"
+spawn_point_name = "SpawnForest1"
