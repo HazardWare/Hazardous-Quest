@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dsbbhkv4ijofv"]
 
-[ext_resource type="Script" uid="uid://b7fhpk68umc05" path="res://scripts/inheritsInteractable/inheritsPickups/coin.gd" id="1_sfxfy"]
+[ext_resource type="Script" uid="uid://b7fhpk68umc05" path="res://scripts/inheritsInteractable/inheritsPickups/basic_pickup.gd" id="1_sfxfy"]
 [ext_resource type="Texture2D" uid="uid://dvvtfemm130je" path="res://assets/tilesheets/tile_items.png" id="2_rhl6v"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e8x6l"]
