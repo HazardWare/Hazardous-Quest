@@ -16,7 +16,8 @@ func _process(delta: float) -> void:
 		if add_inventory:
 			Global.inventory.push_back(self.name)
 		else:
-			addToVariable(variable, worth)
+			if variable:
+				addToVariable(variable, worth)
 		queue_free()
 
 func addToVariable(zVariable, zWorth):
