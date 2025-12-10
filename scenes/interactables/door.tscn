@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://dm4vdumk5i2eg"]
+
+[ext_resource type="Script" uid="uid://bvuo5udovhpgs" path="res://scripts/inheritsInteractable/door.gd" id="1_fnoyy"]
+[ext_resource type="Texture2D" uid="uid://dwydofcpmq6ek" path="res://assets/tilesheets/tile_town.png" id="1_qq3h0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fnoyy"]
+atlas = ExtResource("1_qq3h0")
+region = Rect2(80, 112, 16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xetrc"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qq3h0"]
+size = Vector2(16, 16)
+
+[node name="Door" type="Area2D"]
+script = ExtResource("1_fnoyy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_fnoyy")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_xetrc")
+
+[node name="InteractableArea" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_qq3h0")
+debug_color = Color(0.91399825, 8.894563e-05, 0.71959907, 0.41960785)

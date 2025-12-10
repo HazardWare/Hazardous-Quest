@@ -14,7 +14,7 @@ func _process(delta: float) -> void:
 	super(delta)
 	if touchingPlayer:
 		if add_inventory:
-			Global.inventory.push_back(self.name)
+			Global.inventory.push_back(str(self.name))
 		else:
 			if variable:
 				addToVariable(variable, worth)

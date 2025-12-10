@@ -28,7 +28,6 @@ func fly():
 
 
 func _on_fly_time_timeout() -> void:
-	print
 	if moving:
 		moving = false
 		fly()
