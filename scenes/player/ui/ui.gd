@@ -27,6 +27,9 @@ func _ready() -> void:
 	Console.add_command("hq_say", dialogue_box_say, 1)
 	Console.add_command("hq_dialogue_test", read_dialogue_sequence)
 
+func _process(_delta: float) -> void:
+	update_health()
+
 func update_health():
 	
 	# Clear children

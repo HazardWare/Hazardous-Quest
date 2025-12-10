@@ -1,3 +1,4 @@
+class_name Player
 extends Character
 
 ## The TileMapLayer that the player will be able to climb gaps over.
@@ -90,6 +91,7 @@ func _ready() -> void:
 	#super()
 	$CharacterComponents/Hit.stream = AudioStreamWAV.load_from_file("res://assets/sounds/outsourced/Toby/snd_hurt1.wav")
 	
+	call_deferred("go_to_spawn_point")
 	
 
 func _physics_process(delta: float) -> void:
@@ -389,17 +391,41 @@ func readSaveData():
 	$UIElements/UI.update_health()
 
 
-
+var next_scene_spawn_point_name : StringName = ""
 func _on_scene_transition_animation_animation_finished(anim_name: StringName) -> void:
 	$SwitchScene.play()
 	if anim_name == "fade_out":
 		if nextScene != "":
 			get_tree().change_scene_to_file(nextScene)
+			
 		else:
 			get_tree().reload_current_scene()
 
-func _on_animation_changed(old_name : StringName, new_name : StringName) -> void:
+
+func _on_animation_changed(old_name : StringName, _new_name : StringName) -> void:
 	if old_name == "roll":
 		applyKnockback(Vector2.ZERO,0,0.5)
 	print(old_name)
 #endregion
+
+func go_to_spawn_point():
+	var spawned : bool = false
+	var default_spawn : PlayerSpawnPoint = null
+	print("guh")
+	for i in get_tree().get_nodes_in_group("PlayerSpawnPoints"):
+				if i is PlayerSpawnPoint && i.name == next_scene_spawn_point_name:
+					position = i.position
+					spawned = true
+					break
+				if i.name == "DefaultSpawn":
+					default_spawn = i
+	if default_spawn:
+		position = default_spawn.position
+	else:
+		push_error("No Default Spawn Point.")
+	
+
+
+#func _on_scene_transition_animation_animation_changed(_old_name: StringName, new_name: StringName) -> void:
+	#if new_name == "fade_in":
+		#pass

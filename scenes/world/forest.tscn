@@ -4,7 +4,7 @@
 [ext_resource type="TileSet" uid="uid://cmv7wt2iltbsn" path="res://resources/tileset_overworld.tres" id="2_1da0x"]
 [ext_resource type="PackedScene" uid="uid://cbaut5bbgnqxc" path="res://scenes/player/player.tscn" id="3_bpy6v"]
 [ext_resource type="PackedScene" uid="uid://cc87q72ysenpd" path="res://scenes/prefab/ChangeSceneTrigger.tscn" id="4_tvyim"]
-[ext_resource type="PackedScene" uid="uid://dr5onmqxfl3a2" path="res://test.tscn" id="5_euhvq"]
+[ext_resource type="PackedScene" uid="uid://dfojk4dfend76" path="res://scenes/pickups/health_pickup.tscn" id="5_euhvq"]
 
 [node name="Forest" type="Node2D"]
 y_sort_enabled = true
@@ -85,5 +85,20 @@ position = Vector2(24, -806)
 scale = Vector2(0.4, -0.6)
 toScene = "uid://clmibd6serpft"
 
-[node name="Sprite2D" parent="." instance=ExtResource("5_euhvq")]
-position = Vector2(158, -752)
+[node name="ChangeSceneTrigger2" parent="." instance=ExtResource("4_tvyim")]
+z_index = 2
+position = Vector2(1557.0001, 351)
+scale = Vector2(5.2579226, 13.254442)
+toScene = "uid://4qxvok61oytx"
+spawn_point_name = "SpawnForest1"
+
+[node name="HealthPickup" parent="." instance=ExtResource("5_euhvq")]
+position = Vector2(140, -752)
+
+[node name="HealthPickup2" parent="." instance=ExtResource("5_euhvq")]
+position = Vector2(114, -705)
+halfHeart = true
+
+[node name="HealthPickup3" parent="." instance=ExtResource("5_euhvq")]
+position = Vector2(114, -668)
+halfHeart = true

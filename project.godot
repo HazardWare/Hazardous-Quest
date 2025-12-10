@@ -11,8 +11,8 @@ config_version=5
 [application]
 
 config/name="Hazardous Quest"
-run/main_scene="uid://1i7d15bac2tf"
-config/features=PackedStringArray("4.4", "Forward Plus")
+run/main_scene="uid://o2vlki6brb2s"
+config/features=PackedStringArray("4.5", "Forward Plus")
 boot_splash/bg_color=Color(0.104133, 0.136534, 0.223468, 1)
 boot_splash/use_filter=false
 boot_splash/image="uid://px5408s38gpr"
@@ -23,6 +23,7 @@ config/icon="uid://d7myph0coxos"
 SaveLoad="*res://scripts/globals/SaveLoad.gd"
 Global="*res://scripts/globals/Global.gd"
 Console="*res://addons/console/console.gd"
+Inventory="*res://scripts/globals/Inventory.gd"
 
 [debug]
 
@@ -53,6 +54,7 @@ Friendly="Anything on the player's side."
 Tilemap=""
 BushLayer="A TileMapLayer that contains breakable objects"
 Player=""
+PlayerSpawnPoints=""
 
 [input]
 
