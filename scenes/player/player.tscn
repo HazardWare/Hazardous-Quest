@@ -723,6 +723,7 @@ y_sort_enabled = true
 collision_mask = 156
 script = ExtResource("1_dovo2")
 snappingAngle = 0.0
+swordLevel = 1
 ui = NodePath("UIElements/UI")
 jab_thrust_force = 20.0
 bowHideTime = 0.85
