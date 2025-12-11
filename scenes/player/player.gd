@@ -58,7 +58,7 @@ var angleToTheMouse
 
 @export_subgroup("RollStuff")
 var rolling = false
-@export var rollSpeed : int = 850
+@export var rollSpeed := 850
 
 #region Godot functions:
 
@@ -174,7 +174,7 @@ func _input(event: InputEvent) -> void:
 	# STORAGE : and knockback == Vector2.ZERO
 	# The above is commented out because it prevented the player from attacking while being thrusted forward.
 	# This is a band-aid fix, and I'll solve it later. - n
-	if event.is_action_pressed("action_primary") and not shielding and not $Arm/Attack.is_playing():
+	if event.is_action_pressed("action_primary") and swordLevel > 0 and not shielding and not $Arm/Attack.is_playing():
 		$AnimationPlayer.play("RESET")
 		$Arm/Attack.play("RESET")
 
@@ -200,7 +200,7 @@ func _input(event: InputEvent) -> void:
 		var lookingLeft = snapped( rad_to_deg(get_global_mouse_position().angle_to_point(position)) + 180 , 180) == 180
 		$AnimatedSprite2D.flip_h = lookingLeft
 	
-	if event.is_action_pressed("candle") and not shielding:
+	if event.is_action_pressed("candle") and hasCandle and not shielding:
 		var currentFire : Projectile = fireScene.instantiate()
 		currentFire.initial_velocity = Vector2.ZERO # No init velocity
 		owner.add_child(currentFire)
@@ -210,7 +210,7 @@ func _input(event: InputEvent) -> void:
 	# The Dodge Roll code
 	var direction := Input.get_vector("walk_left", "walk_right", "walk_up", "walk_down")
 	if Input.is_action_just_pressed("roll") and direction != Vector2(0, 0):
-		if rolling == true : return
+		if rolling: return
 		rolling = true
 		if direction.x > 0:
 			$AnimationPlayer.play("roll_right")
@@ -218,7 +218,8 @@ func _input(event: InputEvent) -> void:
 			$AnimationPlayer.play("roll_left")
 			$AnimatedSprite2D.flip_h = true
 		velocity = direction * rollSpeed
-		await get_tree().create_timer(0.3).timeout
+		$AnimationPlayer.speed_scale = 1
+		await $AnimationPlayer.animation_finished
 		$AnimationPlayer.play("RESET")
 		rotation = 0.0
 		rolling = false
@@ -263,10 +264,10 @@ func handleContinuousInput(delta: float):
 		return
 	
 	# Can't do this stuff whilst attacking
-	if not $Arm/Attack.is_playing() and knockback == Vector2.ZERO:
+	if not $Arm/Attack.is_playing() and not rolling and knockback == Vector2.ZERO:
 		
 		# Shielding
-		shielding = true if Input.is_action_pressed("shield") else false
+		shielding = true if Input.is_action_pressed("shield") and hasShield else false
 		
 		
 		
@@ -280,7 +281,7 @@ func handleContinuousInput(delta: float):
 		
 		if not shielding:
 			# Count timers:
-			if Input.is_action_pressed("action_secondary") and not $Arm/Attack.is_playing():
+			if Input.is_action_pressed("action_secondary") and hasBow and not $Arm/Attack.is_playing():
 				$BowHideTimer.stop()
 				bowHeldTime += delta
 				$Arm/Bow.show()
@@ -318,6 +319,8 @@ func buildBridges():
 	## Tile the player is standing on
 	var stoodOnTile : Vector2i = \
 		floorTilemap.local_to_map(floorTilemap.to_local($WorldCollision.global_position))
+	if !hasLadder:
+		return;
 	
 	# If the stood on tile is a ladder, don't do nothing.
 	if floorTilemap.get_cell_source_id(stoodOnTile) == 5:
