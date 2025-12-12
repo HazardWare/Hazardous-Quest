@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=4 uid="uid://o2vlki6brb2s"]
+[gd_scene load_steps=7 format=4 uid="uid://o2vlki6brb2s"]
 
 [ext_resource type="Texture2D" uid="uid://cpstvau0nlnqw" path="res://assets/Screenshot 2025-08-28 153026.png" id="1_uuut2"]
 [ext_resource type="TileSet" uid="uid://cmv7wt2iltbsn" path="res://resources/tileset_overworld.tres" id="2_1da0x"]
 [ext_resource type="PackedScene" uid="uid://cbaut5bbgnqxc" path="res://scenes/player/player.tscn" id="3_bpy6v"]
 [ext_resource type="PackedScene" uid="uid://cc87q72ysenpd" path="res://scenes/prefab/ChangeSceneTrigger.tscn" id="4_tvyim"]
 [ext_resource type="PackedScene" uid="uid://dfojk4dfend76" path="res://scenes/pickups/health_pickup.tscn" id="5_euhvq"]
+[ext_resource type="PackedScene" uid="uid://dm4vdumk5i2eg" path="res://scenes/interactables/door.tscn" id="6_uuut2"]
 
 [node name="Forest" type="Node2D"]
 y_sort_enabled = true
@@ -102,3 +103,6 @@ halfHeart = true
 [node name="HealthPickup3" parent="." instance=ExtResource("5_euhvq")]
 position = Vector2(114, -668)
 halfHeart = true
+
+[node name="Door" parent="." instance=ExtResource("6_uuut2")]
+position = Vector2(122, -731)

@@ -4,6 +4,13 @@ class_name Door
 @export var one : bool # Single door if true, double door if false
 @export var open : bool
 
+var keyIndex = 0:
+		set(value):
+			Global.inventory.find("Key")
+			if keyIndex != null:
+				keyIndex = value
+			else:
+				print("Null!")
 
 
 func _ready() -> void:
@@ -23,7 +30,8 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	super(delta)
-	print(Global.inventory.bsearch("Key", true))
+	
+	
 	
 	if open:
 		$StaticBody2D/CollisionShape2D.disabled = true
